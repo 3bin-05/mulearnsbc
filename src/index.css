@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  
+  --color-bg-dark: #03050c;
+  --color-accent-purple: #9d50ff;
+  --color-accent-blue: #3b82f6;
+  --color-accent-indigo: #5c67f2;
+  --color-accent-cyan: #22d3ee;
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3b3cc;
+  --color-text-muted: #64748b;
+  
+  --animate-fade-in: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   Custom Utility Classes
+   ========================================== */
+
+/* Text Gradient Utilities */
+.gradient-text {
+  background: linear-gradient(90deg, #b98bfb 0%, #5d9df9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* Scroll lock when mobile drawer is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Arrow transition */
+.arrow-icon-shift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-btn-hover:hover .arrow-icon-shift {
+  transform: translateX(4px);
+}
