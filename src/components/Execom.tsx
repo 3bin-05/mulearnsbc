@@ -3,19 +3,18 @@ import { motion } from 'framer-motion';
 import { Terminal as TerminalIcon, RefreshCw } from 'lucide-react';
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   </svg>
 );
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
     <rect x="2" y="9" width="4" height="12" />
     <circle cx="4" cy="4" r="2" />
   </svg>
 );
-
 
 interface Member {
   name: string;
@@ -27,111 +26,346 @@ interface Member {
   skills: { label: string; value: number }[];
   github?: string;
   linkedin?: string;
+  quote: string;
+  image: string;
 }
 
 const MEMBERS: Member[] = [
   {
-    name: 'Nihal Harris',
+    name: 'Aadit Ajay',
     role: 'Campus Lead',
     roleCode: 'CMD-01',
     authLevel: 'L-05 (MAX)',
     sysRole: 'COMMANDER',
-    dept: 'HEADQUARTERS',
-    skills: [
-      { label: 'LEADERSHIP', value: 95 },
-      { label: 'STRATEGY', value: 92 },
-      { label: 'COMMUNITY', value: 88 },
-    ],
+    dept: 'CORE_TEAM',
+    skills: [{ label: 'LEADERSHIP', value: 96 }, { label: 'STRATEGY', value: 93 }, { label: 'COMMUNITY', value: 90 }],
+    quote: 'LEADING THE CAMPUS COMMUNITY WITH VISION AND EXECUTING HIGH-IMPACT PROGRAMS.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
   {
-    name: 'Anagha Rajesh',
-    role: 'Co-Lead',
+    name: 'Malavika ps',
+    role: 'Campus Co-Lead',
     roleCode: 'CMD-02',
     authLevel: 'L-05 (MAX)',
     sysRole: 'COORD_UNIT',
-    dept: 'HEADQUARTERS',
-    skills: [
-      { label: 'COORDINATION', value: 94 },
-      { label: 'OPERATIONS', value: 90 },
-      { label: 'MANAGEMENT', value: 89 },
-    ],
+    dept: 'CORE_TEAM',
+    skills: [{ label: 'LEADERSHIP', value: 92 }, { label: 'MANAGEMENT', value: 90 }, { label: 'OPERATIONS', value: 88 }],
+    quote: 'COORDINATING LEADERSHIP ENERGIES TO BUILD A STRENGTHENED CAMPUS COMMUNITY.',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400',
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
   {
-    name: 'Ebin Joseph',
-    role: 'Technology Lead',
-    roleCode: 'ENG-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'ARCHITECT',
-    dept: 'TECH_SECTOR',
-    skills: [
-      { label: 'DEV_STACK', value: 96 },
-      { label: 'SYSTEM_DESIGN', value: 92 },
-      { label: 'ALGORITHMS', value: 90 },
-    ],
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Devika S.',
-    role: 'Creative Lead',
-    roleCode: 'DSN-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'INTERFACE_DES',
-    dept: 'CREATIVE_SECTOR',
-    skills: [
-      { label: 'UI_AESTHETICS', value: 97 },
-      { label: 'BRANDING', value: 93 },
-      { label: 'MOTION_DESIGN', value: 88 },
-    ],
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Girish Kumar',
-    role: 'Operations Lead',
-    roleCode: 'OPS-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'OPERATOR',
-    dept: 'OPS_SECTOR',
-    skills: [
-      { label: 'EXECUTION', value: 94 },
-      { label: 'LOGISTICS', value: 91 },
-      { label: 'STAKEHOLDERS', value: 87 },
-    ],
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Anoop George',
-    role: 'Marketing Lead',
-    roleCode: 'MKT-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'NET_DISTRIBUTOR',
-    dept: 'PR_SECTOR',
-    skills: [
-      { label: 'CAMPAIGNS', value: 92 },
-      { label: 'OUTREACH', value: 90 },
-      { label: 'ANALYTICS', value: 85 },
-    ],
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Riya Kurian',
-    role: 'Secretary',
+    name: 'Diya Thresia Daniel',
+    role: 'HR Manager',
     roleCode: 'SEC-01',
     authLevel: 'L-04 (HIGH)',
-    sysRole: 'SYSTEM_LOG',
-    dept: 'CORE_OFFICE',
-    skills: [
-      { label: 'DOCUMENTATION', value: 95 },
-      { label: 'COMPLIANCE', value: 92 },
-      { label: 'ARCHIVING', value: 88 },
-    ],
+    sysRole: 'HUMAN_RESOURCES',
+    dept: 'CORE_TEAM',
+    skills: [{ label: 'PEOPLE', value: 94 }, { label: 'COMPLIANCE', value: 90 }, { label: 'SYSTEMS', value: 85 }],
+    quote: 'MANAGING TALENT ACQUISITION AND COMPLIANCE INTEGRATION ACROSS ALL DEPARTMENTS.',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Ebin Reji',
+    role: 'Technical Advisor',
+    roleCode: 'ENG-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'TECH_ADVISOR',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'ARCHITECTURE', value: 95 }, { label: 'CONSULTING', value: 92 }, { label: 'DEV_STACK', value: 90 }],
+    quote: 'GUIDING THE FUTURE ARCHITECTURE OF DIGITAL ASSETS AND SCALING SYSTEM WORKFLOWS.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Aadil D A',
+    role: 'Technical Advisor',
+    roleCode: 'ENG-02',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'TECH_ADVISOR',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'ENGINEERING', value: 93 }, { label: 'SYSTEMS', value: 91 }, { label: 'STRATEGY', value: 88 }],
+    quote: 'PROVIDING DEEP STRATEGIC INSIGHTS AND SUPPORTING FULL-STACK ENGINEERING PIPELINES.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Abin S George',
+    role: 'Operations Team Lead',
+    roleCode: 'OPS-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'OPERATIONS_LEAD',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'LOGISTICS', value: 94 }, { label: 'EXECUTION', value: 92 }, { label: 'PEER_ENGAGEMENT', value: 89 }],
+    quote: 'STREAMLINING EVENT LOGISTICS AND ENSURING SEAMLESS OPERATIONAL INTEGRITY.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Vaishnav S',
+    role: 'Creative Team Lead',
+    roleCode: 'DSN-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'CREATIVE_LEAD',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'VISUALS', value: 96 }, { label: 'BRANDING', value: 93 }, { label: 'AESTHETICS', value: 91 }],
+    quote: 'TRANSLATING VISUAL IDEAS INTO PREMIUM DIGITAL EXPERIENCES AND BRAND INTERFACES.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'S.P Devanand',
+    role: 'Muv Team - Director',
+    roleCode: 'MUV-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'MUV_DIRECTOR',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'DIRECTION', value: 95 }, { label: 'STORYTELLING', value: 93 }, { label: 'MEDIA', value: 90 }],
+    quote: 'STORYTELLING AND DIRECTING CINEMATIC MEDIA NARRATIVES FOR MAXIMUM IMPACT.',
+    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Ajin B David',
+    role: 'IG Lead - Game Dev',
+    roleCode: 'IG-01',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_GAME_DEV',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'GAME_DEV', value: 94 }, { label: 'INTERACTION', value: 91 }, { label: 'GRAPHICS', value: 87 }],
+    quote: 'FOSTERING INTERACTION DESIGN AND GAMIFICATION MECHANICS IN THE CAMPUS COMMUNITY.',
+    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Maanas T Manoj',
+    role: 'IG Lead - Cyber Security',
+    roleCode: 'IG-02',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_SEC',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'SECURITY', value: 95 }, { label: 'NETWORKING', value: 90 }, { label: 'LINUX', value: 88 }],
+    quote: 'SECURING SYSTEMS AND PROMOTING PENETRATION TESTING BEST PRACTICES.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'ABIN PHILIP ANIL',
+    role: 'IG Lead - AI',
+    roleCode: 'IG-03',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_AI',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'AI_MODELS', value: 96 }, { label: 'PYTHON', value: 93 }, { label: 'MATH', value: 89 }],
+    quote: 'EXPLORING NEURAL NETWORKS, MACHINE LEARNING, AND PREDICTIVE DATA MODELING.',
+    image: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Ananthu Mohan',
+    role: 'IG Lead - Gen AI',
+    roleCode: 'IG-04',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_GEN_AI',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'LLMS', value: 94 }, { label: 'PROMPTING', value: 92 }, { label: 'AUTOMATION', value: 87 }],
+    quote: 'EXPERIMENTING WITH LARGE LANGUAGE MODELS AND GENERATIVE AI APPLICATIONS.',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Krishna S Kumar',
+    role: 'IG Lead - App Dev',
+    roleCode: 'IG-05',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_APP_DEV',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'FLUTTER', value: 93 }, { label: 'REACT_NATIVE', value: 91 }, { label: 'MOBILE_UI', value: 86 }],
+    quote: 'DESIGNING NATIVE MOBILE APPLICATIONS WITH SEAMLESS CROSS-PLATFORM COMPATIBILITY.',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Devika J',
+    role: 'IG Lead - Web Dev',
+    roleCode: 'IG-06',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'IG_WEB_DEV',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'REACT', value: 95 }, { label: 'TYPESCRIPT', value: 92 }, { label: 'CSS_LAYOUT', value: 90 }],
+    quote: 'BUILDING HIGH-PERFORMANCE WEB APPLICATIONS AND USER INTERFACES FOR ALL DEPLOYMENTS.',
+    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Karthik Renjith',
+    role: 'Marketing Team - Outreach Manager',
+    roleCode: 'MKT-01',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'OUTREACH_MGR',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'OUTREACH', value: 93 }, { label: 'COMMUNICATION', value: 91 }, { label: 'PUBLIC_RELATIONS', value: 88 }],
+    quote: 'EXPANDING CONNECTIVITY AND DRIVING ENGAGEMENT WITH GLOBAL STAKEHOLDERS.',
+    image: 'https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Mohammed Adhil',
+    role: 'Marketing Team - Social Media Manager',
+    roleCode: 'MKT-02',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'PR_MGR',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'SOCIAL_MEDIA', value: 94 }, { label: 'COPYWRITING', value: 90 }, { label: 'CONTENT', value: 87 }],
+    quote: 'SHAPING THE BRAND PRESENCE AND BUILDING VIRAL SOCIAL MEDIA CAMPAIGNS.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Devanarayanan A',
+    role: 'Creative Team',
+    roleCode: 'DSN-02',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'CREATIVE_STAFF',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'GRAPHICS', value: 90 }, { label: 'PHOTOSHOP', value: 88 }, { label: 'ILLUSTRATOR', value: 85 }],
+    quote: 'ILLUSTRATING DIGITAL ARTWORK AND CONTRIBUTING VISUAL GRAPHICS TO CAMPAIGNS.',
+    image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Arjun R Kurup',
+    role: 'Creative Team',
+    roleCode: 'DSN-03',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'CREATIVE_STAFF',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'DESIGN_ASSETS', value: 91 }, { label: 'UI_DESIGN', value: 89 }, { label: 'COLLABORATION', value: 84 }],
+    quote: 'DEVELOPING HIGH-END DESIGN ASSETS AND USER INTERFACES.',
+    image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Navaneeth R Nair',
+    role: 'Creative Team',
+    roleCode: 'DSN-04',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'CREATIVE_STAFF',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'ANIMATION', value: 92 }, { label: 'MOTION', value: 89 }, { label: 'EFFECTS', value: 85 }],
+    quote: 'CREATING ANIMATIONS AND DIGITAL EFFECTS FOR MARKETING CONTENT.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Beema Amal',
+    role: 'Design Team',
+    roleCode: 'DSN-05',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'DESIGNER',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'BRANDING', value: 91 }, { label: 'STYLING', value: 88 }, { label: 'TYPOGRAPHY', value: 86 }],
+    quote: 'SHAPING BRAND DESIGN PRINCIPLES AND STYLES FOR THE SBC COMMUNITY.',
+    image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'John C Deepak',
+    role: 'Design Team',
+    roleCode: 'DSN-06',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'DESIGNER',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'VISUAL_STRATEGY', value: 90 }, { label: 'LAYOUT', value: 89 }, { label: 'ASSETS', value: 85 }],
+    quote: 'DEFINING THE VISUAL DESIGN STRATEGY AND LAYOUT ARCHITECTURE FOR GRAPHICS.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Nidhi M P',
+    role: 'Muv Team - Editor',
+    roleCode: 'MUV-02',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'MUV_EDITOR',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'VIDEO_EDITING', value: 93 }, { label: 'PRODUCTION', value: 90 }, { label: 'SOUND', value: 86 }],
+    quote: 'EDITING HIGH-IMPACT VIDEO CONTENT AND OVERSEEING MEDIA PRODUCTION FILES.',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Adhithyan S Pillai',
+    role: 'Operations Team',
+    roleCode: 'OPS-02',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'OPERATIONS_STAFF',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'REGISTRATIONS', value: 91 }, { label: 'ON_SITE', value: 89 }, { label: 'COORDINATION', value: 86 }],
+    quote: 'SUPPORTING REGISTRATIONS AND COORDINATING ON-SITE EVENT FLOWS.',
+    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Faizan A',
+    role: 'Operations Team',
+    roleCode: 'OPS-03',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'OPERATIONS_STAFF',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'LOGISTICS', value: 92 }, { label: 'ALLOCATION', value: 89 }, { label: 'SUPPORT', value: 87 }],
+    quote: 'ENSURING RESOURCE ALLOCATION AND ASSISTING IN BOOTCAMP LOGISTICS.',
+    image: 'https://images.unsplash.com/photo-1542206395-9feb3edaa68d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Akshaj A',
+    role: 'Operations Team',
+    roleCode: 'OPS-04',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'OPERATIONS_STAFF',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'MEETUPS', value: 91 }, { label: 'ATTENDANCE', value: 88 }, { label: 'COORDINATION', value: 87 }],
+    quote: 'FACILITATING ON-CAMPUS MEETUPS AND TRACKING CORE MEMBERS ATTENDANCE.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400',
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Arjun Santhosh nair',
+    role: 'Operations Team',
+    roleCode: 'OPS-05',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'OPERATIONS_STAFF',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'VOLUNTEER', value: 90 }, { label: 'PROVISIONING', value: 88 }, { label: 'LOGISTICS', value: 87 }],
+    quote: 'COORDINATING VOLUNTEER WORKFLOWS AND RESOURCE PROVISIONING FOR LABS.',
+    image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80&w=400&h=400',
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -139,200 +373,77 @@ const MEMBERS: Member[] = [
 
 const SECTORS = [
   { id: 'ALL', label: 'ALL SECTORS', code: 'SEC_ALL' },
-  { id: 'HEADQUARTERS', label: 'HQ COMMAND', code: 'SEC_HQ' },
+  { id: 'CORE_TEAM', label: 'CORE TEAM', code: 'SEC_CORE' },
   { id: 'TECH_SECTOR', label: 'TECH DEPT', code: 'SEC_ENG' },
   { id: 'CREATIVE_SECTOR', label: 'CREATIVE DEPT', code: 'SEC_DSN' },
   { id: 'OPERATIONS', label: 'STAFF / CORE', codes: ['OPS_SECTOR', 'PR_SECTOR', 'CORE_OFFICE'] },
 ];
 
-function HolographicAvatar({ roleCode, isHovered }: { roleCode: string; isHovered: boolean }) {
+function ExecomRow({ member }: { member: Member }) {
   return (
-    <div className="relative w-36 h-36 mx-auto flex items-center justify-center select-none">
-      {/* Outer spinning dash ring */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0 border border-dashed border-white/20 rounded-full"
-      />
-      {/* Middle ring rotating back */}
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-2 border border-dotted border-white/30 rounded-full"
-      />
-      {/* Hologram glowing core */}
-      <motion.div
-        animate={{
-          scale: isHovered ? [1, 1.08, 1] : [0.96, 1.04, 0.96],
-          opacity: isHovered ? 0.95 : 0.75,
-        }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute inset-6 bg-gradient-to-tr from-white/5 to-white/18 rounded-full flex flex-col items-center justify-center border border-white/25 shadow-[0_0_20px_rgba(255,255,255,0.06)]"
-      >
-        <span className="text-[12px] font-orbitron font-bold tracking-widest text-white/90">
-          {roleCode}
-        </span>
-        <span className="text-[8px] font-sans font-light tracking-widest text-white/40 mt-1 uppercase">
-          SYS_OK
-        </span>
-      </motion.div>
-
-      {/* Futuristic Target Locks */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-2 bg-white/40" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-2 bg-white/40" />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[1px] w-2 bg-white/40" />
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[1px] w-2 bg-white/40" />
-      
-      {/* Horizontal grid bar overlay on hover */}
-      {isHovered && (
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 50, opacity: [0, 0.8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-          className="absolute left-2 right-2 h-[1px] bg-white/60 shadow-[0_0_8px_rgba(255,255,255,0.5)] pointer-events-none"
+    <div className="group relative w-full border-b border-white/10 flex flex-col md:flex-row gap-8 md:gap-16 py-12 md:py-16 transition-all duration-500 ease-[cubic-bezier(0.5,0,0,1)] hover:bg-[#a8551a] hover:text-[#0c0c0c] hover:px-[4vw] md:hover:px-[12vw] px-0 text-white select-none">
+      {/* Left Column: Portrait Photo */}
+      <div className="relative w-40 h-40 md:w-52 md:h-52 shrink-0 overflow-hidden bg-white/5 border border-white/10 group-hover:border-black/25 transition-colors duration-500">
+        <img
+          src={member.image}
+          alt={member.name}
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-105"
         />
-      )}
-    </div>
-  );
-}
-
-function TelemetryCard({ member }: { member: Member }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setMousePos({ x: 0, y: 0 });
-  };
-
-  // 3D rotation angles based on cursor offset
-  const rotateX = mousePos.y * -12;
-  const rotateY = mousePos.x * 12;
-
-  // Hover light overlay gradient position
-  const glowStyle = {
-    background: isHovered
-      ? `radial-gradient(circle 240px at ${(mousePos.x + 0.5) * 100}% ${(mousePos.y + 0.5) * 100}%, rgba(255, 255, 255, 0.08), transparent)`
-      : 'none',
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        transition: isHovered ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
-      }}
-      className="relative h-[480px] w-full bg-[#0d0d0d]/40 border border-white/8 rounded-lg overflow-hidden flex flex-col justify-between p-6 select-none cursor-pointer group hover:border-white/20 transition-colors"
-    >
-      {/* Laser Reflection Glow overlay */}
-      <div className="absolute inset-0 pointer-events-none transition-opacity duration-300" style={glowStyle} />
-
-      {/* Decorative Grid and Tech markings */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.015)_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50" />
-      
-      {/* Sci-fi corners */}
-      <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/20" />
-      <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/20" />
-      <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/20" />
-      <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/20" />
-
-      {/* Scanner grid line scanline effect */}
-      <div className="absolute top-3 right-4 flex items-center gap-1.5 font-orbitron text-[9px] tracking-wider text-white/35">
-        <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse" />
-        <span>SYS_SECURE</span>
+        {/* Sci-Fi scanner line effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-full h-1/2 animate-scan" />
       </div>
 
-      {/* Card Header: Authentication Level and Department */}
-      <div className="flex justify-between items-start pt-2 border-b border-white/5 pb-3">
-        <div className="flex flex-col">
-          <span className="font-orbitron text-[9px] text-white/40 tracking-wider">CLEARANCE</span>
-          <span className="font-orbitron text-[11px] font-semibold text-white/80 mt-0.5">{member.authLevel}</span>
-        </div>
-        <div className="flex flex-col items-end">
-          <span className="font-orbitron text-[9px] text-white/40 tracking-wider">SECTOR_NODE</span>
-          <span className="font-orbitron text-[11px] font-semibold text-white/80 mt-0.5">{member.dept}</span>
-        </div>
-      </div>
+      {/* Right Column: Quote & Info Content */}
+      <div className="flex-1 flex flex-col justify-center">
+        {/* Large Testimonial Quote */}
+        <blockquote className="font-orbitron font-semibold text-[20px] sm:text-[24px] md:text-[28px] leading-tight tracking-wide uppercase">
+          "{member.quote}"
+        </blockquote>
 
-      {/* Body: Holographic Avatar */}
-      <div className="my-auto py-4">
-        <HolographicAvatar roleCode={member.roleCode} isHovered={isHovered} />
-      </div>
+        {/* Divider Line inside card */}
+        <div className="w-full h-[1px] bg-white/15 group-hover:bg-black/15 transition-colors duration-500 my-6" />
 
-      {/* Card Footer: Metadata and stats */}
-      <div className="flex flex-col gap-4 border-t border-white/5 pt-4">
-        {/* Name and Role */}
-        <div className="flex justify-between items-end">
-          <div className="flex flex-col">
-            <h3 className="font-orbitron font-bold text-[18px] tracking-wide text-white leading-tight">
+        {/* Credentials & Details */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-orbitron">
+          <div className="flex flex-col gap-1">
+            <span className="font-bold text-[18px] sm:text-[20px] tracking-wide">
               {member.name}
-            </h3>
-            <span className="font-sans text-[12px] font-light text-white/70 tracking-wide mt-0.5">
-              {member.role}
+            </span>
+            <span className="text-[12px] opacity-70 tracking-widest font-sans font-light uppercase">
+              {member.role} — {member.dept}
             </span>
           </div>
-          <div className="font-orbitron text-[9px] text-white/30 tracking-widest text-right">
-            CODE: {member.sysRole}
-          </div>
-        </div>
 
-        {/* Telemetry Stats / Skills */}
-        <div className="flex flex-col gap-2.5">
-          {member.skills.map((skill) => (
-            <div key={skill.label} className="flex flex-col gap-1">
-              <div className="flex justify-between text-[8px] font-orbitron tracking-widest text-white/45">
-                <span>{skill.label}</span>
-                <span>{skill.value}%</span>
-              </div>
-              <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: isHovered ? `${skill.value}%` : '8%' }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="h-full bg-white/40"
-                />
-              </div>
+          {/* Social Icons & Code Node */}
+          <div className="flex items-center gap-4">
+            <span className="text-[11px] opacity-45 font-mono tracking-widest uppercase">
+              NODE: {member.roleCode} // {member.authLevel}
+            </span>
+            <div className="flex items-center gap-3">
+              {member.github && (
+                <a
+                  href={member.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white group-hover:text-black/50 group-hover:hover:text-black transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <GithubIcon />
+                </a>
+              )}
+              {member.linkedin && (
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white group-hover:text-black/50 group-hover:hover:text-black transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <LinkedinIcon />
+                </a>
+              )}
             </div>
-          ))}
-        </div>
-
-        {/* Social Terminal Links */}
-        <div className="flex justify-end gap-3 mt-1 pt-1 border-t border-white/5">
-          {member.github && (
-            <a
-              href={member.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 hover:text-white transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-          )}
-          {member.linkedin && (
-            <a
-              href={member.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 hover:text-white transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-          )}
+          </div>
         </div>
       </div>
     </div>
@@ -440,7 +551,7 @@ export default function Execom({ onClose }: ExecomProps) {
             </div>
             <div className="flex justify-between">
               <span>ACTIVE_RECORDS:</span>
-              <span className="text-white/80">07 // TOTAL</span>
+              <span className="text-white/80">{String(filteredMembers.length).padStart(2, '0')} // TOTAL</span>
             </div>
             <div className="flex justify-between items-center border-t border-white/5 pt-1 mt-1 text-white/30">
               <span>DECRYPTING DATA MATRIX...</span>
@@ -472,10 +583,10 @@ export default function Execom({ onClose }: ExecomProps) {
           })}
         </div>
 
-        {/* Execom Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-4">
+        {/* Execom Rows List */}
+        <div className="flex flex-col border-t border-white/10 mt-4">
           {filteredMembers.map((member) => (
-            <TelemetryCard key={member.name} member={member} />
+            <ExecomRow key={member.name} member={member} />
           ))}
         </div>
       </div>
