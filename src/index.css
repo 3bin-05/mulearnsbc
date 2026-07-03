@@ -1,57 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
-  
-  --color-bg-dark: #03050c;
-  --color-accent-purple: #9d50ff;
-  --color-accent-blue: #3b82f6;
-  --color-accent-indigo: #5c67f2;
-  --color-accent-cyan: #22d3ee;
-  
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a3b3cc;
-  --color-text-muted: #64748b;
-  
-  --animate-fade-in: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@layer base {
+  body {
+    background-color: #000000;
+    color: #F6F6F4;
   }
 }
 
-/* ==========================================
-   Custom Utility Classes
-   ========================================== */
-
-/* Text Gradient Utilities */
-.gradient-text {
-  background: linear-gradient(90deg, #b98bfb 0%, #5d9df9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-}
-
-/* Scroll lock when mobile drawer is open */
+/* Scroll lock utility when menu is open */
 .no-scroll {
   overflow: hidden;
+  height: 100vh;
 }
 
-/* Arrow transition */
-.arrow-icon-shift {
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Premium selection style */
+::selection {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
 }
 
-.cta-btn-hover:hover .arrow-icon-shift {
-  transform: translateX(4px);
+/* Futuristic noise background overlay */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
+
+/* Futuristic scrollbar for the telemetry dashboard */
+.tech-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tech-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.tech-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tech-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
