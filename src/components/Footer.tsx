@@ -59,7 +59,7 @@ const CONTACT_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 min-h-[520px] border-t border-white/[0.04] bg-[#060606] text-white overflow-hidden">
+    <footer id="contact" className="relative z-20 min-h-[520px] border-t border-white/[0.04] bg-[#060606] text-white overflow-hidden scroll-mt-28">
       <div className="absolute inset-0 bg-noise opacity-[0.018] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.006)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.006)_1px,transparent_1px)] bg-[size:88px_88px] pointer-events-none" />
       <div className="footer-orbit" aria-hidden="true">

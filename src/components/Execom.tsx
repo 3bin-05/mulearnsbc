@@ -2,6 +2,32 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal as TerminalIcon, RefreshCw } from 'lucide-react';
 
+import lekshmiShanImg from '../assets/Execom/lekshmi shan.webp';
+import aaditImg from '../assets/Execom/aadit.webp';
+import malavikaImg from '../assets/Execom/malavika.webp';
+import diyaImg from '../assets/Execom/diya.webp';
+import ajinImg from '../assets/Execom/ajin.webp';
+import maanasImg from '../assets/Execom/maanas.webp';
+import abinPhilipImg from '../assets/Execom/ABIN PHILIP ANIL.webp';
+import ananthuImg from '../assets/Execom/ananthu.webp';
+import krishnaImg from '../assets/Execom/Krishna S Kumar.webp';
+import devikaImg from '../assets/Execom/Devika J.webp';
+import vaishnavImg from '../assets/Execom/vaishnav.webp';
+import abinGeorgeImg from '../assets/Execom/Abin S George.webp';
+import ebinImg from '../assets/Execom/ebinreji.webp';
+import aadilImg from '../assets/Execom/Aadil D A.webp';
+import beemaImg from '../assets/Execom/Beema Amal.webp';
+import johnImg from '../assets/Execom/John.webp';
+import karthikImg from '../assets/Execom/Karthikayan pulipra Renjith.webp';
+import adhilImg from '../assets/Execom/Adhil Mohammed.webp';
+import devanandImg from '../assets/Execom/Devanand Sp.webp';
+import nidhiImg from '../assets/Execom/Nidhi MP.webp';
+import adhithyanImg from '../assets/Execom/adhithyan.webp';
+import faizanImg from '../assets/Execom/Faizan A.webp';
+import akshajImg from '../assets/Execom/AKSHAJ.webp';
+import arjunNairImg from '../assets/Execom/Arjun Nair.webp';
+import navaneethImg from '../assets/Execom/Navaneeth R.webp';
+
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
@@ -31,6 +57,21 @@ interface Member {
 }
 
 const MEMBERS: Member[] = [
+  // Lead Enabler
+  {
+    name: 'Lekshmi Shan',
+    role: 'Lead Enabler',
+    roleCode: 'ENB-01',
+    authLevel: 'L-05 (MAX)',
+    sysRole: 'LEAD_ENABLER',
+    dept: 'CORE_TEAM',
+    skills: [{ label: 'ENABLEMENT', value: 96 }, { label: 'MENTORSHIP', value: 94 }, { label: 'STRATEGY', value: 92 }],
+    quote: 'ENABLING LEADERSHIP AND EMPOWERING THE CAMPUS COMMUNITY TO REACH ITS FULL POTENTIAL.',
+    image: lekshmiShanImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // Campus Lead
   {
     name: 'Aadit Ajay',
     role: 'Campus Lead',
@@ -40,10 +81,11 @@ const MEMBERS: Member[] = [
     dept: 'CORE_TEAM',
     skills: [{ label: 'LEADERSHIP', value: 96 }, { label: 'STRATEGY', value: 93 }, { label: 'COMMUNITY', value: 90 }],
     quote: 'LEADING THE CAMPUS COMMUNITY WITH VISION AND EXECUTING HIGH-IMPACT PROGRAMS.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    image: aaditImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
+  // Campus Co-Lead
   {
     name: 'Malavika ps',
     role: 'Campus Co-Lead',
@@ -53,10 +95,11 @@ const MEMBERS: Member[] = [
     dept: 'CORE_TEAM',
     skills: [{ label: 'LEADERSHIP', value: 92 }, { label: 'MANAGEMENT', value: 90 }, { label: 'OPERATIONS', value: 88 }],
     quote: 'COORDINATING LEADERSHIP ENERGIES TO BUILD A STRENGTHENED CAMPUS COMMUNITY.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400',
+    image: malavikaImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
+  // HR Manager
   {
     name: 'Diya Thresia Daniel',
     role: 'HR Manager',
@@ -66,75 +109,11 @@ const MEMBERS: Member[] = [
     dept: 'CORE_TEAM',
     skills: [{ label: 'PEOPLE', value: 94 }, { label: 'COMPLIANCE', value: 90 }, { label: 'SYSTEMS', value: 85 }],
     quote: 'MANAGING TALENT ACQUISITION AND COMPLIANCE INTEGRATION ACROSS ALL DEPARTMENTS.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400&h=400',
+    image: diyaImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
-  {
-    name: 'Ebin Reji',
-    role: 'Technical Advisor',
-    roleCode: 'ENG-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'TECH_ADVISOR',
-    dept: 'TECH_SECTOR',
-    skills: [{ label: 'ARCHITECTURE', value: 95 }, { label: 'CONSULTING', value: 92 }, { label: 'DEV_STACK', value: 90 }],
-    quote: 'GUIDING THE FUTURE ARCHITECTURE OF DIGITAL ASSETS AND SCALING SYSTEM WORKFLOWS.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Aadil D A',
-    role: 'Technical Advisor',
-    roleCode: 'ENG-02',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'TECH_ADVISOR',
-    dept: 'TECH_SECTOR',
-    skills: [{ label: 'ENGINEERING', value: 93 }, { label: 'SYSTEMS', value: 91 }, { label: 'STRATEGY', value: 88 }],
-    quote: 'PROVIDING DEEP STRATEGIC INSIGHTS AND SUPPORTING FULL-STACK ENGINEERING PIPELINES.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Abin S George',
-    role: 'Operations Team Lead',
-    roleCode: 'OPS-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'OPERATIONS_LEAD',
-    dept: 'OPERATIONS',
-    skills: [{ label: 'LOGISTICS', value: 94 }, { label: 'EXECUTION', value: 92 }, { label: 'PEER_ENGAGEMENT', value: 89 }],
-    quote: 'STREAMLINING EVENT LOGISTICS AND ENSURING SEAMLESS OPERATIONAL INTEGRITY.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Vaishnav S',
-    role: 'Creative Team Lead',
-    roleCode: 'DSN-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'CREATIVE_LEAD',
-    dept: 'CREATIVE_SECTOR',
-    skills: [{ label: 'VISUALS', value: 96 }, { label: 'BRANDING', value: 93 }, { label: 'AESTHETICS', value: 91 }],
-    quote: 'TRANSLATING VISUAL IDEAS INTO PREMIUM DIGITAL EXPERIENCES AND BRAND INTERFACES.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'S.P Devanand',
-    role: 'Muv Team - Director',
-    roleCode: 'MUV-01',
-    authLevel: 'L-04 (HIGH)',
-    sysRole: 'MUV_DIRECTOR',
-    dept: 'CREATIVE_SECTOR',
-    skills: [{ label: 'DIRECTION', value: 95 }, { label: 'STORYTELLING', value: 93 }, { label: 'MEDIA', value: 90 }],
-    quote: 'STORYTELLING AND DIRECTING CINEMATIC MEDIA NARRATIVES FOR MAXIMUM IMPACT.',
-    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
+  // IG Leads
   {
     name: 'Ajin B David',
     role: 'IG Lead - Game Dev',
@@ -144,7 +123,7 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'GAME_DEV', value: 94 }, { label: 'INTERACTION', value: 91 }, { label: 'GRAPHICS', value: 87 }],
     quote: 'FOSTERING INTERACTION DESIGN AND GAMIFICATION MECHANICS IN THE CAMPUS COMMUNITY.',
-    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400&h=400',
+    image: ajinImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -157,7 +136,7 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'SECURITY', value: 95 }, { label: 'NETWORKING', value: 90 }, { label: 'LINUX', value: 88 }],
     quote: 'SECURING SYSTEMS AND PROMOTING PENETRATION TESTING BEST PRACTICES.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    image: maanasImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -170,7 +149,7 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'AI_MODELS', value: 96 }, { label: 'PYTHON', value: 93 }, { label: 'MATH', value: 89 }],
     quote: 'EXPLORING NEURAL NETWORKS, MACHINE LEARNING, AND PREDICTIVE DATA MODELING.',
-    image: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=400&h=400',
+    image: abinPhilipImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -183,7 +162,7 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'LLMS', value: 94 }, { label: 'PROMPTING', value: 92 }, { label: 'AUTOMATION', value: 87 }],
     quote: 'EXPERIMENTING WITH LARGE LANGUAGE MODELS AND GENERATIVE AI APPLICATIONS.',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400&h=400',
+    image: ananthuImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -196,7 +175,7 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'FLUTTER', value: 93 }, { label: 'REACT_NATIVE', value: 91 }, { label: 'MOBILE_UI', value: 86 }],
     quote: 'DESIGNING NATIVE MOBILE APPLICATIONS WITH SEAMLESS CROSS-PLATFORM COMPATIBILITY.',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=400',
+    image: krishnaImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -209,75 +188,65 @@ const MEMBERS: Member[] = [
     dept: 'TECH_SECTOR',
     skills: [{ label: 'REACT', value: 95 }, { label: 'TYPESCRIPT', value: 92 }, { label: 'CSS_LAYOUT', value: 90 }],
     quote: 'BUILDING HIGH-PERFORMANCE WEB APPLICATIONS AND USER INTERFACES FOR ALL DEPLOYMENTS.',
-    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=400&h=400',
+    image: devikaImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // Creative & Ops Leads
+  {
+    name: 'Vaishnav S',
+    role: 'Creative Team Lead',
+    roleCode: 'DSN-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'CREATIVE_LEAD',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'VISUALS', value: 96 }, { label: 'BRANDING', value: 93 }, { label: 'AESTHETICS', value: 91 }],
+    quote: 'TRANSLATING VISUAL IDEAS INTO PREMIUM DIGITAL EXPERIENCES AND BRAND INTERFACES.',
+    image: vaishnavImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
   {
-    name: 'Karthik Renjith',
-    role: 'Marketing Team - Outreach Manager',
-    roleCode: 'MKT-01',
-    authLevel: 'L-03 (MID)',
-    sysRole: 'OUTREACH_MGR',
+    name: 'Abin S George',
+    role: 'Operations Team Lead',
+    roleCode: 'OPS-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'OPERATIONS_LEAD',
     dept: 'OPERATIONS',
-    skills: [{ label: 'OUTREACH', value: 93 }, { label: 'COMMUNICATION', value: 91 }, { label: 'PUBLIC_RELATIONS', value: 88 }],
-    quote: 'EXPANDING CONNECTIVITY AND DRIVING ENGAGEMENT WITH GLOBAL STAKEHOLDERS.',
-    image: 'https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=400&h=400',
+    skills: [{ label: 'LOGISTICS', value: 94 }, { label: 'EXECUTION', value: 92 }, { label: 'PEER_ENGAGEMENT', value: 89 }],
+    quote: 'STREAMLINING EVENT LOGISTICS AND ENSURING SEAMLESS OPERATIONAL INTEGRITY.',
+    image: abinGeorgeImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // Tech
+  {
+    name: 'Ebin Reji',
+    role: 'Technical Advisor',
+    roleCode: 'ENG-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'TECH_ADVISOR',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'ARCHITECTURE', value: 95 }, { label: 'CONSULTING', value: 92 }, { label: 'DEV_STACK', value: 90 }],
+    quote: 'GUIDING THE FUTURE ARCHITECTURE OF DIGITAL ASSETS AND SCALING SYSTEM WORKFLOWS.',
+    image: ebinImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
   {
-    name: 'Mohammed Adhil',
-    role: 'Marketing Team - Social Media Manager',
-    roleCode: 'MKT-02',
-    authLevel: 'L-03 (MID)',
-    sysRole: 'PR_MGR',
-    dept: 'OPERATIONS',
-    skills: [{ label: 'SOCIAL_MEDIA', value: 94 }, { label: 'COPYWRITING', value: 90 }, { label: 'CONTENT', value: 87 }],
-    quote: 'SHAPING THE BRAND PRESENCE AND BUILDING VIRAL SOCIAL MEDIA CAMPAIGNS.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
+    name: 'Aadil D A',
+    role: 'Technical Advisor',
+    roleCode: 'ENG-02',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'TECH_ADVISOR',
+    dept: 'TECH_SECTOR',
+    skills: [{ label: 'ENGINEERING', value: 93 }, { label: 'SYSTEMS', value: 91 }, { label: 'STRATEGY', value: 88 }],
+    quote: 'PROVIDING DEEP STRATEGIC INSIGHTS AND SUPPORTING FULL-STACK ENGINEERING PIPELINES.',
+    image: aadilImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
-  {
-    name: 'Devanarayanan A',
-    role: 'Creative Team',
-    roleCode: 'DSN-02',
-    authLevel: 'L-02 (LOW)',
-    sysRole: 'CREATIVE_STAFF',
-    dept: 'CREATIVE_SECTOR',
-    skills: [{ label: 'GRAPHICS', value: 90 }, { label: 'PHOTOSHOP', value: 88 }, { label: 'ILLUSTRATOR', value: 85 }],
-    quote: 'ILLUSTRATING DIGITAL ARTWORK AND CONTRIBUTING VISUAL GRAPHICS TO CAMPAIGNS.',
-    image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Arjun R Kurup',
-    role: 'Creative Team',
-    roleCode: 'DSN-03',
-    authLevel: 'L-02 (LOW)',
-    sysRole: 'CREATIVE_STAFF',
-    dept: 'CREATIVE_SECTOR',
-    skills: [{ label: 'DESIGN_ASSETS', value: 91 }, { label: 'UI_DESIGN', value: 89 }, { label: 'COLLABORATION', value: 84 }],
-    quote: 'DEVELOPING HIGH-END DESIGN ASSETS AND USER INTERFACES.',
-    image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
-  {
-    name: 'Navaneeth R Nair',
-    role: 'Creative Team',
-    roleCode: 'DSN-04',
-    authLevel: 'L-02 (LOW)',
-    sysRole: 'CREATIVE_STAFF',
-    dept: 'CREATIVE_SECTOR',
-    skills: [{ label: 'ANIMATION', value: 92 }, { label: 'MOTION', value: 89 }, { label: 'EFFECTS', value: 85 }],
-    quote: 'CREATING ANIMATIONS AND DIGITAL EFFECTS FOR MARKETING CONTENT.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=400',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-  },
+  // Design
   {
     name: 'Beema Amal',
     role: 'Design Team',
@@ -287,7 +256,7 @@ const MEMBERS: Member[] = [
     dept: 'CREATIVE_SECTOR',
     skills: [{ label: 'BRANDING', value: 91 }, { label: 'STYLING', value: 88 }, { label: 'TYPOGRAPHY', value: 86 }],
     quote: 'SHAPING BRAND DESIGN PRINCIPLES AND STYLES FOR THE SBC COMMUNITY.',
-    image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=400&h=400',
+    image: beemaImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -300,7 +269,48 @@ const MEMBERS: Member[] = [
     dept: 'CREATIVE_SECTOR',
     skills: [{ label: 'VISUAL_STRATEGY', value: 90 }, { label: 'LAYOUT', value: 89 }, { label: 'ASSETS', value: 85 }],
     quote: 'DEFINING THE VISUAL DESIGN STRATEGY AND LAYOUT ARCHITECTURE FOR GRAPHICS.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400',
+    image: johnImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // Marketing
+  {
+    name: 'Karthik Renjith',
+    role: 'Marketing Team - Outreach Manager',
+    roleCode: 'MKT-01',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'OUTREACH_MGR',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'OUTREACH', value: 93 }, { label: 'COMMUNICATION', value: 91 }, { label: 'PUBLIC_RELATIONS', value: 88 }],
+    quote: 'EXPANDING CONNECTIVITY AND DRIVING ENGAGEMENT WITH GLOBAL STAKEHOLDERS.',
+    image: karthikImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  {
+    name: 'Mohammed Adhil',
+    role: 'Marketing Team - Social Media Manager',
+    roleCode: 'MKT-02',
+    authLevel: 'L-03 (MID)',
+    sysRole: 'PR_MGR',
+    dept: 'OPERATIONS',
+    skills: [{ label: 'SOCIAL_MEDIA', value: 94 }, { label: 'COPYWRITING', value: 90 }, { label: 'CONTENT', value: 87 }],
+    quote: 'SHAPING THE BRAND PRESENCE AND BUILDING VIRAL SOCIAL MEDIA CAMPAIGNS.',
+    image: adhilImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // MuV
+  {
+    name: 'S.P Devanand',
+    role: 'Muv Team - Director',
+    roleCode: 'MUV-01',
+    authLevel: 'L-04 (HIGH)',
+    sysRole: 'MUV_DIRECTOR',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'DIRECTION', value: 95 }, { label: 'STORYTELLING', value: 93 }, { label: 'MEDIA', value: 90 }],
+    quote: 'STORYTELLING AND DIRECTING CINEMATIC MEDIA NARRATIVES FOR MAXIMUM IMPACT.',
+    image: devanandImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -313,10 +323,11 @@ const MEMBERS: Member[] = [
     dept: 'CREATIVE_SECTOR',
     skills: [{ label: 'VIDEO_EDITING', value: 93 }, { label: 'PRODUCTION', value: 90 }, { label: 'SOUND', value: 86 }],
     quote: 'EDITING HIGH-IMPACT VIDEO CONTENT AND OVERSEEING MEDIA PRODUCTION FILES.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400',
+    image: nidhiImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
+  // Ops Team
   {
     name: 'Adhithyan S Pillai',
     role: 'Operations Team',
@@ -326,7 +337,7 @@ const MEMBERS: Member[] = [
     dept: 'OPERATIONS',
     skills: [{ label: 'REGISTRATIONS', value: 91 }, { label: 'ON_SITE', value: 89 }, { label: 'COORDINATION', value: 86 }],
     quote: 'SUPPORTING REGISTRATIONS AND COORDINATING ON-SITE EVENT FLOWS.',
-    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=400&h=400',
+    image: adhithyanImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -339,7 +350,7 @@ const MEMBERS: Member[] = [
     dept: 'OPERATIONS',
     skills: [{ label: 'LOGISTICS', value: 92 }, { label: 'ALLOCATION', value: 89 }, { label: 'SUPPORT', value: 87 }],
     quote: 'ENSURING RESOURCE ALLOCATION AND ASSISTING IN BOOTCAMP LOGISTICS.',
-    image: 'https://images.unsplash.com/photo-1542206395-9feb3edaa68d?auto=format&fit=crop&q=80&w=400&h=400',
+    image: faizanImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -352,7 +363,7 @@ const MEMBERS: Member[] = [
     dept: 'OPERATIONS',
     skills: [{ label: 'MEETUPS', value: 91 }, { label: 'ATTENDANCE', value: 88 }, { label: 'COORDINATION', value: 87 }],
     quote: 'FACILITATING ON-CAMPUS MEETUPS AND TRACKING CORE MEMBERS ATTENDANCE.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400',
+    image: akshajImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -365,7 +376,21 @@ const MEMBERS: Member[] = [
     dept: 'OPERATIONS',
     skills: [{ label: 'VOLUNTEER', value: 90 }, { label: 'PROVISIONING', value: 88 }, { label: 'LOGISTICS', value: 87 }],
     quote: 'COORDINATING VOLUNTEER WORKFLOWS AND RESOURCE PROVISIONING FOR LABS.',
-    image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80&w=400&h=400',
+    image: arjunNairImg,
+    github: 'https://github.com',
+    linkedin: 'https://linkedin.com',
+  },
+  // Creative Team
+  {
+    name: 'Navaneeth R Nair',
+    role: 'Creative Team',
+    roleCode: 'DSN-04',
+    authLevel: 'L-02 (LOW)',
+    sysRole: 'CREATIVE_STAFF',
+    dept: 'CREATIVE_SECTOR',
+    skills: [{ label: 'ANIMATION', value: 92 }, { label: 'MOTION', value: 89 }, { label: 'EFFECTS', value: 85 }],
+    quote: 'CREATING ANIMATIONS AND DIGITAL EFFECTS FOR MARKETING CONTENT.',
+    image: navaneethImg,
     github: 'https://github.com',
     linkedin: 'https://linkedin.com',
   },
@@ -475,17 +500,17 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
 
   // Wheel event wrapper to slide Execom down back to Hero if scrolled up at the very top, or up to Events if scrolled down at the bottom
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const isAtTop = e.currentTarget.scrollTop === 0;
+    const isAtTop = e.currentTarget.scrollTop <= 5;
     const isAtBottom = e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight - 5;
 
     if (isAtTop && e.deltaY < -20) {
       e.preventDefault();
       e.stopPropagation();
-      onClose();
+      onClose(true);
     } else if (isAtBottom && e.deltaY > 20) {
       e.preventDefault();
       e.stopPropagation();
-      onGoToEvents();
+      onGoToEvents(true);
     }
   };
 

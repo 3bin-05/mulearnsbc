@@ -5,21 +5,31 @@ import Hero from './components/Hero';
 import Execom from './components/Execom';
 import Events from './components/Events';
 import CustomCursor from './components/CustomCursor';
+import FooterObserver from './components/FooterObserver';
+
+import type { ActiveSection } from './types/activeSection';
 
 export default function App() {
   const transitionDurationMs = 1200;
-  const [activeSection, setActiveSection] = useState<'hero' | 'execom' | 'events'>('hero');
+  const [activeSection, setActiveSection] = useState<ActiveSection>('hero');
   const [entranceY, setEntranceY] = useState<string | number>('120%');
   const [exitY, setExitY] = useState<string | number>('120%');
   const touchStartY = useRef(0);
   const isTransitionLocked = useRef(false);
   const unlockTimer = useRef<number | null>(null);
-  const shouldShowEventsLayer = activeSection === 'events' || (activeSection === 'execom' && entranceY === '-100%');
+  const contactScrollTimer = useRef<number | null>(null);
+  const shouldShowEventsLayer =
+    activeSection === 'events' ||
+    activeSection === 'contact' ||
+    (activeSection === 'execom' && entranceY === '-100%');
 
   useEffect(() => {
     return () => {
       if (unlockTimer.current) {
         window.clearTimeout(unlockTimer.current);
+      }
+      if (contactScrollTimer.current) {
+        window.clearTimeout(contactScrollTimer.current);
       }
     };
   }, []);
@@ -35,27 +45,32 @@ export default function App() {
     }, transitionDurationMs);
   };
 
-  const handleSectionChange = (section: 'hero' | 'execom' | 'events', force = false) => {
-    if (section === activeSection) {
+  const handleSectionChange = (section: ActiveSection, force = false) => {
+    if (section === activeSection) return;
+
+    // CONTACT is a UI selection; transitions/plates remain driven by hero/execom/events.
+    if (section === 'contact') {
+      setActiveSection('contact');
       return;
     }
-    if (!force && isTransitionLocked.current) {
-      return;
-    }
+
+    const transitionFrom = activeSection === 'contact' ? 'events' : activeSection;
+
+    if (!force && isTransitionLocked.current) return;
     lockTransition();
 
-    if (activeSection === 'hero' && section === 'execom') {
+    if (transitionFrom === 'hero' && section === 'execom') {
       setEntranceY('120%');
       setExitY('120%');
       setActiveSection('execom');
-    } else if (activeSection === 'execom' && section === 'events') {
+    } else if (transitionFrom === 'execom' && section === 'events') {
       setExitY('-100%');
       setActiveSection('events');
-    } else if (activeSection === 'events' && section === 'execom') {
+    } else if (transitionFrom === 'events' && section === 'execom') {
       setEntranceY('-100%');
       setExitY('-100%');
       setActiveSection('execom');
-    } else if (activeSection === 'execom' && section === 'hero') {
+    } else if (transitionFrom === 'execom' && section === 'hero') {
       setExitY('120%');
       setActiveSection('hero');
     } else {
@@ -78,6 +93,34 @@ export default function App() {
       e.preventDefault();
       handleSectionChange('execom');
     }
+  };
+
+
+  const scrollToContact = () => {
+    requestAnimationFrame(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
+  const handleContactClick = () => {
+    // Mark navbar as active immediately so it stays selected during scroll/transition.
+    setActiveSection('contact');
+
+    // If we're already on the events plate (which contains the footer), just scroll.
+    if (activeSection === 'events') {
+      scrollToContact();
+      return;
+    }
+
+    // Otherwise, move to events first, then scroll to footer.
+    handleSectionChange('events', true);
+    if (contactScrollTimer.current) {
+      window.clearTimeout(contactScrollTimer.current);
+    }
+    contactScrollTimer.current = window.setTimeout(() => {
+      scrollToContact();
+      contactScrollTimer.current = null;
+    }, transitionDurationMs + 150);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -103,24 +146,35 @@ export default function App() {
       className="min-h-screen bg-black text-white relative w-full overflow-hidden select-none font-sans antialiased"
     >
       <CustomCursor />
-      <Navbar activeSection={activeSection} setActiveSection={handleSectionChange} />
-      <Hero activeSection={activeSection} onCtaClick={() => handleSectionChange('execom')} />
+      <Navbar
+        activeSection={activeSection}
+        setActiveSection={handleSectionChange}
+        onContactClick={handleContactClick}
+      />
+      <Hero activeSection={activeSection === 'contact' ? 'events' : activeSection} onCtaClick={() => handleSectionChange('execom')} />
       
       {/* Events only sits behind Execom for the Execom <-> Events plate transition. */}
       <AnimatePresence>
         {shouldShowEventsLayer && (
           <Events 
-            activeSection={activeSection} 
-            onGoToExecom={() => handleSectionChange('execom')}
+            activeSection={activeSection === 'contact' ? 'events' : activeSection} 
+            onGoToExecom={(force?: boolean) => handleSectionChange('execom', force)}
           />
         )}
       </AnimatePresence>
 
+      {(activeSection === 'events' || activeSection === 'contact') && (
+        <FooterObserver
+          onContactVisible={() => setActiveSection('contact')}
+          onContactHidden={() => setActiveSection('events')}
+        />
+      )}
+
       <AnimatePresence>
         {activeSection === 'execom' && (
           <Execom 
-            onClose={() => handleSectionChange('hero')} 
-            onGoToEvents={() => handleSectionChange('events')}
+            onClose={(force?: boolean) => handleSectionChange('hero', force)} 
+            onGoToEvents={(force?: boolean) => handleSectionChange('events', force)}
             entranceY={entranceY}
             exitY={exitY}
           />

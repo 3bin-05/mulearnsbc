@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import bgImg from '../assets/mubg.png';
+import bgImg from '../assets/mubg.webp';
 import Counter from './Counter';
 
 interface HeroProps {

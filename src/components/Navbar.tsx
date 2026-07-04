@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '../assets/SBC-logo.svg';
 
 interface NavbarProps {
-  activeSection: 'hero' | 'execom' | 'events';
-  setActiveSection: (section: 'hero' | 'execom' | 'events', force?: boolean) => void;
+  activeSection: 'hero' | 'execom' | 'events' | 'contact';
+  setActiveSection: (section: 'hero' | 'execom' | 'events' | 'contact', force?: boolean) => void;
+  onContactClick: () => void;
 }
 
-export default function Navbar({ activeSection, setActiveSection }: NavbarProps) {
+export default function Navbar({ activeSection, setActiveSection, onContactClick }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = ['HOME', 'EXECOM', 'EVENTS', 'CONTACT US'];
 
@@ -44,7 +45,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
     } else if (item === 'EVENTS') {
       setActiveSection('events', true);
     } else if (item === 'CONTACT US') {
-      setActiveSection('events', true);
+      onContactClick();
     }
   };
 
@@ -52,6 +53,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
     if (item === 'HOME' && activeSection === 'hero') return true;
     if (item === 'EXECOM' && activeSection === 'execom') return true;
     if (item === 'EVENTS' && activeSection === 'events') return true;
+    if (item === 'CONTACT US' && activeSection === 'contact') return true;
     return false;
   };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, ArrowRight } from 'lucide-react';
-import bgImg2 from '../assets/mubg2.png';
+import bgImg2 from '../assets/mubg2.webp';
 import Footer from './Footer';
 
 interface EventData {
@@ -77,10 +77,11 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
 
   // Wheel handler to slide Execom back down from the static Events page.
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0 && e.deltaY < -20) {
+    const isAtTop = e.currentTarget.scrollTop <= 5;
+    if (isAtTop && e.deltaY < -20) {
       e.preventDefault();
       e.stopPropagation();
-      onGoToExecom();
+      onGoToExecom(true);
     }
   };
 
@@ -92,9 +93,10 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const touchY = e.touches[0].clientY;
     const diff = touchY - touchStartY.current; // positive = swipe down
-    if (e.currentTarget.scrollTop === 0 && diff > 80) {
+    const isAtTop = e.currentTarget.scrollTop <= 5;
+    if (isAtTop && diff > 80) {
       e.preventDefault();
-      onGoToExecom();
+      onGoToExecom(true);
     }
   };
 
