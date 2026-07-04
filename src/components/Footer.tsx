@@ -32,27 +32,27 @@ const DiscordIcon = (props: SVGProps<SVGSVGElement>) => (
 const CONTACT_LINKS = [
   {
     label: 'Mail',
-    href: 'mailto:mulearnsbc@gmail.com',
+    href: 'mulearnsbc@gmail.com',
     icon: Mail,
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/mulearn-sbc',
+    href: 'https://www.linkedin.com/company/mulearnsbc',
     icon: LinkedinIcon,
   },
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/mulearn_sbc/',
+    href: 'https://www.instagram.com/mulearn.sbc?igsh=MWQ1cGRsbmxpeHZ3',
     icon: InstagramIcon,
   },
   {
     label: 'WhatsApp',
-    href: 'https://chat.whatsapp.com/',
+    href: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q',
     icon: MessageCircle,
   },
   {
     label: 'Discord',
-    href: 'https://discord.gg/',
+    href: 'https://discord.gg/mTuerRmEAr',
     icon: DiscordIcon,
   },
 ];
