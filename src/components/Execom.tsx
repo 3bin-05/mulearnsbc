@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal as TerminalIcon, RefreshCw } from 'lucide-react';
 
@@ -451,18 +451,37 @@ function ExecomRow({ member }: { member: Member }) {
 }
 
 interface ExecomProps {
-  onClose: () => void;
+  onClose: (force?: boolean) => void;
+  onGoToEvents: (force?: boolean) => void;
+  entranceY: string | number;
+  exitY: string | number;
 }
 
-export default function Execom({ onClose }: ExecomProps) {
+export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: ExecomProps) {
   const [selectedSector, setSelectedSector] = useState('ALL');
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef(0);
 
-  // Wheel event wrapper to slide Execom down back to Hero if scrolled up at the very top
+  // Set scroll to bottom if entering from Events section
+  useEffect(() => {
+    if (entranceY === '-120%' && containerRef.current) {
+      requestAnimationFrame(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      });
+    }
+  }, [entranceY]);
+
+  // Wheel event wrapper to slide Execom down back to Hero if scrolled up at the very top, or up to Events if scrolled down at the bottom
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0 && e.deltaY < -20) {
+    const isAtTop = e.currentTarget.scrollTop === 0;
+    const isAtBottom = e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight - 5;
+
+    if (isAtTop && e.deltaY < -20) {
       onClose();
+    } else if (isAtBottom && e.deltaY > 20) {
+      onGoToEvents();
     }
   };
 
@@ -472,13 +491,15 @@ export default function Execom({ onClose }: ExecomProps) {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0) {
-      const touchY = e.touches[0].clientY;
-      const diff = touchY - touchStartY.current;
-      // Swipe down gesture
-      if (diff > 80) {
-        onClose();
-      }
+    const isAtTop = e.currentTarget.scrollTop === 0;
+    const isAtBottom = e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight - 5;
+    const touchY = e.touches[0].clientY;
+    const diff = touchStartY.current - touchY; // positive = swipe up
+
+    if (isAtTop && diff < -80) {
+      onClose(); // swipe down
+    } else if (isAtBottom && diff > 80) {
+      onGoToEvents(); // swipe up
     }
   };
 
@@ -501,9 +522,9 @@ export default function Execom({ onClose }: ExecomProps) {
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      initial={{ y: '120%', opacity: 0 }}
+      initial={{ y: entranceY, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: '120%', opacity: 0 }}
+      exit={{ y: exitY, opacity: 0 }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 w-full h-screen bg-[#060606] text-white z-40 overflow-y-auto tech-scrollbar select-none"
     >
@@ -512,7 +533,7 @@ export default function Execom({ onClose }: ExecomProps) {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none z-0" />
       
       {/* Top indicator: Pull down to exit */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 cursor-pointer opacity-40 hover:opacity-100 transition-opacity" onClick={onClose}>
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 cursor-pointer opacity-40 hover:opacity-100 transition-opacity" onClick={() => onClose(true)}>
         <span className="font-orbitron text-[9px] tracking-[0.2em] uppercase text-white/60">RETURN_HOME</span>
         <div className="w-6 h-[2px] bg-white/40 rounded-full" />
       </div>

@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '../assets/SBC-logo.svg';
 
 interface NavbarProps {
-  activeSection: 'hero' | 'execom';
-  setActiveSection: (section: 'hero' | 'execom') => void;
+  activeSection: 'hero' | 'execom' | 'events';
+  setActiveSection: (section: 'hero' | 'execom' | 'events', force?: boolean) => void;
 }
 
 export default function Navbar({ activeSection, setActiveSection }: NavbarProps) {
@@ -38,15 +38,18 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
   const handleNavClick = (e: React.MouseEvent, item: string) => {
     e.preventDefault();
     if (item === 'HOME') {
-      setActiveSection('hero');
+      setActiveSection('hero', true);
     } else if (item === 'EXECOM') {
-      setActiveSection('execom');
+      setActiveSection('execom', true);
+    } else if (item === 'EVENTS') {
+      setActiveSection('events', true);
     }
   };
 
   const isItemActive = (item: string) => {
     if (item === 'HOME' && activeSection === 'hero') return true;
     if (item === 'EXECOM' && activeSection === 'execom') return true;
+    if (item === 'EVENTS' && activeSection === 'events') return true;
     return false;
   };
 

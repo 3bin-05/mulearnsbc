@@ -4,12 +4,13 @@ import bgImg from '../assets/mubg.png';
 import Counter from './Counter';
 
 interface HeroProps {
-  activeSection: 'hero' | 'execom';
+  activeSection: 'hero' | 'execom' | 'events';
   onCtaClick: () => void;
 }
 
 export default function Hero({ activeSection, onCtaClick }: HeroProps) {
   const isExecom = activeSection === 'execom';
+  const isEvents = activeSection === 'events';
 
   // Parallax background variables
   const mouseX = useMotionValue(0);
@@ -105,11 +106,13 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
   return (
     <motion.div
       animate={{
-        scale: isExecom ? 0.95 : 1,
-        opacity: isExecom ? 0.15 : 1,
+        scale: isExecom ? 0.95 : (isEvents ? 0.90 : 1),
+        opacity: isExecom ? 0.15 : (isEvents ? 0 : 1),
       }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full h-screen overflow-hidden bg-black select-none"
+      className={`relative w-full h-screen overflow-hidden bg-black select-none ${
+        isEvents ? 'pointer-events-none' : 'pointer-events-auto'
+      }`}
     >
       {/* Background Image with subtle Parallax */}
       <motion.div
