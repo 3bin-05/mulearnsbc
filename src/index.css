@@ -3,9 +3,44 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
   body {
     background-color: #000000;
     color: #F6F6F4;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.22);
+  }
+
+  .custom-cursor span {
+    position: absolute;
+    inset: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
   }
 }
 
@@ -64,6 +99,66 @@
   animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+.footer-orbit {
+  position: absolute;
+  right: clamp(-180px, -8vw, -80px);
+  top: 28px;
+  width: clamp(260px, 34vw, 500px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.footer-orbit::before,
+.footer-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 13%;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.footer-orbit::after {
+  inset: 30%;
+}
+
+.footer-orbit span {
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  animation: footer-orbit-spin 16s linear infinite;
+}
+
+.footer-orbit span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+}
+
+@keyframes footer-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 /* Scrollbar Hide Utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -72,4 +167,3 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
-

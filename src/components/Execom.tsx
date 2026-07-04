@@ -381,7 +381,7 @@ const SECTORS = [
 
 function ExecomRow({ member }: { member: Member }) {
   return (
-    <div className="group relative w-full border-b border-white/10 flex flex-col md:flex-row gap-8 md:gap-16 py-12 md:py-16 transition-all duration-500 ease-[cubic-bezier(0.5,0,0,1)] hover:bg-[#a8551a] hover:text-[#0c0c0c] hover:px-[4vw] md:hover:px-[12vw] px-0 text-white select-none">
+    <div className="group relative w-full min-w-0 border-b border-white/10 flex flex-col md:flex-row gap-8 md:gap-16 py-12 md:py-16 transition-all duration-500 ease-[cubic-bezier(0.5,0,0,1)] hover:bg-[#a8551a] hover:text-[#0c0c0c] md:hover:px-[12vw] px-0 text-white select-none">
       {/* Left Column: Portrait Photo */}
       <div className="relative w-40 h-40 md:w-52 md:h-52 shrink-0 overflow-hidden bg-white/5 border border-white/10 group-hover:border-black/25 transition-colors duration-500">
         <img
@@ -394,9 +394,9 @@ function ExecomRow({ member }: { member: Member }) {
       </div>
 
       {/* Right Column: Quote & Info Content */}
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="flex-1 min-w-0 flex flex-col justify-center">
         {/* Large Testimonial Quote */}
-        <blockquote className="font-orbitron font-semibold text-[20px] sm:text-[24px] md:text-[28px] leading-tight tracking-wide uppercase">
+        <blockquote className="font-orbitron font-semibold text-[18px] sm:text-[24px] md:text-[28px] leading-tight tracking-wide uppercase break-words">
           "{member.quote}"
         </blockquote>
 
@@ -409,14 +409,14 @@ function ExecomRow({ member }: { member: Member }) {
             <span className="font-bold text-[18px] sm:text-[20px] tracking-wide">
               {member.name}
             </span>
-            <span className="text-[12px] opacity-70 tracking-widest font-sans font-light uppercase">
+            <span className="text-[12px] opacity-70 tracking-widest font-sans font-light uppercase break-words">
               {member.role} — {member.dept}
             </span>
           </div>
 
           {/* Social Icons & Code Node */}
-          <div className="flex items-center gap-4">
-            <span className="text-[11px] opacity-45 font-mono tracking-widest uppercase">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 min-w-0">
+            <span className="text-[11px] opacity-45 font-mono tracking-widest uppercase break-words">
               NODE: {member.roleCode} // {member.authLevel}
             </span>
             <div className="flex items-center gap-3">
@@ -532,7 +532,7 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: exitY, opacity: exitY === '-100%' ? 1 : 0 }}
       transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 w-full h-screen bg-[#060606] text-white z-40 overflow-y-auto overscroll-contain tech-scrollbar select-none will-change-transform"
+      className="fixed inset-0 w-full h-screen min-h-[100dvh] bg-[#060606] text-white z-40 overflow-y-auto overscroll-contain tech-scrollbar select-none will-change-transform"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-noise opacity-[0.015] pointer-events-none z-0" />
@@ -544,7 +544,7 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
         <div className="w-6 h-[2px] bg-white/40 rounded-full" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 pt-20 pb-24 flex flex-col gap-12">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-14 pt-20 pb-24 flex flex-col gap-12">
         {/* Header Block */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mt-8">
           <div>
@@ -595,7 +595,7 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
               <button
                 key={sector.id}
                 onClick={() => setSelectedSector(sector.id)}
-                className={`flex items-center gap-2 px-4 py-2 border font-orbitron text-[11px] tracking-wider transition-all duration-300 rounded-sm select-none ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 border font-orbitron text-[10px] sm:text-[11px] tracking-wider transition-all duration-300 rounded-sm select-none ${
                   isSelected
                     ? 'bg-white text-black border-white shadow-[0_0_15px_rgba(255,255,255,0.15)] font-semibold'
                     : 'bg-transparent text-white/55 border-white/10 hover:border-white/30 hover:text-white/90'

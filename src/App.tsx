@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Execom from './components/Execom';
 import Events from './components/Events';
+import CustomCursor from './components/CustomCursor';
 
 export default function App() {
   const transitionDurationMs = 1200;
@@ -101,6 +102,7 @@ export default function App() {
       onTouchMove={handleTouchMove}
       className="min-h-screen bg-black text-white relative w-full overflow-hidden select-none font-sans antialiased"
     >
+      <CustomCursor />
       <Navbar activeSection={activeSection} setActiveSection={handleSectionChange} />
       <Hero activeSection={activeSection} onCtaClick={() => handleSectionChange('execom')} />
       

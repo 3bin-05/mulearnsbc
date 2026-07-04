@@ -41,11 +41,17 @@ interface EventsProps {
 }
 
 export default function Events({ activeSection, onGoToExecom }: EventsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // Mouse Parallax effect (maximum 8px shift)
   useEffect(() => {
+    const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (!finePointerQuery.matches) {
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
       const x = (e.clientX / innerWidth - 0.5) * 8;
@@ -71,7 +77,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
 
   // Wheel handler to slide Execom back down from the static Events page.
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.deltaY < -20) {
+    if (e.currentTarget.scrollTop === 0 && e.deltaY < -20) {
       e.preventDefault();
       e.stopPropagation();
       onGoToExecom();
@@ -86,7 +92,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const touchY = e.touches[0].clientY;
     const diff = touchY - touchStartY.current; // positive = swipe down
-    if (diff > 80) {
+    if (e.currentTarget.scrollTop === 0 && diff > 80) {
       e.preventDefault();
       onGoToExecom();
     }
@@ -119,11 +125,12 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
   return (
     <motion.section
       id="events"
+      ref={containerRef}
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-0 w-full h-screen text-white overflow-hidden select-none z-30 ${
+      className={`fixed inset-0 w-full h-screen min-h-[100dvh] text-white overflow-y-auto overflow-x-hidden no-scrollbar overscroll-contain select-none z-30 ${
         activeSection === 'events' ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
       onWheel={handleWheel}
@@ -137,7 +144,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
           y: mousePos.y,
           scale: 1.02,
         }}
-        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+        className="fixed inset-0 w-full h-full pointer-events-none z-0"
       >
         <img
           src={bgImg2}
@@ -149,7 +156,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
       </motion.div>
 
       {/* Background TWINKLING STARS */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {starsRef.current.map((star) => (
           <motion.div
             key={star.id}
@@ -173,19 +180,19 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
 
       {/* PLANET / MOUNTAINS horizontal mist slow animations */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/30 via-white/5 to-transparent opacity-20 pointer-events-none z-0"
+        className="fixed inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/30 via-white/5 to-transparent opacity-20 pointer-events-none z-0"
         animate={{ x: [-15, 15, -15] }}
         transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Main Section Content Wrapper */}
-      <div className="relative z-10 w-full h-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 sm:pt-32 pb-28 sm:pb-24 flex flex-col overflow-hidden">
+      <div className="relative z-10 min-h-screen w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-14 pt-28 sm:pt-32 pb-12 flex flex-col overflow-visible">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="w-full h-full flex flex-col lg:flex-row gap-12 lg:gap-20 overflow-hidden"
+          className="w-full min-h-full flex flex-col lg:flex-row gap-10 lg:gap-20 overflow-visible"
         >
           {/* LEFT SIDE COLUMN */}
           <div className="w-full lg:w-[42%] flex flex-col justify-start shrink-0 mb-4 lg:mb-0">
@@ -200,7 +207,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             {/* Giant Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-orbitron font-black text-[48px] sm:text-[76px] lg:text-[108px] tracking-tight leading-[0.9] text-[#F5F5F5] uppercase flex flex-col mb-4 sm:mb-6"
+              className="font-orbitron font-black text-[clamp(42px,14vw,48px)] sm:text-[76px] lg:text-[108px] tracking-tight leading-[0.9] text-[#F5F5F5] uppercase flex flex-col mb-4 sm:mb-6"
             >
               <span>CURRENT</span>
               <span>EVENTS</span>
@@ -217,7 +224,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             {/* Thin bottom divider */}
             <motion.div
               variants={itemVariants}
-              className="w-[220px] sm:w-[300px] h-[1px] bg-white/20"
+              className="w-full max-w-[220px] sm:max-w-none sm:w-[300px] h-[1px] bg-white/20"
             />
           </div>
 
@@ -239,7 +246,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
                 <motion.div
                   key={event.title}
                   variants={itemVariants}
-                  className="relative flex flex-col sm:flex-row items-start group"
+                    className="relative flex flex-col sm:flex-row items-start group min-w-0"
                 >
                   {/* Left Side: Date Block */}
                   <div className="flex sm:flex-col items-baseline sm:items-end shrink-0 w-full sm:w-[80px] text-left sm:text-right pt-0 sm:pt-[30px] pr-0 sm:pr-4">
@@ -268,7 +275,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
                       borderColor: 'rgba(255, 255, 255, 0.22)',
                       transition: { duration: 0.3, ease: 'easeOut' },
                     }}
-                    className="flex-1 w-full ml-0 sm:ml-16 bg-[#0d0d0d]/40 border border-white/10 rounded-md p-4 sm:p-6 lg:p-8 flex flex-col gap-4 sm:gap-5 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+                    className="flex-1 min-w-0 w-full ml-0 sm:ml-16 bg-[#0d0d0d]/40 border border-white/10 rounded-md p-4 sm:p-6 lg:p-8 flex flex-col gap-4 sm:gap-5 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
                   >
                     {/* Header: Title and Status badge */}
                     <div className="flex flex-wrap items-center justify-between gap-4">
@@ -322,7 +329,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
 
             {/* Bottom Status text */}
             <div className="text-center mt-5 sm:mt-8 lg:mt-10 sm:pl-[70px] lg:pl-[112px]">
-              <span className="font-orbitron text-[9px] sm:text-[10px] tracking-[0.25em] text-white/35 uppercase border-x border-white/10 px-4 sm:px-6 py-2 select-none">
+              <span className="inline-flex items-center justify-center font-orbitron text-[10px] sm:text-[11px] tracking-[0.25em] text-white/78 uppercase border border-white/22 bg-white/[0.045] px-5 sm:px-7 py-2.5 select-none shadow-[0_0_22px_rgba(255,255,255,0.08)]">
                 MORE EVENTS COMING SOON. STAY TUNED!
               </span>
             </div>
@@ -330,6 +337,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
         </motion.div>
       </div>
 
+      <div className="relative z-20 h-44 -mt-44 bg-gradient-to-b from-transparent via-[#060606]/65 to-[#060606] pointer-events-none" />
       <Footer />
     </motion.section>
   );

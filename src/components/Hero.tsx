@@ -27,6 +27,11 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
   });
 
   useEffect(() => {
+    const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (!finePointerQuery.matches) {
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
       // Calculate cursor position offset from center (-0.5 to 0.5)
@@ -110,7 +115,7 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
         opacity: isExecom ? 0.15 : (isEvents ? 0 : 1),
       }}
       transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative w-full h-screen overflow-hidden bg-black select-none ${
+      className={`relative w-full h-screen min-h-[100dvh] overflow-hidden bg-black select-none ${
         isEvents ? 'pointer-events-none' : 'pointer-events-auto'
       } will-change-transform`}
     >
@@ -136,7 +141,7 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
       </motion.div>
 
       {/* Main Hero Container */}
-      <div className="relative z-10 w-full h-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 flex flex-col justify-between pt-[90px] sm:pt-[110px] lg:pt-[120px] pb-[30px] sm:pb-[45px] lg:pb-[50px] short:pt-[70px] short:pb-[30px] xshort:pt-[60px] xshort:pb-[20px]">
+      <div className="relative z-10 w-full h-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-14 flex flex-col justify-between pt-[90px] sm:pt-[110px] lg:pt-[120px] pb-[30px] sm:pb-[45px] lg:pb-[50px] short:pt-[70px] short:pb-[30px] xshort:pt-[60px] xshort:pb-[20px]">
         {/* Left Side Content */}
         <div className="flex-1 flex flex-col justify-center max-w-[900px]">
           {/* Explore Tagline */}
@@ -150,7 +155,7 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
           </motion.span>
 
           {/* Main Giant Heading */}
-          <h1 className="font-orbitron font-bold text-[56px] sm:text-[76px] md:text-[110px] lg:text-[135px] xl:text-[155px] 2xl:text-[175px] short:text-[100px] xshort:text-[80px] leading-hero tracking-tighter text-premiumText flex flex-col select-none">
+          <h1 className="font-orbitron font-bold text-[clamp(48px,15vw,56px)] sm:text-[76px] md:text-[110px] lg:text-[135px] xl:text-[155px] 2xl:text-[175px] short:text-[100px] xshort:text-[80px] leading-hero tracking-tighter text-premiumText flex flex-col select-none">
             <motion.span
               variants={word1Variants}
               initial="hidden"
@@ -182,7 +187,7 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
             variants={dividerVariants}
             initial="hidden"
             animate="visible"
-            className="h-[1.5px] w-[280px] sm:w-[360px] md:w-[450px] bg-white/25 origin-left mt-5 mb-4 short:mt-4 short:mb-3 xshort:mt-3 xshort:mb-2"
+            className="h-[1.5px] w-full max-w-[280px] sm:max-w-none sm:w-[360px] md:w-[450px] bg-white/25 origin-left mt-5 mb-4 short:mt-4 short:mb-3 xshort:mt-3 xshort:mb-2"
           />
 
           {/* Subtitle */}
@@ -204,7 +209,7 @@ export default function Hero({ activeSection, onCtaClick }: HeroProps) {
           >
             <motion.button
               onClick={onCtaClick}
-              className="group relative overflow-hidden inline-flex items-center py-[16px] px-[32px] sm:py-[20px] sm:px-[40px] lg:py-[24px] lg:px-[48px] short:py-[14px] short:px-[30px] xshort:py-[12px] xshort:px-[24px] border border-white/45 bg-transparent text-white hover:text-black font-sans text-[14px] sm:text-[16px] lg:text-[18px] font-medium tracking-[0.08em] uppercase transition-colors duration-300"
+              className="group relative overflow-hidden inline-flex items-center py-[16px] px-[28px] sm:py-[20px] sm:px-[40px] lg:py-[24px] lg:px-[48px] short:py-[14px] short:px-[30px] xshort:py-[12px] xshort:px-[24px] border border-white/45 bg-transparent text-white hover:text-black font-sans text-[13px] sm:text-[16px] lg:text-[18px] font-medium tracking-[0.08em] uppercase transition-colors duration-300"
               whileHover={{
                 y: -2,
                 borderColor: '#ffffff',
