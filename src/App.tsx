@@ -6,6 +6,7 @@ import Execom from './components/Execom';
 import Events from './components/Events';
 import CustomCursor from './components/CustomCursor';
 import FooterObserver from './components/FooterObserver';
+import Preloader from './components/Preloader';
 
 import type { ActiveSection } from './types/activeSection';
 
@@ -14,6 +15,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<ActiveSection>('hero');
   const [entranceY, setEntranceY] = useState<string | number>('120%');
   const [exitY, setExitY] = useState<string | number>('120%');
+  const [isLoading, setIsLoading] = useState(true);
   const touchStartY = useRef(0);
   const isTransitionLocked = useRef(false);
   const unlockTimer = useRef<number | null>(null);
@@ -145,6 +147,12 @@ export default function App() {
       onTouchMove={handleTouchMove}
       className="min-h-screen bg-black text-white relative w-full overflow-hidden select-none font-sans antialiased"
     >
+      <AnimatePresence>
+        {isLoading && (
+          <Preloader onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
       <CustomCursor />
       <Navbar
         activeSection={activeSection}
