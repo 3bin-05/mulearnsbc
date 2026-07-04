@@ -43,6 +43,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
       setActiveSection('execom', true);
     } else if (item === 'EVENTS') {
       setActiveSection('events', true);
+    } else if (item === 'CONTACT US') {
+      setActiveSection('events', true);
     }
   };
 

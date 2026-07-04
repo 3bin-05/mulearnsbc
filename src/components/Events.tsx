@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, ArrowRight } from 'lucide-react';
 import bgImg2 from '../assets/mubg2.png';
+import Footer from './Footer';
 
 interface EventData {
   day: string;
@@ -40,7 +41,6 @@ interface EventsProps {
 }
 
 export default function Events({ activeSection, onGoToExecom }: EventsProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -69,25 +69,26 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
     }))
   );
 
-  // Wheel handler to slide Execom back down when scrolled up at the very top of Events
+  // Wheel handler to slide Execom back down from the static Events page.
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0 && e.deltaY < -20) {
+    if (e.deltaY < -20) {
+      e.preventDefault();
+      e.stopPropagation();
       onGoToExecom();
     }
   };
 
-  // Touch handlers to support swiping down to slide Execom back down
+  // Touch handlers to support swiping down to slide Execom back down.
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.currentTarget.scrollTop === 0) {
-      const touchY = e.touches[0].clientY;
-      const diff = touchY - touchStartY.current; // positive = swipe down
-      if (diff > 80) {
-        onGoToExecom();
-      }
+    const touchY = e.touches[0].clientY;
+    const diff = touchY - touchStartY.current; // positive = swipe down
+    if (diff > 80) {
+      e.preventDefault();
+      onGoToExecom();
     }
   };
 
@@ -118,14 +119,16 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
   return (
     <motion.section
       id="events"
-      ref={containerRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: activeSection === 'events' ? 1 : 0 }}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-0 w-full h-screen text-white overflow-hidden select-none z-30 ${
         activeSection === 'events' ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
+      onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
     >
       {/* Background Image with subtle Parallax */}
       <motion.div
@@ -176,7 +179,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
       />
 
       {/* Main Section Content Wrapper */}
-      <div className="relative z-10 w-full h-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 pt-32 pb-12 flex flex-col overflow-hidden">
+      <div className="relative z-10 w-full h-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 sm:pt-32 pb-28 sm:pb-24 flex flex-col overflow-hidden">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -185,7 +188,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
           className="w-full h-full flex flex-col lg:flex-row gap-12 lg:gap-20 overflow-hidden"
         >
           {/* LEFT SIDE COLUMN */}
-          <div className="w-full lg:w-[42%] flex flex-col justify-start shrink-0 mb-6 lg:mb-0">
+          <div className="w-full lg:w-[42%] flex flex-col justify-start shrink-0 mb-4 lg:mb-0">
             {/* Small top label */}
             <motion.span
               variants={itemVariants}
@@ -197,7 +200,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             {/* Giant Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-orbitron font-black text-[72px] sm:text-[90px] lg:text-[108px] tracking-tighter leading-[0.9] text-[#F5F5F5] uppercase flex flex-col mb-6"
+              className="font-orbitron font-black text-[48px] sm:text-[76px] lg:text-[108px] tracking-tight leading-[0.9] text-[#F5F5F5] uppercase flex flex-col mb-4 sm:mb-6"
             >
               <span>CURRENT</span>
               <span>EVENTS</span>
@@ -206,7 +209,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             {/* Description Subtitle */}
             <motion.p
               variants={itemVariants}
-              className="font-sans font-light text-[14px] sm:text-[16px] text-white/82 leading-relaxed max-w-[450px] mb-8"
+              className="font-sans font-light text-[13px] sm:text-[16px] text-white/82 leading-relaxed max-w-[450px] mb-5 sm:mb-8"
             >
               Discover workshops, hackathons, bootcamps, design sessions and community events.
             </motion.p>
@@ -214,15 +217,12 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             {/* Thin bottom divider */}
             <motion.div
               variants={itemVariants}
-              className="w-[300px] h-[1px] bg-white/20"
+              className="w-[220px] sm:w-[300px] h-[1px] bg-white/20"
             />
           </div>
 
           <div 
-            className="w-full lg:w-[58%] relative overflow-y-auto h-full pr-4 no-scrollbar pb-16 flex-1"
-            onWheel={handleWheel}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
+            className="w-full lg:w-[58%] relative overflow-visible h-auto lg:h-full pr-0 lg:pr-4 flex-1 flex flex-col justify-center"
           >
              {/* Vertical timeline line drawn by ScaleY */}
              <motion.div
@@ -234,7 +234,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
              />
 
             {/* Events panels list */}
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-5 sm:gap-8 lg:gap-10">
               {EVENTS.map((event) => (
                 <motion.div
                   key={event.title}
@@ -268,7 +268,7 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
                       borderColor: 'rgba(255, 255, 255, 0.22)',
                       transition: { duration: 0.3, ease: 'easeOut' },
                     }}
-                    className="flex-1 w-full ml-0 sm:ml-16 bg-[#0d0d0d]/40 border border-white/10 rounded-md p-6 sm:p-8 flex flex-col gap-5 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+                    className="flex-1 w-full ml-0 sm:ml-16 bg-[#0d0d0d]/40 border border-white/10 rounded-md p-4 sm:p-6 lg:p-8 flex flex-col gap-4 sm:gap-5 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
                   >
                     {/* Header: Title and Status badge */}
                     <div className="flex flex-wrap items-center justify-between gap-4">
@@ -321,14 +321,16 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
             </div>
 
             {/* Bottom Status text */}
-            <div className="text-center mt-10 sm:pl-[70px] lg:pl-[112px]">
-              <span className="font-orbitron text-[10px] tracking-[0.25em] text-white/35 uppercase border-x border-white/10 px-6 py-2 select-none">
+            <div className="text-center mt-5 sm:mt-8 lg:mt-10 sm:pl-[70px] lg:pl-[112px]">
+              <span className="font-orbitron text-[9px] sm:text-[10px] tracking-[0.25em] text-white/35 uppercase border-x border-white/10 px-4 sm:px-6 py-2 select-none">
                 MORE EVENTS COMING SOON. STAY TUNED!
               </span>
             </div>
           </div>
         </motion.div>
       </div>
+
+      <Footer />
     </motion.section>
   );
 }

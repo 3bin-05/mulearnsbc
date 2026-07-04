@@ -462,9 +462,9 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef(0);
 
-  // Set scroll to bottom if entering from Events section
+  // Set scroll to bottom if entering from Events section.
   useEffect(() => {
-    if (entranceY === '-120%' && containerRef.current) {
+    if (entranceY === '-100%' && containerRef.current) {
       requestAnimationFrame(() => {
         if (containerRef.current) {
           containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -479,8 +479,12 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
     const isAtBottom = e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight - 5;
 
     if (isAtTop && e.deltaY < -20) {
+      e.preventDefault();
+      e.stopPropagation();
       onClose();
     } else if (isAtBottom && e.deltaY > 20) {
+      e.preventDefault();
+      e.stopPropagation();
       onGoToEvents();
     }
   };
@@ -497,8 +501,10 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
     const diff = touchStartY.current - touchY; // positive = swipe up
 
     if (isAtTop && diff < -80) {
+      e.preventDefault();
       onClose(); // swipe down
     } else if (isAtBottom && diff > 80) {
+      e.preventDefault();
       onGoToEvents(); // swipe up
     }
   };
@@ -522,11 +528,11 @@ export default function Execom({ onClose, onGoToEvents, entranceY, exitY }: Exec
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      initial={{ y: entranceY, opacity: 0 }}
+      initial={{ y: entranceY, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: exitY, opacity: 0 }}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 w-full h-screen bg-[#060606] text-white z-40 overflow-y-auto tech-scrollbar select-none"
+      exit={{ y: exitY, opacity: exitY === '-100%' ? 1 : 0 }}
+      transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 w-full h-screen bg-[#060606] text-white z-40 overflow-y-auto overscroll-contain tech-scrollbar select-none will-change-transform"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-noise opacity-[0.015] pointer-events-none z-0" />
