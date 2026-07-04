@@ -42,9 +42,9 @@ function StatItem({ value, suffix, label, delay }: StatItemProps) {
 
 export default function Counter() {
   const stats = [
-    { value: 20, suffix: '+', label: 'EVENTS CONDUCTED' },
-    { value: 60, suffix: '+', label: 'STUDENTS ENGAGED' },
-    { value: 100, suffix: 'K+', label: 'KARMA POINTS' },
+    { value: 50, suffix: '+', label: 'EVENTS CONDUCTED' },
+    { value: 100, suffix: '+', label: 'STUDENTS ENGAGED' },
+    { value: 300, suffix: 'K+', label: 'KARMA POINTS' },
   ];
 
   return (

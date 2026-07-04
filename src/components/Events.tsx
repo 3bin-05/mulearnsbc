@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, ArrowRight, User } from 'lucide-react';
 import bgImg2 from '../assets/mubg2.webp';
 import Footer from './Footer';
 
@@ -10,27 +10,30 @@ interface EventData {
   title: string;
   status: 'LIVE' | 'COMING SOON' | 'REGISTRATION OPEN' | 'COMPLETED';
   description: string;
+  speaker?: string;
   time: string;
   venue: string;
 }
 
 const EVENTS: EventData[] = [
   {
-    day: '12',
+    day: '--',
     month: 'JUL',
-    title: 'DESIGN SPRINT',
-    status: 'REGISTRATION OPEN',
-    description: 'A hands-on design sprint to solve real problems and build impactful solutions.',
-    time: '10:00 AM',
-    venue: 'SBCE, PATOOR',
+    title: 'From Fans to Frontend',
+    status: 'COMING SOON',
+    description: 'Build a stunning website for your favorite World Cup team using Antigravity',
+    speaker: 'Umar Al Mukhtar Ibrahimkutty',
+    time: '--:-- --',
+    venue: 'ONLINE',
   },
   {
-    day: '22',
+    day: '--',
     month: 'JUL',
-    title: 'FIGMA BOOTCAMP',
+    title: ' Kickoff to UI with Figma',
     status: 'COMING SOON',
-    description: 'Learn, design and prototype like a pro with this intensive Figma bootcamp.',
-    time: '04:00 PM',
+    description: 'Discover the basics of UI/UX by crafting a world cup-inspired mobile app in Figma.',
+    speaker: 'Aaron R Thomas',
+    time: '--:-- --',
     venue: 'ONLINE',
   },
 ];
@@ -304,6 +307,12 @@ export default function Events({ activeSection, onGoToExecom }: EventsProps) {
                     {/* Footer Row */}
                     <div className="flex items-center justify-between border-t border-white/5 pt-4 mt-1">
                       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] font-sans text-white/50">
+                        {event.speaker && (
+                          <span className="flex items-center gap-1.5">
+                            <User className="w-3.5 h-3.5 text-white/40" />
+                            <span>Speaker: <span className="text-white/80 font-medium">{event.speaker}</span></span>
+                          </span>
+                        )}
                         <span className="flex items-center gap-1.5">
                           <Clock className="w-3.5 h-3.5 text-white/40" />
                           {event.time}
