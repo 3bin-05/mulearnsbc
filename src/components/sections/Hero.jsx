@@ -84,7 +84,7 @@ export default function Hero() {
             className="flex flex-row gap-4 items-center"
           >
             <motion.a
-              href="https://mulearn.org"
+              href="https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q"
               target="_blank"
               rel="noopener noreferrer"
               initial="initial"
