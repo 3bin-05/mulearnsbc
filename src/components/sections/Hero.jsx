@@ -44,12 +44,12 @@ export default function Hero() {
             transition={getTransition(0.6)}
             className="flex items-center gap-2 mb-6"
           >
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-purple flex items-center flex-wrap">
+            <span className="font-mono text-[13px] uppercase tracking-[0.2em] text-purple flex items-center flex-wrap">
               MULEARN CAMPUS CHAPTER • CAMPUS CODE:&nbsp;
               <span className="relative inline-block px-1 font-bold">
                 SBC
                 <svg className="absolute -bottom-1.5 left-0 w-full h-3 text-purple" viewBox="0 0 40 10" fill="none" preserveAspectRatio="none">
-                  <path d="M2 6 C 10 2, 30 1.5, 38 4 C 30 7.5, 10 8, 3 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  
                 </svg>
               </span>
             </span>
@@ -59,17 +59,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: getInitialY(20) }}
             animate={{ opacity: 1, y: 0 }}
             transition={getTransition(0.7, 0.1)}
-            className="font-display font-semibold text-[44px] sm:text-[56px] leading-[1.08] tracking-tight text-ink mb-8 max-w-[18ch]"
+            className="font-display font-semibold text-[44px] sm:text-[70px] leading-[1.08] tracking-tight text-ink mb-8 max-w-[18ch]"
           >
             Students today. <br />
-            <span className="relative inline-block text-purple">
-              Impact
-              <span className="absolute left-0 bottom-[-4px] w-full h-[8px] pointer-events-none">
-                <svg viewBox="0 0 100 10" fill="none" className="w-full h-full text-purple" preserveAspectRatio="none">
-                  <path d="M3 5 C 30 9, 70 9, 97 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </span>
+            <span className="font-cursive text-purple text-[46px] sm:text-[56px] leading-none inline-block rotate-[-2deg] ml-1">Impacts </span>
             &nbsp;tomorrow.
           </motion.h1>
 
@@ -137,50 +130,7 @@ export default function Hero() {
         transition={getTransition(0.8, 0.55)}
         className="w-full max-w-[1180px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 z-10 pt-4"
       >
-        {/* Stat 1 */}
-        <div className="flex items-center gap-4 justify-start md:justify-center flex-1">
-          <div className="w-12 h-12 rounded-[12px] bg-white border border-hairline flex items-center justify-center text-purple shadow-sm shrink-0">
-            <Calendar size={20} className="stroke-[1.75]" />
-          </div>
-          <div>
-            <div className="font-display font-bold text-2xl sm:text-3xl text-ink tracking-tight leading-none">
-              <CountUp to={50} suffix="+" />
-            </div>
-            <p className="font-body text-[12px] text-ink/60 mt-1">Events Conducted</p>
-          </div>
-        </div>
-
-        {/* Divider 1 */}
-        <div className="hidden md:block w-[1px] h-12 bg-hairline" />
-
-        {/* Stat 2 */}
-        <div className="flex items-center gap-4 justify-start md:justify-center flex-1">
-          <div className="w-12 h-12 rounded-[12px] bg-white border border-hairline flex items-center justify-center text-purple shadow-sm shrink-0">
-            <Users size={20} className="stroke-[1.75]" />
-          </div>
-          <div>
-            <div className="font-display font-bold text-2xl sm:text-3xl text-ink tracking-tight leading-none">
-              <CountUp to={100} suffix="+" />
-            </div>
-            <p className="font-body text-[12px] text-ink/60 mt-1">Students Engaged</p>
-          </div>
-        </div>
-
-        {/* Divider 2 */}
-        <div className="hidden md:block w-[1px] h-12 bg-hairline" />
-
-        {/* Stat 3 */}
-        <div className="flex items-center gap-4 justify-start md:justify-center flex-1">
-          <div className="w-12 h-12 rounded-[12px] bg-white border border-hairline flex items-center justify-center text-purple shadow-sm shrink-0">
-            <Star size={20} className="stroke-[1.75]" />
-          </div>
-          <div>
-            <div className="font-display font-bold text-2xl sm:text-3xl text-ink tracking-tight leading-none">
-              <CountUp to={300} suffix="K+" />
-            </div>
-            <p className="font-body text-[12px] text-ink/60 mt-1">Karma Points Earned</p>
-          </div>
-        </div>
+        
       </motion.div>
     </section>
   );

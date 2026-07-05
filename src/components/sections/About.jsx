@@ -41,14 +41,7 @@ export default function About() {
 
             <h2 className="font-display font-semibold text-[36px] sm:text-[44px] leading-[1.12] tracking-tight text-ink mb-8 max-w-[20ch]">
               Not a club. <br />
-              A <span className="relative inline-block text-purple">
-                community
-                <span className="absolute left-0 bottom-[-4px] w-full h-[6px] pointer-events-none">
-                  <svg viewBox="0 0 100 10" fill="none" className="w-full h-full text-purple" preserveAspectRatio="none">
-                    <path d="M3 5 C 30 9, 70 9, 97 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </span> that compounds.
+              A<span className="font-cursive text-purple text-[46px] sm:text-[56px] leading-none inline-block rotate-[-2deg] ml-1">  Community  </span> that compounds.
             </h2>
           </motion.div>
 
@@ -91,12 +84,7 @@ export default function About() {
               className="w-full h-auto object-contain"
             />
             
-            {/* Dot Grid Decoration */}
-            <div className="absolute -bottom-4 right-4 grid grid-cols-5 gap-1.5 pointer-events-none opacity-40">
-              {Array.from({ length: 15 }).map((_, idx) => (
-                <div key={idx} className="h-1.5 w-1.5 rounded-full bg-purple" />
-              ))}
-            </div>
+    
           </div>
         </div>
 
