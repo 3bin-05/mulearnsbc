@@ -134,15 +134,35 @@ export default function Navbar() {
 
           {/* Right CTA Button & Hamburger */}
           <div className="flex items-center gap-4">
-            <a
+            <motion.a
               href="https://mulearn.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-1.5 bg-purple hover:bg-purple-dark text-white font-body text-[13.5px] font-medium px-6 py-2.5 rounded-full transition-all duration-200 shadow-sm active:scale-95"
+              initial="initial"
+              whileHover="hover"
+              variants={{
+                initial: { y: 0 },
+                hover: { y: -1 }
+              }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="group relative hidden md:inline-flex items-center gap-1.5 bg-purple text-white font-body text-[13.5px] font-medium px-6 py-2.5 rounded-full overflow-hidden transition-all duration-200 shadow-sm active:scale-95"
             >
-              <span>Join µLearn</span>
-              <span className="text-[16px] font-normal leading-none transform translate-y-[-0.5px]">→</span>
-            </a>
+              {/* Swift background fill from left to right using Framer Motion variants */}
+              <motion.span
+                variants={{
+                  initial: { scaleX: 0 },
+                  hover: { scaleX: 1 }
+                }}
+                style={{ originX: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 bg-[#A78BFA]"
+              />
+
+              <span className="relative z-10 flex items-center gap-1.5">
+                <span>Join µLearn</span>
+                <span className="text-[16px] font-normal leading-none transform translate-y-[-0.5px]">→</span>
+              </span>
+            </motion.a>
 
             {/* Mobile Hamburger toggle */}
             <button

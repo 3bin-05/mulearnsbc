@@ -9,6 +9,7 @@ import Impact from './components/sections/Impact';
 import Circles from './components/sections/Circles';
 import Execom from './components/sections/Execom';
 import ExecomProfileComingSoon from './components/sections/ExecomProfileComingSoon';
+import ExecomTeamPage from './components/sections/ExecomTeamPage';
 
 const EXECOM_PROFILES = [
   'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
@@ -19,6 +20,10 @@ const EXECOM_PROFILES = [
 
 function App() {
   const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+
+  if (path === 'execom') {
+    return <ExecomTeamPage />;
+  }
 
   if (EXECOM_PROFILES.includes(path)) {
     return <ExecomProfileComingSoon username={path} />;

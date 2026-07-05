@@ -1,322 +1,170 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { X, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import Section from '../layout/Section';
-
-// Import assets
-import chethas from '../../assets/chethas.png';
-import aswath from '../../assets/aswath.png';
-import arjun from '../../assets/arjun.png';
-import aadil from '../../assets/aadil.png';
-import maanas_member from '../../assets/maanas_member.png';
-import devika from '../../assets/devika.png';
-import abin from '../../assets/abin.png';
-import diya from '../../assets/diya.png';
-
-const members = [
-  {
-    id: 1,
-    name: 'Chethas L Pramod',
-    role: 'CAMPUS LEAD',
-    photo: chethas,
-    bio: 'Oversees overall chapter activities, drives community initiatives, and coordinates with the µLearn state core team.',
-    contact: 'linkedin.com/in/chethaslpramod'
-  },
-  {
-    id: 2,
-    name: 'Aswath S A',
-    role: 'CAMPUS CO-LEAD',
-    photo: aswath,
-    bio: 'Coordinates operational work, facilitates internal events, and manages cross-chapter collaborations.',
-    contact: 'linkedin.com/in/aswath-sa'
-  },
-  {
-    id: 3,
-    name: 'Arjun TK',
-    role: 'IG MANAGER',
-    photo: arjun,
-    bio: 'Manages various Chapter Interest Groups, facilitates workshops, and coordinates peer study groups.',
-    contact: 'github.com/arjun-tk'
-  },
-  {
-    id: 4,
-    name: 'Aadil Mohamed A',
-    role: 'OPERATION LEAD',
-    photo: aadil,
-    bio: 'Directs logistics, coordinates event check-ins, and manages calendar timelines for learning circles.',
-    contact: 'github.com/aadilmohamed'
-  },
-  {
-    id: 5,
-    name: 'Maanas',
-    role: 'CAMPUS LEAD',
-    photo: maanas_member,
-    bio: 'Coordinates chapter activities, supports learning circles, and leads local student chapters.',
-    contact: 'github.com/maanas-dev'
-  },
-  {
-    id: 6,
-    name: 'Devika J',
-    role: 'CO-LEAD',
-    photo: devika,
-    bio: 'Coordinates chapter operations, handles PR, and manages outward communications.',
-    contact: 'linkedin.com/in/devika-j'
-  },
-  {
-    id: 7,
-    name: 'Abin S George',
-    role: 'TECHNICAL LEAD',
-    photo: abin,
-    bio: 'Leads developer groups, schedules tech sprints, audits proof-of-work code, and maintains campus portal repositories.',
-    contact: 'github.com/abinsgeorge'
-  },
-  {
-    id: 8,
-    name: 'Diya',
-    role: 'DESIGN LEAD',
-    photo: diya,
-    bio: 'Directs the branding, designs presentation templates, and maintains UX consistency across all chapter assets.',
-    contact: 'figma.com/@diya-design'
-  }
-];
+import exegrp from '../../assets/exegrp.webp';
 
 /**
- * ExeCom Section Component (Phase 8).
- * Tone: Light (bg-white text-ink).
- * Redesigned to show circular profile photos connected with wavy horizontal paths.
+ * Redesigned Execom Section Component.
+ * Features a split layout with the group photo in a decorated Polaroid-style frame.
+ * Grayscale by default, regains color from left to right on hover.
  */
 export default function Execom() {
-  const [selectedMember, setSelectedMember] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Close modal on Escape key down
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setSelectedMember(null);
-      }
-    };
-    if (selectedMember) {
-      window.addEventListener('keydown', handleKeyDown);
+  const getTransition = (duration, delay = 0) => {
+    if (shouldReduceMotion) {
+      return { duration: 0, delay: 0 };
     }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedMember]);
+    return { duration, delay, ease: [0.16, 1, 0.3, 1] };
+  };
+
+  const getInitialY = (yVal) => {
+    return shouldReduceMotion ? 0 : yVal;
+  };
 
   return (
-    <Section id="execom" tone="light">
-      
-      {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10%' }}
-        transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-16 md:mb-20"
-      >
-        <span className="inline-block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-purple relative mb-4">
-          WHO RUNS IT
-          {/* Eyebrow underline */}
-          <div className="w-8 h-[2px] bg-purple mt-2 mb-6" />
-        </span>
-        <h2 className="font-display font-semibold text-[38px] sm:text-[46px] tracking-tight text-ink mt-4 mb-6 leading-[1.15]">
-          <span className="relative inline-block">
-            Executive Committee,
-          </span><br />
-          <span className="text-purple">driving</span>{' '}
-          <span className="relative inline-block text-ink">
-            everything.
-           
-          </span>
-        </h2>
+    <Section id="execom" tone="light" className="relative overflow-hidden select-none">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        <p className="max-w-[46ch] text-[15px] sm:text-[16px] text-ink/70 leading-relaxed font-body">
-          The core team facilitating peer learning circles, hackathons, and operations at Sree Buddha College of Engineering.
-        </p>
-      </motion.div>
+        {/* Left Column: Typography, taglines and doodles */}
+        <div className="lg:col-span-5 flex flex-col items-start text-left z-10">
+          {/* WHO RUNS IT tag */}
+          <motion.div
+            initial={{ opacity: 0, y: getInitialY(15) }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={getTransition(0.6)}
+            className="flex flex-col mb-6"
+          >
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-purple">
+              WHO RUNS IT
+            </span>
+            <div className="w-10 h-[2px] bg-purple mt-2" />
+          </motion.div>
 
-      {/* Grid of Profile Cards connected with waves */}
-      <div className="space-y-16 lg:space-y-24">
-        
-        {/* Row 1: Members 1-4 */}
-        <div className="relative isolate">
-          {/* Connecting Wavy Background Path (desktop only) */}
-          <div className="absolute top-[44px] sm:top-12 left-[12.5%] right-[12.5%] h-12 -z-10 hidden lg:block select-none pointer-events-none">
-            <svg className="w-full h-full text-[#E2D9FF]" viewBox="0 0 300 40" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round">
-              <path d="M 0 20 C 35 32, 65 8, 100 20 C 135 32, 165 8, 200 20 C 235 32, 265 8, 300 20" />
-            </svg>
-          </div>
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: getInitialY(20) }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={getTransition(0.7, 0.1)}
+            className="font-display font-semibold text-[38px] sm:text-[46px] leading-[1.1] tracking-tight text-ink mt-2 mb-6 max-w-[15ch]"
+          >
+            Executive Committee, <br />
+            <span className="text-purple font-semibold">driving</span> everything.
+          </motion.h2>
 
-          {/* Sparkles / Accents for Row 1 */}
-          {/* Accent Left */}
-          <div className="absolute top-[20%] left-[-2%] text-purple/65 hidden lg:block select-none pointer-events-none">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M 12 18 L 6 15" />
-              <path d="M 12 18 L 18 15" />
-            </svg>
-          </div>
-          {/* Accent Right */}
-          <div className="absolute top-[10%] right-[-1%] text-purple/65 hidden lg:block select-none pointer-events-none">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M 12 6 L 6 9" />
-              <path d="M 12 6 L 18 9" />
-            </svg>
-          </div>
+          {/* Subtitle / Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: getInitialY(20) }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={getTransition(0.7, 0.2)}
+            className="max-w-[42ch] text-[15px] sm:text-[16px] text-ink/75 leading-relaxed mb-8 font-body"
+          >
+            The core team facilitating peer learning circles, hackathons, and operations at Sree Buddha College of Engineering.
+          </motion.p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
-            {members.slice(0, 4).map((member) => (
-              <motion.div
-                key={member.id}
-                onClick={() => setSelectedMember(member)}
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: member.id * 0.05 }}
-                className="flex flex-col items-center text-center cursor-pointer group"
-              >
-                {/* Circular Profile Photo with white border and soft shadow */}
-                <div className="h-32 w-32 sm:h-36 sm:w-36 rounded-full border-[5px] border-white shadow-[0_12px_24px_rgba(0,0,0,0.06),_0_2px_6px_rgba(0,0,0,0.02)] overflow-hidden mb-4 group-hover:scale-105 group-hover:shadow-[0_16px_32px_rgba(124,58,237,0.12)] transition-all duration-300">
-                  <img src={member.photo} alt={member.name} className="h-full w-full object-cover" />
-                </div>
-                
-                {/* Details */}
-                <h3 className="font-display font-semibold text-sm text-ink group-hover:text-purple transition-colors duration-300">
-                  {member.name}
-                </h3>
-                
-                {/* Role Pill */}
-                <div className="mt-2.5 bg-[#F3EEFF] text-[#7C3AED] px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase select-none">
-                  {member.role}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* Slogan with handwriting style */}
+          <motion.div
+            initial={{ opacity: 0, y: getInitialY(20) }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={getTransition(0.7, 0.35)}
+            className="relative mt-4"
+          >
+            <p className="font-cursive text-purple text-[22px] sm:text-[24px] leading-snug rotate-[-3deg] ml-1">
+              A team. Many roles. <br />
+              <span className="pl-4">One mission.</span>
+            </p>
+            {/* Underline sketch */}
+            <svg className="w-44 h-4 text-purple mt-1 opacity-80" viewBox="0 0 160 12" fill="none" preserveAspectRatio="none">
+              <path d="M 5 6 C 50 10, 100 3, 155 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+          </motion.div>
         </div>
 
-        {/* Row 2: Members 5-8 */}
-        <div className="relative isolate">
-          {/* Connecting Wavy Background Path (desktop only) */}
-          <div className="absolute top-[44px] sm:top-12 left-[12.5%] right-[12.5%] h-12 -z-10 hidden lg:block select-none pointer-events-none">
-            <svg className="w-full h-full text-[#E2D9FF]" viewBox="0 0 300 40" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round">
-              <path d="M 0 20 C 35 8, 65 32, 100 20 C 135 8, 165 32, 200 20 C 235 8, 265 32, 300 20" />
-            </svg>
-          </div>
+        {/* Right Column: Polaroid Photo Frame with group photo and doodles */}
+        <div className="lg:col-span-7 flex justify-center items-center relative py-6">
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, rotate: 3 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 1.5 }}
+            viewport={{ once: true }}
+            transition={getTransition(0.8, 0.25)}
+            whileHover={{ 
+              rotate: 0,
+              scale: 1.02,
+              transition: { duration: 0.3, ease: "easeOut" }
+            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => {
+              window.location.href = '/execom';
+            }}
+            className="relative p-4 sm:p-5 pb-16 sm:pb-20 bg-white border border-gray-200 shadow-[0_20px_40px_rgba(0,0,0,0.06),_0_2px_8px_rgba(0,0,0,0.02)] max-w-[580px] w-full cursor-pointer z-10"
+          >
+            {/* Washi Tape Accent */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-28 h-8 bg-purple/20 backdrop-blur-[1px] rotate-[-3deg] border-l border-r border-white/10 shadow-sm" />
 
-          {/* Sparkles / Accents for Row 2 */}
-          {/* Accent Left (Sparkle) */}
-          <div className="absolute top-[20%] left-[-3%] text-purple/65 hidden lg:block select-none pointer-events-none">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M 12 2 Q 12 12 2 12 Q 12 12 12 22 Q 12 12 22 12 Q 12 12 12 2 Z" />
-            </svg>
-          </div>
-          {/* Accent Right (Sparkle) */}
-          <div className="absolute top-[20%] right-[-3%] text-purple/65 hidden lg:block select-none pointer-events-none">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M 12 2 Q 12 12 2 12 Q 12 12 12 22 Q 12 12 22 12 Q 12 12 12 2 Z" />
-            </svg>
-          </div>
+            {/* Polaroid image window */}
+            <div className="relative overflow-hidden w-full aspect-[4/3] bg-gray-50 border border-gray-100">
+              {/* Grayscale Base Image */}
+              <img
+                src={exegrp}
+                alt="Executive Committee Group (Grayscale)"
+                className="w-full h-full object-cover filter grayscale select-none"
+              />
+              
+              {/* Color Overlay Image (regaining color from left to right on hover) */}
+              <img
+                src={exegrp}
+                alt="Executive Committee Group"
+                className="absolute inset-0 w-full h-full object-cover select-none"
+                style={{
+                  clipPath: isHovered ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+                  transition: 'clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              />
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
-            {members.slice(4, 8).map((member, idx) => (
-              <motion.div
-                key={member.id}
-                onClick={() => setSelectedMember(member)}
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (idx + 4) * 0.05 }}
-                className="flex flex-col items-center text-center cursor-pointer group"
-              >
-                {/* Circular Profile Photo with white border and soft shadow */}
-                <div className="h-32 w-32 sm:h-36 sm:w-36 rounded-full border-[5px] border-white shadow-[0_12px_24px_rgba(0,0,0,0.06),_0_2px_6px_rgba(0,0,0,0.02)] overflow-hidden mb-4 group-hover:scale-105 group-hover:shadow-[0_16px_32px_rgba(124,58,237,0.12)] transition-all duration-300">
-                  <img src={member.photo} alt={member.name} className="h-full w-full object-cover" />
-                </div>
-                
-                {/* Details */}
-                <h3 className="font-display font-semibold text-sm text-ink group-hover:text-purple transition-colors duration-300">
-                  {member.name}
-                </h3>
-                
-                {/* Role Pill */}
-                <div className="mt-2.5 bg-[#F3EEFF] text-[#7C3AED] px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase select-none">
-                  {member.role}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            {/* Label in handwriting style */}
+            <div className="absolute bottom-4 left-0 right-0 text-center font-handwritten text-purple/80 text-[18px] sm:text-[20px] select-none">
+              µLearn SBC Executive Committee 2026
+            </div>
+          </motion.div>
+
+          {/* Hand-drawn Doodles around polaroid frame */}
+          
+          {/* Top-Left Burst lines */}
+          <svg className="absolute -top-10 -left-6 w-16 h-16 text-purple select-none pointer-events-none opacity-80" viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+            <path d="M 40 40 C 35 25, 25 15, 15 10" />
+            <path d="M 40 40 C 28 28, 15 28, 5 30" />
+            <path d="M 40 40 C 32 38, 28 45, 25 55" />
+          </svg>
+
+          {/* Top-Right Stars */}
+          <svg className="absolute -top-6 -right-6 w-16 h-16 text-purple select-none pointer-events-none opacity-85" viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M 22 12 Q 22 22 12 22 Q 22 22 22 32 Q 22 22 32 22 Q 22 22 22 12 Z" />
+            <path d="M 45 28 Q 45 33 40 33 Q 45 33 45 38 Q 45 33 50 33 Q 45 33 45 28 Z" />
+          </svg>
+
+          {/* Bottom-Right Scribble Double Underline */}
+          <svg className="absolute -bottom-8 right-6 w-32 h-8 text-purple select-none pointer-events-none opacity-80" viewBox="0 0 120 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <path d="M 10 5 C 40 8, 80 2, 110 5" />
+            <path d="M 20 12 C 50 15, 75 8, 105 10" />
+          </svg>
+
+          {/* Dotted Arrow pointing from under the left column tagline up-right to the polaroid frame */}
+          <svg className="absolute -bottom-10 -left-14 w-28 h-28 text-purple select-none pointer-events-none opacity-80 hidden lg:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+            <path d="M 15 85 C 35 90, 60 80, 70 55" strokeDasharray="4 4" />
+            <path d="M 62 58 L 71 52 L 72 62" />
+          </svg>
+
         </div>
 
       </div>
-
-      {/* Click-to-Open Modal */}
-      <AnimatePresence>
-        {selectedMember && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-            
-            {/* Backdrop blur backplate overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedMember(null)}
-              className="absolute inset-0 bg-black/40 backdrop-blur-md cursor-pointer"
-            />
-
-            {/* Modal Dialog Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative bg-white w-full max-w-[420px] rounded-[20px] border border-hairline p-6 md:p-8 select-none z-10 shadow-none text-ink"
-            >
-              {/* Close button inside modal */}
-              <button
-                onClick={() => setSelectedMember(null)}
-                className="absolute top-4 right-4 p-2 text-ink/30 hover:text-ink hover:bg-off-white rounded-full transition-colors cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X size={16} />
-              </button>
-
-              {/* Modal Core Contents */}
-              <div className="flex flex-col items-center text-center mt-2">
-                {/* Circular Profile Photo in Modal */}
-                <div className="h-20 w-20 rounded-full border border-hairline overflow-hidden mb-6 shadow-inner">
-                  <img src={selectedMember.photo} alt={selectedMember.name} className="h-full w-full object-cover" />
-                </div>
-
-                {/* Name & Role */}
-                <h3 className="font-display font-bold text-xl tracking-tight text-ink mb-1">
-                  {selectedMember.name}
-                </h3>
-                <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-purple">
-                  {selectedMember.role}
-                </span>
-
-                {/* Divider */}
-                <div className="w-full h-[1px] bg-hairline my-6" />
-
-                {/* Bio text */}
-                <p className="text-xs text-ink/70 leading-relaxed font-body mb-6 max-w-[34ch]">
-                  {selectedMember.bio}
-                </p>
-
-                {/* Contact Handler Link */}
-                <a
-                  href={`https://${selectedMember.contact}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-ink/40 hover:text-purple bg-off-white border border-hairline px-4 py-2 rounded-full transition-colors"
-                >
-                  <span>{selectedMember.contact}</span>
-                  <ExternalLink size={10} />
-                </a>
-              </div>
-            </motion.div>
-
-          </div>
-        )}
-      </AnimatePresence>
     </Section>
   );
 }
