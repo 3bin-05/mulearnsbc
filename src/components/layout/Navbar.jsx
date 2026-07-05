@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import sbcLogo from '../../assets/sbc.png';
+import StaggeredMenu from '../reactbits/StaggeredMenu';
 
 const navLinks = [
   { name: 'About', id: 'about' },
@@ -15,6 +16,22 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const menuItems = [
+    { label: 'About', ariaLabel: 'Go to about section', link: '#about' },
+    { label: 'Events', ariaLabel: 'Go to events section', link: '#events' },
+    { label: 'Impact', ariaLabel: 'Go to impact section', link: '#impact' },
+    { label: 'Circles', ariaLabel: 'Go to circles section', link: '#circles' },
+    { label: 'ExeCom', ariaLabel: 'Go to execom section', link: '#execom' },
+    { label: 'Join µLearn', ariaLabel: 'Join mulearn foundation', link: 'https://mulearn.org' }
+  ];
+
+  const socialItems = [
+    { label: 'Discord', link: 'https://discord.gg/mTuerRmEAr' },
+    { label: 'Instagram', link: 'https://www.instagram.com/mulearn.sbc' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/company/mulearnsbc' },
+    { label: 'WhatsApp', link: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q' }
+  ];
 
   // Monitor scroll for header border/shadow
   useEffect(() => {
@@ -76,7 +93,7 @@ export default function Navbar() {
     <>
       {/* Top Docked Sticky Navbar */}
       <header 
-        className={`fixed top-0 left-0 w-full z-50 select-none transition-all duration-300 bg-white ${
+        className={`fixed top-0 left-0 w-full z-50 select-none transition-all duration-300 bg-white hidden md:block ${
           isScrolled 
             ? 'border-b border-hairline/80 shadow-[0_2px_15px_rgba(0,0,0,0.015)] py-4' 
             : 'py-6'
@@ -176,86 +193,24 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Full Screen Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 bg-black z-40 flex flex-col justify-between p-8 md:hidden"
-          >
-            {/* Header copy in mobile menu */}
-            <div className="flex items-center justify-between pt-6">
-              <a
-                href="#hero"
-                onClick={(e) => handleLinkClick(e, 'hero')}
-                className="flex items-center gap-1 font-display font-bold tracking-tight text-lg"
-              >
-                <span className="text-purple">µ</span>
-                <span className="text-white">LEARN SBC</span>
-              </a>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-full text-white hover:bg-white/10"
-                aria-label="Close menu"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Staggered Links */}
-            <motion.nav
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              variants={{
-                show: {
-                  transition: {
-                    staggerChildren: 0.08
-                  }
-                }
-              }}
-              className="flex flex-col gap-6 my-auto"
-            >
-              {navLinks.map((link) => (
-                <motion.div
-                  key={link.id}
-                  variants={{
-                    hidden: { opacity: 0, y: 15 },
-                    show: { opacity: 1, y: 0 }
-                  }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <a
-                    href={`#${link.id}`}
-                    onClick={(e) => handleLinkClick(e, link.id)}
-                    className="font-display font-semibold text-4xl tracking-tight text-white hover:text-purple transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </motion.div>
-              ))}
-            </motion.nav>
-
-            {/* Bottom Credit / CTA */}
-            <div className="flex flex-col gap-4 pb-8">
-              <a
-                href="https://mulearn.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full text-center bg-purple hover:bg-purple-dark text-white font-body text-sm font-semibold py-4 rounded-full transition-colors duration-200"
-              >
-                Join µLearn
-              </a>
-              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-white/60">
-                Sree Buddha College of Engineering
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Staggered Menu */}
+      <div className="block md:hidden">
+        <StaggeredMenu
+          position="right"
+          isFixed={true}
+          items={menuItems}
+          socialItems={socialItems}
+          displaySocials={true}
+          displayItemNumbering={true}
+          menuButtonColor="#17171B"
+          openMenuButtonColor="#17171B"
+          changeMenuColorOnOpen={true}
+          colors={['#F3EEFF', '#7C3AED']}
+          logoUrl={sbcLogo}
+          accentColor="#7C3AED"
+          className={isScrolled ? 'sm-scrolled' : ''}
+        />
+      </div>
     </>
   );
 }
