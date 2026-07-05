@@ -177,7 +177,7 @@ export default function Footer() {
               </a>
               {/* WhatsApp */}
               <a 
-                href="https://wa.me/919847597315" 
+                href="https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/75 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
