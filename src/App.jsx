@@ -8,8 +8,22 @@ import Events from './components/sections/Events';
 import Impact from './components/sections/Impact';
 import Circles from './components/sections/Circles';
 import Execom from './components/sections/Execom';
+import ExecomProfileComingSoon from './components/sections/ExecomProfileComingSoon';
+
+const EXECOM_PROFILES = [
+  'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
+  'abin-anil', 'aadil', 'ananthu', 'devanarayanan', 'adhithyan', 'malavika',
+  'krishna', 'devika', 'faizan', 'adhil', 'beema', 'nidhi', 'arjun-kurup',
+  'devanand', 'navaneeth', 'john', 'akshaj', 'arjun-nair'
+];
 
 function App() {
+  const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+
+  if (EXECOM_PROFILES.includes(path)) {
+    return <ExecomProfileComingSoon username={path} />;
+  }
+
   return (
     <div className="min-h-screen bg-white font-body text-ink selection:bg-purple selection:text-white">
       <Navbar />

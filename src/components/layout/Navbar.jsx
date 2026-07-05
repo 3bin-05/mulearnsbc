@@ -55,9 +55,15 @@ export default function Navbar() {
     };
   }, []);
 
+  const isProfilePage = window.location.pathname !== '/' && window.location.pathname !== '/index.html';
+
   const handleLinkClick = (e, id) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    if (isProfilePage) {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const target = document.getElementById(id);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
