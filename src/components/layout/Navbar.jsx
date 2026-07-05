@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import sbcLogo from '../../assets/sbc.png';
 
 const navLinks = [
   { name: 'About', id: 'about' },
@@ -82,12 +83,14 @@ export default function Navbar() {
             onClick={(e) => handleLinkClick(e, 'hero')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="text-[32px] font-display font-semibold text-purple leading-none select-none">
-              µ
-            </div>
-            <div className="flex flex-col">
+            <img 
+              src={sbcLogo} 
+              alt="µlearn" 
+              className="h-6 sm:h-7 object-contain pointer-events-none" 
+            />
+            <div className="flex flex-col border-l border-hairline pl-3">
               <span className="font-display font-bold text-sm sm:text-base text-ink tracking-tight leading-none">
-                MuLearn SBC
+                SBC
               </span>
               <span className="font-mono text-[8px] font-semibold tracking-[0.25em] text-ink/40 uppercase mt-1">
                 CAMPUS CHAPTER

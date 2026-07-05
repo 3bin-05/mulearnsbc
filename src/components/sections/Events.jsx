@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Section from '../layout/Section';
+import megaphoneSketch from '../../assets/megaphone_sketch.png';
 
 /**
  * Redesigned Events & Hackathons Section with fully visible tapes, page folds,
@@ -64,7 +65,9 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={getTransition(0.7, 0.05)}
-          className="relative group min-h-[310px] select-none pt-4 rotate-[-2deg] hover:rotate-0 transition-transform duration-300 cursor-default"
+          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          style={{ rotate: -2 }}
+          className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
           {/* Opaque, Visible Purple Tape - outside inner card boundary to avoid clipping */}
           <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#C1B5F3]/85 border-l border-r border-dashed border-purple-400/40 rotate-[-1.5deg] shadow-sm z-20" />
@@ -95,7 +98,7 @@ export default function Events() {
                   STATUS:
                 </span>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  STANDBY
+                  UPCOMING
                 </span>
               </div>
             </div>
@@ -110,17 +113,17 @@ export default function Events() {
                 </svg>
               </div>
               <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                Build Sprints
+                From Fans to Frontend
               </h3>
               <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                Intense, weekend-long hackathons focused on building, deploying, and open-sourcing real-world applications in 48 hours.
+                 Build a stunning website for your favorite World Cup team using Antigravity with immersive animations and breathtaking visuals.
               </p>
             </div>
 
             {/* Sticky Footer */}
             <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
               <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SCHEDULE AWAITING
+                SPEAKER : Umar Al Mukhtar Ibrahimkutty
               </span>
               <div className="text-purple/70">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -137,7 +140,9 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={getTransition(0.7, 0.15)}
-          className="relative group min-h-[310px] select-none pt-4 rotate-[1.8deg] hover:rotate-0 transition-transform duration-300 cursor-default"
+          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          style={{ rotate: 1.8 }}
+          className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
           {/* Opaque, Visible Yellow Tape - outside inner card boundary to avoid clipping */}
           <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#EDDE95]/85 border-l border-r border-dashed border-amber-400/40 rotate-[2deg] shadow-sm z-20" />
@@ -168,7 +173,7 @@ export default function Events() {
                   STATUS:
                 </span>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  PLANNING
+                  UPCOMING
                 </span>
               </div>
             </div>
@@ -187,17 +192,17 @@ export default function Events() {
                 </svg>
               </div>
               <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                Skill Workshops
+                Kickoff to UI with Figma
               </h3>
               <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                Hands-on learning sessions covering emerging frameworks, tools, AI systems, and development methodologies.
+                Discover the basics of UI/UX by crafting a World Cup-inspired mobile app in Figma with engaging user experiences.
               </p>
             </div>
 
             {/* Sticky Footer */}
             <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
               <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SCHEDULE AWAITING
+                SPEAKER : Aaron R Thomas 
               </span>
               <div className="text-amber-800/60">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -214,7 +219,9 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={getTransition(0.7, 0.25)}
-          className="relative group min-h-[310px] select-none pt-4 rotate-[-1deg] hover:rotate-0 transition-transform duration-300 cursor-default"
+          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          style={{ rotate: -1 }}
+          className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
           {/* Opaque, Visible Pink Tape - outside inner card boundary to avoid clipping */}
           <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#EDAFC1]/85 border-l border-r border-dashed border-pink-400/40 rotate-[-1deg] shadow-sm z-20" />
@@ -245,7 +252,7 @@ export default function Events() {
                   STATUS:
                 </span>
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  AWAITING V1
+                  UPCOMING
                 </span>
               </div>
             </div>
@@ -264,17 +271,17 @@ export default function Events() {
                 </svg>
               </div>
               <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                Community Circles
+                Game Dev 101
               </h3>
               <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                Informal check-ins, show-and-tell sessions, and networking syncs to match preceptors with new learners.
+                Build your very first video game using Unity, the leading game development engine, and bring your creative ideas to life.
               </p>
             </div>
 
             {/* Sticky Footer */}
             <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
               <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SCHEDULE AWAITING
+                SPEAKER : Devanarayanan A
               </span>
               <div className="text-pink-500/70">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -293,41 +300,74 @@ export default function Events() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-10%' }}
         transition={getTransition(0.7, 0.3)}
-        className="relative max-w-[680px] mx-auto z-10 pt-4"
+        className="relative max-w-[760px] mx-auto z-10 pt-6"
       >
         
-        {/* Paperclip matching the reference image layout precisely */}
-        <div className="absolute top-[-15px] left-[32px] z-20 rotate-[-12deg] drop-shadow-[0_2px_4px_rgba(0,0,0,0.12)] pointer-events-none">
-          <svg viewBox="0 0 24 24" className="w-11 h-11 text-[#A32525]" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-            {/* Realistic folded paperclip path */}
-            <path d="M9 18V9.5a3.5 3.5 0 0 1 7 0v9a5 5 0 0 1-10 0v-11a7 7 0 0 1 14 0v10" />
-          </svg>
-        </div>
-
-        {/* Megaphone sketch on the right exactly like the hand-drawn reference */}
-        <div className="absolute bottom-[20px] right-[24px] z-20 pointer-events-none hidden sm:block opacity-85">
-          <svg viewBox="0 0 48 48" className="w-16 h-16 text-purple" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {/* Hand-drawn Megaphone/Speaker */}
-            <path d="M 12 18 L 26 14 Q 30 14 30 20 L 30 28 Q 30 34 26 34 L 12 30" />
-            <path d="M 12 18 Q 8 18 8 24 Q 8 30 12 30 Z" />
-            <path d="M 14 30 L 11 38 Q 10 40 13 40 L 17 37 L 16 30" />
-            <ellipse cx="30" cy="24" rx="3" ry="7" />
-            <path d="M 37 16 Q 41 24 37 32" />
-            <path d="M 42 11 Q 48 24 42 37" />
-          </svg>
-        </div>
-
-        {/* The ripped paper card with dynamic clip path */}
+        {/* Translucent light grey tape sticking the card in the top center */}
         <div 
-          className="bg-white py-8 px-8 sm:px-12 border border-hairline/80 shadow-[0_15px_35px_rgba(0,0,0,0.04)] text-center relative"
+          className="absolute top-[12px] left-[calc(50%-45px)] w-[90px] h-6 bg-[#e0e0e0]/75 backdrop-blur-[0.5px] border-l border-r border-dashed border-gray-400/25 shadow-sm z-30 pointer-events-none"
+        />
+
+        {/* Refined Megaphone sketch on the right from generated asset */}
+        <div className="absolute bottom-[10px] right-[24px] z-20 pointer-events-none hidden sm:block">
+          <img 
+            src={megaphoneSketch} 
+            alt="Megaphone Sketch" 
+            className="w-20 h-20 object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)]"
+          />
+        </div>
+
+        {/* The ripped paper card with dynamic clip path and noise paper texture */}
+        <div 
+          className="py-10 px-8 sm:px-16 md:px-24 border border-hairline shadow-[0_20px_45px_rgba(0,0,0,0.05)] text-center relative overflow-hidden"
           style={{
-            clipPath: 'polygon(0% 4px, 2% 0px, 4% 5px, 6% 1px, 8% 6px, 10% 2px, 12% 7px, 14% 3px, 16% 5px, 18% 1px, 20% 6px, 22% 2px, 24% 7px, 26% 3px, 28% 5px, 30% 1px, 32% 6px, 34% 2px, 36% 7px, 38% 3px, 40% 5px, 42% 1px, 44% 6px, 46% 2px, 48% 7px, 50% 3px, 52% 5px, 54% 1px, 56% 6px, 58% 2px, 60% 7px, 62% 3px, 64% 5px, 66% 1px, 68% 6px, 70% 2px, 72% 7px, 74% 3px, 76% 5px, 78% 1px, 80% 6px, 82% 2px, 84% 7px, 86% 3px, 88% 5px, 90% 1px, 92% 6px, 94% 2px, 96% 7px, 98% 3px, 100% 4px, 100% calc(100% - 4px), 98% calc(100% - 1px), 96% calc(100% - 6px), 94% calc(100% - 2px), 92% calc(100% - 7px), 90% calc(100% - 3px), 88% calc(100% - 5px), 86% calc(100% - 1px), 84% calc(100% - 6px), 82% calc(100% - 2px), 80% calc(100% - 7px), 78% calc(100% - 3px), 76% calc(100% - 5px), 74% calc(100% - 1px), 72% calc(100% - 6px), 70% calc(100% - 2px), 68% calc(100% - 7px), 66% calc(100% - 3px), 64% calc(100% - 5px), 62% calc(100% - 1px), 60% calc(100% - 6px), 58% calc(100% - 2px), 56% calc(100% - 7px), 54% calc(100% - 3px), 52% calc(100% - 5px), 50% calc(100% - 1px), 48% calc(100% - 6px), 46% calc(100% - 2px), 44% calc(100% - 7px), 42% calc(100% - 3px), 40% calc(100% - 5px), 38% calc(100% - 1px), 36% calc(100% - 6px), 34% calc(100% - 2px), 32% calc(100% - 7px), 30% calc(100% - 3px), 28% calc(100% - 5px), 26% calc(100% - 1px), 24% calc(100% - 6px), 22% calc(100% - 2px), 20% calc(100% - 7px), 18% calc(100% - 3px), 16% calc(100% - 5px), 14% calc(100% - 1px), 12% calc(100% - 6px), 10% calc(100% - 2px), 8% calc(100% - 7px), 6% calc(100% - 3px), 4% calc(100% - 5px), 2% calc(100% - 1px), 0% calc(100% - 4px))'
+            clipPath: 'polygon(0% 0px, 100% 0px, 99.6% 8%, 100% 16%, 99.4% 24%, 100% 32%, 99.7% 40%, 100% 48%, 99.5% 56%, 100% 64%, 99.8% 72%, 100% 80%, 99.5% 88%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0.5% 92%, 0% 84%, 0.4% 76%, 0% 68%, 0.6% 60%, 0% 52%, 0.3% 44%, 0% 36%, 0.5% 28%, 0% 20%, 0.4% 12%, 0% 4px)',
+            background: `
+              radial-gradient(circle at 50% 50%, rgba(255,253,250,0.98), rgba(244,242,238,0.95)),
+              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")
+            `
           }}
         >
-          <span className="font-cursive text-xl font-bold tracking-wider text-purple block mb-3 select-none">
-            \ \ \ V1.0 Chapter Status / / /
-          </span>
-          <p className="font-handwritten text-[16px] sm:text-[17px] text-ink/70 leading-relaxed max-w-[48ch] mx-auto">
+          {/* Intersecting paper fold crease overlays */}
+          <div 
+            className="absolute inset-0 pointer-events-none z-10" 
+            style={{
+              background: `
+                linear-gradient(115deg, transparent 49.6%, rgba(0,0,0,0.04) 50%, rgba(255,255,255,0.6) 50.4%, transparent 50.8%),
+                linear-gradient(25deg, transparent 49.7%, rgba(0,0,0,0.03) 50%, rgba(255,255,255,0.5) 50.3%, transparent 50.6%)
+              `,
+              mixBlendMode: 'multiply'
+            }} 
+          />
+
+          {/* Curled fold decoration */}
+          <div 
+            className="absolute bottom-0 right-0 w-4 h-4 shadow-[-1px_-1px_2px_rgba(0,0,0,0.15)] pointer-events-none z-20"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.95) 100%)',
+              backgroundColor: '#e5e5e5',
+              clipPath: 'polygon(0% 0%, 0% 100%, 100% 0%)'
+            }}
+          />
+
+          {/* V1.0 Chapter Status Header with Pink Radiating Marks */}
+          <div className="flex items-center justify-center gap-3 mb-4 select-none relative z-20">
+            <svg className="w-5 h-5 text-pink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M10 12 L4 10" />
+              <path d="M11 9 L6 4" />
+              <path d="M12 14 L8 19" />
+            </svg>
+            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#7C3AED]">
+              V1.0 CHAPTER STATUS
+            </span>
+            <svg className="w-5 h-5 text-pink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M14 12 L20 10" />
+              <path d="M13 9 L18 4" />
+              <path d="M12 14 L16 19" />
+            </svg>
+          </div>
+
+          <p className="font-handwritten text-[16px] sm:text-[18px] text-ink/80 leading-relaxed max-w-[50ch] mx-auto relative z-20">
             We are currently in setup mode. No events are scheduled at this exact moment, but planning is underway. 
             Announcements will be broadcasted live on our official Discord server first.
           </p>

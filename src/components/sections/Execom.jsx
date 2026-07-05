@@ -116,26 +116,16 @@ export default function Execom() {
         <span className="inline-block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-purple relative mb-4">
           WHO RUNS IT
           {/* Eyebrow underline */}
-          <div className="absolute -bottom-1.5 left-0 w-6 h-[2px] bg-purple" />
+          <div className="w-8 h-[2px] bg-purple mt-2 mb-6" />
         </span>
-        
         <h2 className="font-display font-semibold text-[38px] sm:text-[46px] tracking-tight text-ink mt-4 mb-6 leading-[1.15]">
           <span className="relative inline-block">
             Executive Committee,
-            {/* Scribble sparkle doodle above */}
-            <svg className="absolute -top-6 -right-6 w-8 h-6 text-purple/80 pointer-events-none select-none animate-pulse" viewBox="0 0 32 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M 16 6 L 16 2" />
-              <path d="M 12 9 L 8 7" />
-              <path d="M 20 9 L 24 7" />
-            </svg>
           </span><br />
           <span className="text-purple">driving</span>{' '}
           <span className="relative inline-block text-ink">
             everything.
-            {/* Underline highlight */}
-            <svg className="absolute -bottom-2.5 left-0 w-full h-3 text-purple/35 pointer-events-none" viewBox="0 0 100 8" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round">
-              <path d="M 2 4 Q 50 2, 98 4" />
-            </svg>
+           
           </span>
         </h2>
         

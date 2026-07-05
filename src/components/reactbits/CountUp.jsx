@@ -23,19 +23,15 @@ export default function CountUp({
 }) {
   const nodeRef = useRef(null);
   const isInView = useInView(nodeRef, { once: true, margin: '0px' });
-  const [started, setStarted] = useState(false);
+  const [count, setCount] = useState(from);
 
   useEffect(() => {
-    if (!isInView || started) return;
-    setStarted(true);
-
-    const node = nodeRef.current;
-    if (!node) return;
+    if (!isInView) return;
 
     // Check for prefers-reduced-motion
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) {
-      node.textContent = to.toLocaleString() + suffix;
+      setCount(to);
       return;
     }
 
@@ -45,16 +41,16 @@ export default function CountUp({
       delay,
       ease: [0.16, 1, 0.3, 1],
       onUpdate(value) {
-        node.textContent = Math.round(value).toLocaleString() + suffix;
+        setCount(Math.round(value));
       }
     });
 
     return () => controls.stop();
-  }, [isInView, from, to, duration, delay, suffix, started]);
+  }, [isInView, from, to, duration, delay]);
 
   return (
     <span ref={nodeRef} className={className}>
-      {from}{suffix}
+      {count.toLocaleString()}{suffix}
     </span>
   );
 }

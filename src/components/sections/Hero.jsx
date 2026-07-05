@@ -45,7 +45,7 @@ export default function Hero() {
             className="flex items-center gap-2 mb-6"
           >
             <span className="font-mono text-[13px] uppercase tracking-[0.2em] text-purple flex items-center flex-wrap">
-              MULEARN CAMPUS CHAPTER • CAMPUS CODE:&nbsp;
+              MULEARN CAMPUS CODE:&nbsp;
               <span className="relative inline-block px-1 font-bold">
                 SBC
                 <svg className="absolute -bottom-1.5 left-0 w-full h-3 text-purple" viewBox="0 0 40 10" fill="none" preserveAspectRatio="none">
@@ -83,22 +83,43 @@ export default function Hero() {
             transition={getTransition(0.7, 0.35)}
             className="flex flex-row gap-4 items-center"
           >
-            <a
+            <motion.a
               href="https://mulearn.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-purple hover:bg-purple-dark text-white font-body text-[13px] font-semibold px-6 py-3.5 rounded-full transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-95 shadow-sm"
+              initial="initial"
+              whileHover="hover"
+              variants={{
+                initial: { y: 0 },
+                hover: { y: -2 }
+              }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="group relative inline-flex items-center gap-2 bg-purple text-white font-body text-[13px] font-semibold px-6 py-3.5 rounded-none overflow-hidden cursor-pointer shadow-sm"
             >
-              <span>Join the Community</span>
-              <ChevronRight size={14} className="stroke-[2.5px]" />
-            </a>
+              {/* Swift background fill from left to right using Framer Motion variants */}
+              <motion.span
+                variants={{
+                  initial: { scaleX: 0 },
+                  hover: { scaleX: 1 }
+                }}
+                style={{ originX: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 bg-[#A78BFA]"
+              />
+              
+              {/* Content overlay */}
+              <span className="relative z-10 flex items-center gap-2">
+                <span>Join the Community</span>
+                <ChevronRight size={14} className="stroke-[2.5px]" />
+              </span>
+            </motion.a>
             <a
               href="#circles"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('circles')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2 bg-white hover:bg-off-white text-ink border border-hairline font-body text-[13px] font-semibold px-6 py-3.5 rounded-full transition-all duration-200 cursor-pointer hover:-translate-y-0.5 active:scale-95"
+              className="inline-flex items-center gap-2 bg-white hover:bg-off-white text-ink border border-hairline font-body text-[13px] font-semibold px-6 py-3.5 rounded-none transition-all duration-300 cursor-pointer hover:-translate-y-0.5 active:scale-95"
             >
               <span>Explore Circles</span>
               <ChevronRight size={14} className="text-purple stroke-[2.5px]" />

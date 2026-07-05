@@ -16,6 +16,7 @@ import footerMuSketch from '../../assets/footer_mu_sketch.png';
 import footerWordmarkSketch from '../../assets/footer_wordmark_sketch.png';
 import footerAirplaneSketch from '../../assets/footer_airplane_sketch.png';
 import footerNoteCard from '../../assets/footer_note_card.png';
+import sbcLogo from '../../assets/sbc.png';
 
 const valueBadges = [
   { icon: GraduationCap, label: 'LEARN BY DOING' },
@@ -30,13 +31,13 @@ const valueBadges = [
 const resourcesLinks = [
   { name: 'µLearn Global', url: 'https://mulearn.org' },
   { name: 'Documentation', url: 'https://docs.mulearn.org' },
-  { name: 'Discord Server', url: 'https://discord.gg/mulearn' },
+  { name: 'Discord Server', url: 'https://discord.gg/mTuerRmEAr' },
   { name: 'Brand Assets', url: 'https://mulearn.org/brand-assets' }
 ];
 
 const contactLinks = [
   { name: 'SBCE Site', url: 'https://sbce.ac.in' },
-  { name: 'mulearn@sbce.ac.in', url: 'mailto:mulearn@sbce.ac.in' },
+  { name: 'mulearnsbc@gmail.com', url: 'https://mail.google.com/mail/?view=cm&fs=1&to=mulearnsbc@gmail.com' },
   { name: 'About Chapter', url: '#about' },
   { name: 'Join µLearn', url: '#circles' }
 ];
@@ -65,11 +66,11 @@ export default function Footer() {
             />
           </div>
 
-          {/* Center: MLEARN SBC wordmark sketch */}
+          {/* Center: MULEARN SBC wordmark sketch */}
           <div className="lg:col-span-6 flex flex-col items-center text-center">
             <img 
               src={footerWordmarkSketch} 
-              alt="MLEARN SBC" 
+              alt="MULEARN SBC" 
               className="h-16 object-contain select-none pointer-events-none mb-3" 
             />
             <p className="text-[13px] sm:text-[14px] text-ink/65 tracking-tight font-body">
@@ -111,15 +112,19 @@ export default function Footer() {
       </div>
 
       {/* 3. Detailed Footer Columns */}
-      <div className="max-w-[1180px] mx-auto px-6 py-16 relative z-10">
+      <div className="max-w-[1180px] mx-auto px-6 pt-16 pb-0 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           
           {/* Column 1: Chapter Logo & Info */}
           <div className="col-span-12 md:col-span-4">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="font-display font-extrabold text-3xl text-purple">µ</span>
-              <div className="flex flex-col">
-                <span className="font-display font-bold text-sm tracking-tight text-ink">MuLearn SBC</span>
+            <div className="flex items-center gap-3 mb-5 select-none">
+              <img 
+                src={sbcLogo} 
+                alt="µlearn" 
+                className="h-6 sm:h-7 object-contain pointer-events-none" 
+              />
+              <div className="flex flex-col border-l border-hairline pl-3">
+                <span className="font-display font-bold text-sm tracking-tight text-ink">SBC</span>
                 <span className="font-mono text-[9px] font-bold tracking-widest text-purple">CAMPUS CHAPTER</span>
               </div>
             </div>
@@ -132,7 +137,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               {/* Discord */}
               <a 
-                href="https://discord.gg/mulearn" 
+                href="https://discord.gg/mTuerRmEAr" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/75 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
@@ -144,7 +149,7 @@ export default function Footer() {
               </a>
               {/* Instagram */}
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/mulearn.sbc" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/75 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
@@ -158,7 +163,7 @@ export default function Footer() {
               </a>
               {/* LinkedIn */}
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/company/mulearnsbc" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/75 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
@@ -170,16 +175,16 @@ export default function Footer() {
                   <circle cx="4" cy="4" r="2" />
                 </svg>
               </a>
-              {/* GitHub */}
+              {/* WhatsApp */}
               <a 
-                href="https://github.com" 
+                href="https://wa.me/919847597315" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/75 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
-                aria-label="GitHub"
+                aria-label="WhatsApp"
               >
-                <svg className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 16 16">
+                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.93a7.9 7.9 0 0 0 1.08 3.971L0 16l4.2-1.1a7.8 7.8 0 0 0 3.79 1.01h.007a7.86 7.86 0 0 0 7.86-7.858 7.8 7.8 0 0 0-2.256-5.627h-.002zm-5.607 11.3a6.6 6.6 0 0 1-3.378-.928l-.242-.143-2.5 1 .65-2.463-.159-.253a6.56 6.56 0 0 1-1.007-3.5C2.33 4.545 5.12 1.76 8.5 1.76 11.88 1.76 14.67 4.545 14.67 7.93a6.58 6.58 0 0 1-6.676 6.697M11.67 9.871c-.195-.1-.195-.1-.65-.325-.455-.225-.765-.375-.855-.425-.09-.05-.18-.1-.28-.05-.1.05-.2.15-.3.25-.1.1-.2.25-.3.35-.1.1-.2.15-.4.05-.2-.1-.85-.3-1.625-1-.6-.525-.975-1.15-1.125-1.35-.15-.2-.05-.3.05-.4.1-.1.2-.25.3-.35.1-.1.15-.2.2-.3.05-.1 0-.25-.05-.35-.05-.1-.425-1-.575-1.375-.15-.375-.3-.375-.425-.375-.125 0-.275 0-.425 0-.15 0-.4.05-.625.3-.225.25-.85.825-.85 2.025 0 1.2 1 2.375 1.125 2.55.125.175 1.825 2.825 4.475 3.825.625.25 1.125.4 1.5.525.625.175 1.175.15 1.625.075.5-.075 1.5-.625 1.725-1.2.225-.575.225-1.075.15-1.2-.075-.125-.225-.2-.425-.3"/>
                 </svg>
               </a>
             </div>
@@ -230,11 +235,17 @@ export default function Footer() {
 
           {/* Column 4: Paperclip card */}
           <div className="col-span-12 md:col-span-3 flex justify-center md:justify-end">
-            <img 
-              src={footerNoteCard} 
-              alt="quote card" 
-              className="w-[220px] sm:w-[240px] object-contain select-none pointer-events-none hover:rotate-1 hover:scale-102 transition-all duration-300" 
-            />
+            <motion.div
+              whileHover={shouldReduceMotion ? {} : { rotate: 3, scale: 1.05, y: -4 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="w-[220px] sm:w-[240px] select-none cursor-default"
+            >
+              <img 
+                src={footerNoteCard} 
+                alt="quote card" 
+                className="w-full h-auto object-contain pointer-events-none" 
+              />
+            </motion.div>
           </div>
 
         </div>
@@ -246,10 +257,10 @@ export default function Footer() {
           </span>
           <span className="font-body text-[10px] text-ink/50 flex items-center justify-center gap-1.5">
             <Heart size={10} className="text-purple fill-purple shrink-0 animate-pulse" />
-            <span>Made by students, for students.</span>
+            <span>Made by Tech Team - Mulearn SBC.</span>
           </span>
           <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-ink/40">
-            BUILT IN PUBLIC · SREE BUDDHA COLLEGE OF ENGINEERING
+            BUILT UNDER PRESSURE · SREE BUDDHA COLLEGE OF ENGINEERING
           </span>
         </div>
       </div>
