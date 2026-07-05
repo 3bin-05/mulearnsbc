@@ -14,7 +14,7 @@ import {
 // Import footer assets
 import footerMuSketch from '../../assets/footer_mu_sketch.png';
 import footerWordmarkSketch from '../../assets/footer_wordmark_sketch.png';
-import footerAirplaneSketch from '../../assets/footer_airplane_sketch.png';
+import sbceLogo from '../../assets/sbcelogo.jpg';
 import footerNoteCard from '../../assets/footer_note_card.png';
 import sbcLogo from '../../assets/sbc.png';
 
@@ -78,33 +78,31 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Right: Paper airplane sketch */}
+          {/* Right: SBCE Logo */}
           <div className="lg:col-span-3 flex justify-center lg:justify-end">
             <img 
-              src={footerAirplaneSketch} 
-              alt="airplane sketch" 
-              className="h-24 object-contain select-none pointer-events-none" 
+              src={sbceLogo} 
+              alt="SBCE Logo" 
+              className="h-20 object-contain select-none rounded-lg shadow-sm" 
             />
           </div>
         </div>
       </div>
 
-      {/* 2. Core Values Horizontal Banner */}
-      <div className="border-t border-b border-hairline/60 py-5 bg-white overflow-x-auto select-none">
-        <div className="max-w-[1180px] mx-auto px-6 flex items-center justify-between gap-6 min-w-max lg:min-w-0">
-          {valueBadges.map((badge, idx) => {
+      {/* 2. Core Values Horizontal Banner (Infinite Loop Marquee) */}
+      <div className="border-t border-b border-hairline/60 py-4 bg-white overflow-hidden select-none w-full relative">
+        <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
+          {[...valueBadges, ...valueBadges].map((badge, idx) => {
             const Icon = badge.icon;
             return (
               <React.Fragment key={idx}>
-                <div className="flex items-center gap-2">
-                  <Icon size={16} className="text-purple shrink-0" />
-                  <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-wider text-ink">
+                <div className="flex items-center gap-3 shrink-0">
+                  <Icon size={15} className="text-purple shrink-0" />
+                  <span className="font-handwritten text-[13px] sm:text-[14.5px] font-bold tracking-wider text-ink uppercase">
                     {badge.label}
                   </span>
                 </div>
-                {idx < valueBadges.length - 1 && (
-                  <div className="h-4 w-[1px] bg-hairline/60 shrink-0" />
-                )}
+                <div className="h-4 w-[1.5px] bg-hairline/60 shrink-0" />
               </React.Fragment>
             );
           })}
