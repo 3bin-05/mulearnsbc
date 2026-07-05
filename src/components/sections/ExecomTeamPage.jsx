@@ -15,7 +15,7 @@ import maanas from '../../assets/Execom/maanas.webp';
 import abin_philip_anil from '../../assets/Execom/ABIN PHILIP ANIL.webp';
 import aadil from '../../assets/Execom/Aadil D A.webp';
 import ananthu from '../../assets/Execom/ananthu.webp';
-import devanarayanan from '../../assets/Execom/aadit.webp'; // Fallback
+import devanarayanan from '../../assets/Execom/devanarayana.webp';
 import adhithyan from '../../assets/Execom/adhithyan.webp';
 import malavika from '../../assets/Execom/malavika.webp';
 import krishna from '../../assets/Execom/Krishna S Kumar.webp';
@@ -24,12 +24,13 @@ import faizan from '../../assets/Execom/Faizan A.webp';
 import mohammed_adhil from '../../assets/Execom/Adhil Mohammed.webp';
 import beema from '../../assets/Execom/Beema Amal.webp';
 import nidhi from '../../assets/Execom/Nidhi MP.webp';
-import arjun_r_kurup from '../../assets/Execom/aadit.webp'; // Fallback
+import arjun_r_kurup from '../../assets/Execom/Arjun R Kurup.webp';
 import sp_devanand from '../../assets/Execom/Devanand Sp.webp';
 import navaneeth from '../../assets/Execom/Navaneeth R.webp';
 import john from '../../assets/Execom/John.webp';
 import akshaj from '../../assets/Execom/AKSHAJ.webp';
 import arjun_nair from '../../assets/Execom/Arjun Nair.webp';
+import aadit from '../../assets/Execom/aadit.webp';
 
 const membersData = [
   {
@@ -39,6 +40,14 @@ const membersData = [
     bio: 'Guides and mentors the campus chapter, facilitating institutional support and ecosystem enablement.',
     linkedin: 'https://www.linkedin.com/search/results/all/?keywords=Lekshmi%20Shan',
     level: 1
+  },
+  {
+    name: 'Aadit Ajay',
+    role: 'Campus Lead',
+    photo: aadit,
+    bio: 'Leads the campus chapter, orchestrates activities, coordinates with state core teams, and drives overall vision.',
+    linkedin: 'https://www.linkedin.com/search/results/all/?keywords=Aadit%20Ajay',
+    level: 2
   },
   {
     name: 'Malavika ps',
