@@ -277,7 +277,6 @@
   cursor: pointer;
   line-height: 1;
   letter-spacing: -2px;
-  text-transform: uppercase;
   transition:
     background 0.25s,
     color 0.25s;

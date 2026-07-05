@@ -18,12 +18,12 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
-    { label: 'About', ariaLabel: 'Go to about section', link: '#about' },
-    { label: 'Events', ariaLabel: 'Go to events section', link: '#events' },
-    { label: 'Impact', ariaLabel: 'Go to impact section', link: '#impact' },
-    { label: 'Circles', ariaLabel: 'Go to circles section', link: '#circles' },
-    { label: 'ExeCom', ariaLabel: 'Go to execom section', link: '#execom' },
-    { label: 'Join µLearn', ariaLabel: 'Join mulearn foundation', link: 'https://mulearn.org' }
+    { label: 'ABOUT', ariaLabel: 'Go to about section', link: '#about' },
+    { label: 'EVENTS', ariaLabel: 'Go to events section', link: '#events' },
+    { label: 'IMPACT', ariaLabel: 'Go to impact section', link: '#impact' },
+    { label: 'CIRCLES', ariaLabel: 'Go to circles section', link: '#circles' },
+    { label: 'EXECOM', ariaLabel: 'Go to execom section', link: '#execom' },
+    { label: 'JOIN µLEARN', ariaLabel: 'Join mulearn foundation', link: 'https://mulearn.org' }
   ];
 
   const socialItems = [
