@@ -1,44 +1,82 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth bg-black text-white">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/mulogosbc.webp" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MuLearn SBC - Learn. Build. Lead.</title>
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="robots" content="index, follow" />
     
     <!-- Primary Meta Tags -->
-    <meta name="description" content="MuLearn SBC is a futuristic space-themed student community focused on peer learning, technology enablement, and leadership. Explore our community events, figmas, hackathons, and connect with the Execom." />
-    <meta name="keywords" content="MuLearn SBC, MuLearn, SBC, Student Branch Chapter, peer learning, tech community, Figma bootcamp, Design sprint, SBCE, Patoor, Sree Buddha College of Engineering" />
-    <meta name="author" content="MuLearn SBC" />
+    <title>µLearn SBC | Sree Buddha College of Engineering</title>
+    <meta name="title" content="µLearn SBC | Sree Buddha College of Engineering" />
+    <meta name="description" content="Official website of the µLearn SBC campus chapter at Sree Buddha College of Engineering. Discover our peer-learning circles, hackathons, and community-led events." />
     <link rel="canonical" href="https://mulearn-sbc.vercel.app/" />
+    <link rel="manifest" href="/manifest.json" />
 
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="googlee5d3d0ab480fb9c8" />
-
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mulearn-sbc.vercel.app/" />
-    <meta property="og:site_name" content="MuLearn SBC" />
-    <meta property="og:title" content="MuLearn SBC | Learn. Build. Lead." />
-    <meta property="og:description" content="MuLearn SBC is a futuristic space-themed student community focused on peer learning, technology enablement, and leadership. Explore our community events, workshops, and team members." />
-    <meta property="og:image" content="https://mulearn-sbc.vercel.app/mulogosbc.webp" />
-    <meta property="og:image:alt" content="MuLearn SBC Logo" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="µLearn SBC | Sree Buddha College of Engineering" />
+    <meta property="og:description" content="Official website of the µLearn SBC campus chapter at Sree Buddha College of Engineering. Discover our peer-learning circles, hackathons, and community-led events." />
+    <meta property="og:image" content="https://mulearn-sbc.vercel.app/og-image.png" />
+    <meta property="og:site_name" content="µLearn SBC" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://mulearn-sbc.vercel.app/" />
-    <meta name="twitter:title" content="MuLearn SBC | Learn. Build. Lead." />
-    <meta name="twitter:description" content="Join MuLearn SBC, a futuristic space-themed student tech community focused on peer learning, workshop hackathons, and leadership." />
-    <meta name="twitter:image" content="https://mulearn-sbc.vercel.app/mulogosbc.webp" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mulearn-sbc.vercel.app/" />
+    <meta property="twitter:title" content="µLearn SBC | Sree Buddha College of Engineering" />
+    <meta property="twitter:description" content="Official website of the µLearn SBC campus chapter at Sree Buddha College of Engineering. Discover our peer-learning circles, hackathons, and community-led events." />
+    <meta property="twitter:image" content="https://mulearn-sbc.vercel.app/og-image.png" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://mulearn-sbc.vercel.app/#website",
+          "url": "https://mulearn-sbc.vercel.app/",
+          "name": "µLearn SBC",
+          "description": "Official website of the µLearn SBC campus chapter at Sree Buddha College of Engineering. Discover our peer-learning circles, hackathons, and community-led events.",
+          "publisher": {
+            "@id": "https://mulearn-sbc.vercel.app/#organization"
+          }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://mulearn-sbc.vercel.app/#organization",
+          "name": "µLearn SBC",
+          "alternateName": "MuLearn Sree Buddha College of Engineering",
+          "url": "https://mulearn-sbc.vercel.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://mulearn-sbc.vercel.app/favicon.svg"
+          },
+          "parentOrganization": {
+            "@type": "Organization",
+            "name": "GTech µLearn",
+            "url": "https://mulearn.org/"
+          },
+          "location": {
+            "@type": "Place",
+            "name": "Sree Buddha College of Engineering, Pattoor",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Pattoor, Alappuzha",
+              "addressRegion": "Kerala",
+              "addressCountry": "IN"
+            }
+          }
+        }
+      ]
+    }
+    </script>
   </head>
-  <body class="overflow-x-hidden select-none bg-black text-white font-sans antialiased">
-    <div id="root" class="min-h-screen relative w-full overflow-hidden"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+

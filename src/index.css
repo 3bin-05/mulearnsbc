@@ -1,169 +1,120 @@
+@import url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/index.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@qpokychuk/gilroy@1.0.2/index.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .font-cursive {
+    font-family: 'Caveat', cursive;
+  }
+  .font-handwritten {
+    font-family: 'Patrick Hand', cursive, sans-serif;
+  }
+}
+
 @layer base {
-  html,
-  body,
-  #root {
-    min-height: 100%;
+  :root {
+    --white: #FFFFFF;
+    --off-white: #FAFAFA;
+    --black: #0B0B0D;
+    --ink: #17171B;
+    --purple: #7C3AED;
+    --purple-dark: #5B21B6;
+    --purple-tint: #F3EEFF;
+    --hairline: #E9E9EC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Gilroy', 'Inter', sans-serif;
   }
 
   body {
-    background-color: #000000;
-    color: #F6F6F4;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     overflow-x: hidden;
-    -webkit-tap-highlight-color: transparent;
+    background-color: #0B0B0D; /* Ensure black bg matches layout */
+  }
+
+  /* prefers-reduced-motion override */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+    *, *::before, *::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-
-  .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 999px;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    box-shadow: 0 0 14px rgba(255, 255, 255, 0.22);
-  }
-
-  .custom-cursor span {
-    position: absolute;
-    inset: 6px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.92);
-  }
+/* Custom helper utilities */
+.text-clamp-h1 {
+  font-size: clamp(2.75rem, 6vw, 5.5rem);
 }
 
-/* Scroll lock utility when menu is open */
-.no-scroll {
-  overflow: hidden;
-  height: 100vh;
+.text-clamp-h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
-/* Premium selection style */
-::selection {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
-}
-
-/* Futuristic noise background overlay */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* Futuristic scrollbar for the telemetry dashboard */
-.tech-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.tech-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-left: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-.tech-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.tech-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Futuristic Scanline Animation */
-@keyframes scan {
+/* Aurora animations */
+@keyframes aurora-slow {
   0% {
-    transform: translateY(-100%);
+    transform: translate(0, 0) scale(1) rotate(0deg);
   }
   50% {
-    transform: translateY(100%);
+    transform: translate(8%, 12%) scale(1.1) rotate(120deg);
   }
   100% {
-    transform: translateY(-100%);
+    transform: translate(0, 0) scale(1) rotate(360deg);
   }
 }
 
-.animate-scan {
-  animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.footer-orbit {
-  position: absolute;
-  right: clamp(-180px, -8vw, -80px);
-  top: 28px;
-  width: clamp(260px, 34vw, 500px);
-  aspect-ratio: 1;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  pointer-events: none;
-}
-
-.footer-orbit::before,
-.footer-orbit::after {
-  content: "";
-  position: absolute;
-  inset: 13%;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.055);
-}
-
-.footer-orbit::after {
-  inset: 30%;
-}
-
-.footer-orbit span {
-  position: absolute;
-  inset: -5px;
-  border-radius: inherit;
-  animation: footer-orbit-spin 16s linear infinite;
-}
-
-.footer-orbit span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -2px;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
-}
-
-@keyframes footer-orbit-spin {
-  to {
-    transform: rotate(360deg);
+@keyframes aurora-reverse {
+  0% {
+    transform: translate(0, 0) scale(1.05) rotate(360deg);
+  }
+  50% {
+    transform: translate(-10%, -8%) scale(0.95) rotate(180deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1.05) rotate(0deg);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.001ms !important;
+@keyframes aurora-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, -12%) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
   }
 }
 
-/* Scrollbar Hide Utility */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+.animate-aurora-slow {
+  animation: aurora-slow 35s infinite linear;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+
+.animate-aurora-reverse {
+  animation: aurora-reverse 45s infinite linear;
 }
+
+.animate-aurora-drift {
+  animation: aurora-drift 28s infinite ease-in-out;
+}
+

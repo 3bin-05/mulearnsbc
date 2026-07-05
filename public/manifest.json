@@ -1,0 +1,17 @@
+{
+  "short_name": "µLearn SBC",
+  "name": "µLearn SBC Campus Chapter",
+  "description": "Official website of the µLearn SBC campus chapter at Sree Buddha College of Engineering. Peer-learning circles, hackathons, and community-led events.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed",
+  "display": "standalone",
+  "orientation": "portrait"
+}

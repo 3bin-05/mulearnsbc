@@ -1,6 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Sitemap Location (Replace with your custom domain if deployed on one)
 Sitemap: https://mulearn-sbc.vercel.app/sitemap.xml

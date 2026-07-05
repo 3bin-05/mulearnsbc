@@ -6,28 +6,24 @@ export default {
   ],
   theme: {
     extend: {
-      screens: {
-        'short': { 'raw': '(max-height: 850px)' },
-        'xshort': { 'raw': '(max-height: 700px)' },
+      colors: {
+        white: '#FFFFFF',
+        'off-white': '#FAFAFA',
+        black: '#0B0B0D',
+        ink: '#17171B',
+        purple: '#7C3AED',
+        'purple-dark': '#5B21B6',
+        'purple-tint': '#F3EEFF',
+        hairline: '#E9E9EC',
       },
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
-      },
-      colors: {
-        premiumText: '#F6F6F4',
-        exploreText: '#F3F3F3',
-      },
-      letterSpacing: {
-        nav: '0.12em',
-        explore: '0.08em',
-        subtitle: '0.25em',
-        statLabel: '0.08em',
-      },
-      lineHeight: {
-        hero: '0.86',
+        sans: ['Gilroy', 'Inter', 'sans-serif'],
+        display: ['Gilroy', 'sans-serif'],
+        body: ['Gilroy', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
     },
   },
   plugins: [],
 }
+
