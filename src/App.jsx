@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Section from './components/layout/Section';
 import Footer from './components/layout/Footer';
@@ -10,6 +10,7 @@ import Circles from './components/sections/Circles';
 import Execom from './components/sections/Execom';
 import ExecomProfileComingSoon from './components/sections/ExecomProfileComingSoon';
 import ExecomTeamPage from './components/sections/ExecomTeamPage';
+import Preloader from './components/layout/Preloader';
 
 const EXECOM_PROFILES = [
   'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
@@ -19,42 +20,51 @@ const EXECOM_PROFILES = [
 ];
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
 
-  if (path === 'execom') {
-    return <ExecomTeamPage />;
-  }
+  let content;
 
-  if (EXECOM_PROFILES.includes(path)) {
-    return <ExecomProfileComingSoon username={path} />;
+  if (path === 'execom') {
+    content = <ExecomTeamPage />;
+  } else if (EXECOM_PROFILES.includes(path)) {
+    content = <ExecomProfileComingSoon username={path} />;
+  } else {
+    content = (
+      <div className="min-h-screen bg-white font-body text-ink selection:bg-purple selection:text-white">
+        <Navbar />
+        <main>
+          <Hero />
+
+          {/* About Section */}
+          <About />
+
+          {/* Events Section */}
+          <Events />
+
+          {/* Impact Section */}
+          <Impact />
+
+          {/* Learning Circles Section */}
+          <Circles />
+
+          {/* Execom Section */}
+          <Execom />
+        </main>
+
+        {/* Footer Section */}
+        <Footer />
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-white font-body text-ink selection:bg-purple selection:text-white">
-      <Navbar />
-      <main>
-        <Hero />
-
-        {/* About Section */}
-        <About />
-
-        {/* Events Section */}
-        <Events />
-
-        {/* Impact Section */}
-        <Impact />
-
-        {/* Learning Circles Section */}
-        <Circles />
-
-        {/* Execom Section */}
-        <Execom />
-      </main>
-
-      {/* Footer Section */}
-      <Footer />
-    </div>
+    <>
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      {content}
+    </>
   );
 }
 
 export default App;
+
