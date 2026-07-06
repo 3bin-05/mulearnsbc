@@ -14,7 +14,7 @@ import Preloader from './components/layout/Preloader';
 
 const EXECOM_PROFILES = [
   'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
-  'abin-anil', 'aadil', 'ananthu', 'devanarayanan', 'adhithyan', 'malavika',
+  'abin-anil', 'aadil', 'aadit', 'ananthu', 'devanarayanan', 'adhithyan', 'malavika',
   'krishna', 'devika', 'faizan', 'adhil', 'beema', 'nidhi', 'arjun-kurup',
   'devanand', 'navaneeth', 'john', 'akshaj', 'arjun-nair'
 ];
