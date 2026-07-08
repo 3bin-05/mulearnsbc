@@ -5,6 +5,7 @@ import Navbar from '../layout/Navbar';
 // Format the username to show a friendly capitalized name
 const formatName = (username) => {
   if (!username) return '';
+  if (username === 'lekshmi') return 'Lekshmi Shan';
   return username
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))

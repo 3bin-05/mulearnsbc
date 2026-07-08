@@ -1,12 +1,160 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { 
+  Calendar, 
+  Clock, 
+  MapPin, 
+  Code, 
+  Zap, 
+  Users, 
+  Sparkles, 
+  Star, 
+  Heart, 
+  ChevronRight 
+} from 'lucide-react';
 import Section from '../layout/Section';
-import megaphoneSketch from '../../assets/megaphone_sketch.png';
 
-/**
- * Redesigned Events & Hackathons Section with fully visible tapes, page folds,
- * paper airplane trail positioned level with the heading, paperclip, and megaphone.
- */
+// Running events list matching the mockup exactly
+const runningEvents = [
+  {
+    id: 'run-1',
+    title: 'Web Dev Sprint',
+    description: 'Join us for a 2-week sprint to build and improve real-world web projects.',
+    date: '08 MAY - 22 MAY 2025',
+    time: '6:00 PM',
+    location: 'ONLINE',
+    category: 'code',
+    image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  },
+  {
+    id: 'run-2',
+    title: 'DSA Practice Circle',
+    description: 'Daily problem solving sessions and weekly contests for all levels.',
+    date: '01 MAY - ONGOING',
+    time: '7:30 PM',
+    location: 'SBC LAB 1',
+    category: 'zap',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  },
+  {
+    id: 'run-3',
+    title: 'UI/UX Design Circle',
+    description: 'Collaborate, design and get feedback on real-world UI/UX challenges.',
+    date: '05 MAY - ONGOING',
+    time: '5:00 PM',
+    location: 'ONLINE',
+    category: 'users',
+    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  }
+];
+
+// Upcoming events list matching the sticky notes exactly
+const upcomingEvents = [
+  {
+    id: 'up-1',
+    num: '01',
+    title: 'From Figma to Frontend',
+    description: 'Build a stunning website for your favorite World Cup team using Antigravity with immersive animations and breathtaking visuals.',
+    speaker: 'UMAR AL MUNTHIR IBRAHIMKUTTY',
+    color: '#E2D7FF',
+    accentColor: '#B6A6EB',
+    tapeColor: '#C1B5F3',
+    tapeRotate: -1.5,
+    cardRotate: -2,
+    icon: 'star',
+    categoryIcon: 'code',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  },
+  {
+    id: 'up-2',
+    num: '02',
+    title: 'Kickoff to UI with Figma',
+    description: 'Discover the basics of UI/UX by crafting a World Cup-inspired mobile app in Figma with engaging user experiences.',
+    speaker: 'AARON R THOMAS',
+    color: '#FFF5C6',
+    accentColor: '#DDD08E',
+    tapeColor: '#EDDE95',
+    tapeRotate: 2,
+    cardRotate: 1.8,
+    icon: 'scribble',
+    categoryIcon: 'calendar',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  },
+  {
+    id: 'up-3',
+    num: '03',
+    title: 'Game Dev 101',
+    description: 'Build your very first video game using Unity, the leading game development engine, and bring your creative ideas to life.',
+    speaker: 'DEVANARAYANAN A',
+    color: '#FFD5E4',
+    accentColor: '#E2ADB9',
+    tapeColor: '#EDAFC1',
+    tapeRotate: -1,
+    cardRotate: -1,
+    icon: 'heart',
+    categoryIcon: 'users',
+    registerUrl: 'https://whatsapp.com/channel/0029VbBv02ECsU9LjmgbJh0Q'
+  }
+];
+
+// Past events list matching the mockup exactly
+const pastEvents = [
+  {
+    id: 'past-1',
+    title: 'Git & GitHub Workshop',
+    description: 'Hands-on session on version control, collaboration, and managing real-world projects.',
+    date: '12 APR 2025',
+    time: '4:00 PM',
+    location: 'SBC LAB 1',
+    category: 'code',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+    detailsUrl: 'https://github.com/3bin-05/mulearnsbc'
+  },
+  {
+    id: 'past-2',
+    title: 'Hack Night: Build Chat App',
+    description: 'A night-long hackathon to build a real-time chat application with fun and learning.',
+    date: '18 APR 2025',
+    time: '7:00 PM',
+    location: 'SBC LAB 2',
+    category: 'users',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+    detailsUrl: 'https://github.com/3bin-05/mulearnsbc'
+  },
+  {
+    id: 'past-3',
+    title: 'Design Thinking Sprint',
+    description: 'A sprint focusing on empathy, ideation and prototyping to solve real campus problems.',
+    date: '28 MAR 2025',
+    time: '3:30 PM',
+    location: 'SBC LAB 3',
+    category: 'sparkles',
+    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80',
+    detailsUrl: 'https://github.com/3bin-05/mulearnsbc'
+  }
+];
+
+// Category Icons Mapper
+const getCategoryIcon = (category) => {
+  switch (category) {
+    case 'code':
+      return <Code className="w-4 h-4" />;
+    case 'zap':
+      return <Zap className="w-4 h-4" />;
+    case 'users':
+      return <Users className="w-4 h-4" />;
+    case 'calendar':
+      return <Calendar className="w-4 h-4" />;
+    case 'sparkles':
+      return <Sparkles className="w-4 h-4" />;
+    default:
+      return <Code className="w-4 h-4" />;
+  }
+};
+
 export default function Events() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -16,15 +164,6 @@ export default function Events() {
     }
     return { duration, delay, ease: [0.16, 1, 0.3, 1] };
   };
-
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const refCallout = useRef(null);
-  const inView1 = useInView(ref1, { once: true, margin: '-10%' });
-  const inView2 = useInView(ref2, { once: true, margin: '-10%' });
-  const inView3 = useInView(ref3, { once: true, margin: '-10%' });
-  const inViewCallout = useInView(refCallout, { once: true, margin: '-10%' });
 
   return (
     <Section id="events" tone="off-white" className="relative">
@@ -45,16 +184,13 @@ export default function Events() {
           </p>
         </div>
 
-        {/* Flight path loop with paper plane at the same level as the heading */}
+        {/* Flight path loop with paper plane */}
         <div className="relative w-full max-w-[280px] h-[90px] hidden md:block pointer-events-none select-none mb-2 mr-4">
           <svg viewBox="0 0 280 90" className="w-full h-full text-purple/35 fill-none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-            {/* Dotted path leading to paper plane */}
             <path d="M 10 65 Q 60 45 100 65 T 160 35 Q 185 10 210 35 T 255 25" strokeDasharray="5 5" />
-            {/* Sparkle */}
             <g transform="translate(180, 50)">
               <path d="M 0 -6 Q 0 0 6 0 Q 0 0 0 6 Q 0 0 -6 0 Q 0 0 0 -6 Z" fill="currentColor" className="text-purple/50" />
             </g>
-            {/* Paper airplane at the end, flying to top-right */}
             <g transform="translate(250, 20) rotate(-10)">
               <svg width="32" height="32" viewBox="0 0 24 24" className="w-8 h-8 text-purple" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -65,320 +201,430 @@ export default function Events() {
         </div>
       </div>
 
-      {/* Sticky Notes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start mb-24 relative z-10">
-        
-        {/* Sticky Note 1: Purple */}
-        <motion.div
-          ref={ref1}
-          animate={inView1 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          transition={getTransition(0.7, 0.05)}
-          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
-          style={{ rotate: -2 }}
-          className="relative group min-h-[310px] select-none pt-4 cursor-default"
-        >
-          {/* Opaque, Visible Purple Tape - outside inner card boundary to avoid clipping */}
-          <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#C1B5F3]/85 border-l border-r border-dashed border-purple-400/40 rotate-[-1.5deg] shadow-sm z-20" />
-
-          {/* Inner Card (handles clipPath for bottom-right fold) */}
-          <div 
-            style={{
-              clipPath: 'polygon(0% 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%)'
-            }}
-            className="relative bg-[#E2D7FF] text-ink p-6 md:p-8 h-full min-h-[294px] flex flex-col justify-between rounded-[2px] shadow-[2px_12px_24px_rgba(0,0,0,0.06)]"
-          >
-            {/* Curled Fold Corner */}
-            <div 
-              className="absolute bottom-0 right-0 w-4 h-4 rounded-tl-[4px] shadow-[-1px_-1px_3px_rgba(0,0,0,0.08)] pointer-events-none"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.15) 100%)',
-                backgroundColor: '#B6A6EB'
-              }}
-            />
-
-            {/* Sticky Header */}
-            <div className="flex justify-between items-start mb-6">
-              <div className="h-8 w-8 rounded-full border border-ink/15 flex items-center justify-center font-display font-medium text-xs select-none">
-                01
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink/50 block leading-none">
-                  STATUS:
-                </span>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  UPCOMING
-                </span>
-              </div>
-            </div>
-
-            {/* Sticky Body */}
-            <div className="my-auto flex flex-col items-start">
-              {/* Custom hand-drawn Code icon */}
-              <div className="mb-4 text-ink/75 group-hover:scale-105 transition-transform duration-300">
-                <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M 8 6 L 2 12 L 8 18" />
-                  <path d="M 16 6 L 22 12 L 16 18" />
-                </svg>
-              </div>
-              <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                From Fans to Frontend
-              </h3>
-              <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                 Build a stunning website for your favorite World Cup team using Antigravity with immersive animations and breathtaking visuals.
-              </p>
-            </div>
-
-            {/* Sticky Footer */}
-            <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
-              <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SPEAKER : Umar Al Mukhtar Ibrahimkutty
-              </span>
-              <div className="text-purple/70">
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2 L15 9 L22 9 L17 14 L19 21 L12 17 L5 21 L7 14 L2 9 L9 9 Z" />
-                </svg>
-              </div>
-            </div>
+      {/* ========================================================================= */}
+      {/* 1. RUNNING EVENTS SECTION */}
+      {/* ========================================================================= */}
+      <div className="mb-16">
+        <div className="flex items-center justify-between mb-8 z-10 relative">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple"></span>
+            </span>
+            <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-purple">
+              RUNNING EVENTS
+            </h3>
           </div>
-        </motion.div>
-
-        {/* Sticky Note 2: Yellow */}
-        <motion.div
-          ref={ref2}
-          animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          transition={getTransition(0.7, 0.15)}
-          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
-          style={{ rotate: 1.8 }}
-          className="relative group min-h-[310px] select-none pt-4 cursor-default"
-        >
-          {/* Opaque, Visible Yellow Tape - outside inner card boundary to avoid clipping */}
-          <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#EDDE95]/85 border-l border-r border-dashed border-amber-400/40 rotate-[2deg] shadow-sm z-20" />
-
-          {/* Inner Card (handles clipPath for bottom-right fold) */}
-          <div 
-            style={{
-              clipPath: 'polygon(0% 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%)'
-            }}
-            className="relative bg-[#FFF5C6] text-ink p-6 md:p-8 h-full min-h-[294px] flex flex-col justify-between rounded-[2px] shadow-[2px_12px_24px_rgba(0,0,0,0.06)]"
+          <a 
+            href="#events" 
+            className="font-mono text-[10px] sm:text-xs font-semibold text-purple/80 hover:text-purple transition-colors flex items-center gap-1 group"
           >
-            {/* Curled Fold Corner */}
-            <div 
-              className="absolute bottom-0 right-0 w-4 h-4 rounded-tl-[4px] shadow-[-1px_-1px_3px_rgba(0,0,0,0.08)] pointer-events-none"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.15) 100%)',
-                backgroundColor: '#DDD08E'
-              }}
+            <span>View all running events</span>
+            <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {runningEvents.map((event, index) => (
+            <RunningEventCard 
+              key={event.id} 
+              event={event} 
+              index={index} 
+              getTransition={getTransition}
+              shouldReduceMotion={shouldReduceMotion}
             />
-
-            {/* Sticky Header */}
-            <div className="flex justify-between items-start mb-6">
-              <div className="h-8 w-8 rounded-full border border-ink/15 flex items-center justify-center font-display font-medium text-xs select-none">
-                02
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink/50 block leading-none">
-                  STATUS:
-                </span>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  UPCOMING
-                </span>
-              </div>
-            </div>
-
-            {/* Sticky Body */}
-            <div className="my-auto flex flex-col items-start">
-              {/* Custom hand-drawn Calendar icon */}
-              <div className="mb-4 text-ink/75 group-hover:scale-105 transition-transform duration-300">
-                <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M 4 6 Q 12 5 20 6 Q 21 12 20 20 Q 12 21 4 20 Q 3 12 4 6 Z" />
-                  <path d="M 8 3 Q 8 6 8 7" />
-                  <path d="M 16 3 Q 16 6 16 7" />
-                  <path d="M 4 11 Q 12 10 20 11" />
-                  <path d="M 9 15 L 9.1 15" strokeWidth="3" />
-                  <path d="M 15 15 L 15.1 15" strokeWidth="3" />
-                </svg>
-              </div>
-              <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                Kickoff to UI with Figma
-              </h3>
-              <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                Discover the basics of UI/UX by crafting a World Cup-inspired mobile app in Figma with engaging user experiences.
-              </p>
-            </div>
-
-            {/* Sticky Footer */}
-            <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
-              <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SPEAKER : Aaron R Thomas 
-              </span>
-              <div className="text-amber-800/60">
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M4 14 Q10 8 12 11 T16 11 T18 15" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Sticky Note 3: Pink */}
-        <motion.div
-          ref={ref3}
-          animate={inView3 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          transition={getTransition(0.7, 0.25)}
-          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
-          style={{ rotate: -1 }}
-          className="relative group min-h-[310px] select-none pt-4 cursor-default"
-        >
-          {/* Opaque, Visible Pink Tape - outside inner card boundary to avoid clipping */}
-          <div className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 bg-[#EDAFC1]/85 border-l border-r border-dashed border-pink-400/40 rotate-[-1deg] shadow-sm z-20" />
-
-          {/* Inner Card (handles clipPath for bottom-right fold) */}
-          <div 
-            style={{
-              clipPath: 'polygon(0% 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%)'
-            }}
-            className="relative bg-[#FFD5E4] text-ink p-6 md:p-8 h-full min-h-[294px] flex flex-col justify-between rounded-[2px] shadow-[2px_12px_24px_rgba(0,0,0,0.06)]"
-          >
-            {/* Curled Fold Corner */}
-            <div 
-              className="absolute bottom-0 right-0 w-4 h-4 rounded-tl-[4px] shadow-[-1px_-1px_3px_rgba(0,0,0,0.08)] pointer-events-none"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.15) 100%)',
-                backgroundColor: '#E2ADB9'
-              }}
-            />
-
-            {/* Sticky Header */}
-            <div className="flex justify-between items-start mb-6">
-              <div className="h-8 w-8 rounded-full border border-ink/15 flex items-center justify-center font-display font-medium text-xs select-none">
-                03
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="font-mono text-[9px] uppercase tracking-wider text-ink/50 block leading-none">
-                  STATUS:
-                </span>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/80 block leading-none mt-1 border-b border-ink/40 pb-0.5 font-cursive">
-                  UPCOMING
-                </span>
-              </div>
-            </div>
-
-            {/* Sticky Body */}
-            <div className="my-auto flex flex-col items-start">
-              {/* Custom hand-drawn Group icon */}
-              <div className="mb-4 text-ink/75 group-hover:scale-105 transition-transform duration-300">
-                <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="7" r="3.5" />
-                  <path d="M 5 20 A 7 7 0 0 1 19 20" />
-                  <circle cx="6" cy="10" r="2.5" />
-                  <path d="M 2 20 A 4 4 0 0 1 10 20" />
-                  <circle cx="18" cy="10" r="2.5" />
-                  <path d="M 14 20 A 4 4 0 0 1 22 20" />
-                </svg>
-              </div>
-              <h3 className="font-cursive text-2xl font-bold text-ink mb-3 leading-none">
-                Game Dev 101
-              </h3>
-              <p className="font-handwritten text-[15px] sm:text-[16px] text-ink/80 leading-snug">
-                Build your very first video game using Unity, the leading game development engine, and bring your creative ideas to life.
-              </p>
-            </div>
-
-            {/* Sticky Footer */}
-            <div className="border-t border-dashed border-ink/15 pt-4 mt-6 flex items-center justify-between">
-              <span className="font-mono text-[9px] text-ink/45 uppercase tracking-[0.1em] font-medium">
-                SPEAKER : Devanarayanan A
-              </span>
-              <div className="text-pink-500/70">
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21.35 l-1.45-1.32 C5.4 15.36 2 12.28 2 8.5 C2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 C19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54 Z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
+          ))}
+        </div>
       </div>
 
-      {/* Ripped Paper Callout Card */}
-      <motion.div
-        ref={refCallout}
-        animate={inViewCallout ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-        transition={getTransition(0.7, 0.3)}
-        className="relative max-w-[760px] mx-auto z-10 pt-6"
-      >
-        
-        {/* Translucent light grey tape sticking the card in the top center */}
-        <div 
-          className="absolute top-[12px] left-[calc(50%-45px)] w-[90px] h-6 bg-[#e0e0e0]/75 backdrop-blur-[0.5px] border-l border-r border-dashed border-gray-400/25 shadow-sm z-30 pointer-events-none"
-        />
-
-        {/* Refined Megaphone sketch on the right from generated asset */}
-        <div className="absolute bottom-[10px] right-[24px] z-20 pointer-events-none hidden sm:block">
-          <img 
-            src={megaphoneSketch} 
-            alt="Megaphone Sketch" 
-            className="w-20 h-20 object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)]"
-          />
-        </div>
-
-        {/* The ripped paper card with dynamic clip path and noise paper texture */}
-        <div 
-          className="py-10 px-8 sm:px-16 md:px-24 border border-hairline shadow-[0_20px_45px_rgba(0,0,0,0.05)] text-center relative overflow-hidden"
-          style={{
-            clipPath: 'polygon(0% 0px, 100% 0px, 99.6% 8%, 100% 16%, 99.4% 24%, 100% 32%, 99.7% 40%, 100% 48%, 99.5% 56%, 100% 64%, 99.8% 72%, 100% 80%, 99.5% 88%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0.5% 92%, 0% 84%, 0.4% 76%, 0% 68%, 0.6% 60%, 0% 52%, 0.3% 44%, 0% 36%, 0.5% 28%, 0% 20%, 0.4% 12%, 0% 4px)',
-            background: `
-              radial-gradient(circle at 50% 50%, rgba(255,253,250,0.98), rgba(244,242,238,0.95)),
-              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")
-            `
-          }}
-        >
-          {/* Intersecting paper fold crease overlays */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-10" 
-            style={{
-              background: `
-                linear-gradient(115deg, transparent 49.6%, rgba(0,0,0,0.04) 50%, rgba(255,255,255,0.6) 50.4%, transparent 50.8%),
-                linear-gradient(25deg, transparent 49.7%, rgba(0,0,0,0.03) 50%, rgba(255,255,255,0.5) 50.3%, transparent 50.6%)
-              `,
-              mixBlendMode: 'multiply'
-            }} 
-          />
-
-          {/* Curled fold decoration */}
-          <div 
-            className="absolute bottom-0 right-0 w-4 h-4 shadow-[-1px_-1px_2px_rgba(0,0,0,0.15)] pointer-events-none z-20"
-            style={{
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.95) 100%)',
-              backgroundColor: '#e5e5e5',
-              clipPath: 'polygon(0% 0%, 0% 100%, 100% 0%)'
-            }}
-          />
-
-          {/* V1.0 Chapter Status Header with Pink Radiating Marks */}
-          <div className="flex items-center justify-center gap-3 mb-4 select-none relative z-20">
-            <svg className="w-5 h-5 text-pink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M10 12 L4 10" />
-              <path d="M11 9 L6 4" />
-              <path d="M12 14 L8 19" />
-            </svg>
-            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#7C3AED]">
-              V1.0 CHAPTER STATUS
-            </span>
-            <svg className="w-5 h-5 text-pink-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M14 12 L20 10" />
-              <path d="M13 9 L18 4" />
-              <path d="M12 14 L16 19" />
-            </svg>
+      {/* ========================================================================= */}
+      {/* 2. UPCOMING EVENTS SECTION (Sticky Notes Layout) */}
+      {/* ========================================================================= */}
+      <div className="mb-16">
+        <div className="flex items-center justify-between mt-20 mb-8 z-10 relative">
+          <div className="flex items-center gap-2 text-purple">
+            <Calendar className="w-4 h-4" />
+            <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-purple">
+              UPCOMING EVENTS
+            </h3>
           </div>
-
-          <p className="font-handwritten text-[16px] sm:text-[18px] text-ink/80 leading-relaxed max-w-[50ch] mx-auto relative z-20">
-            We are currently in setup mode. No events are scheduled at this exact moment, but planning is underway. 
-            Announcements will be broadcasted live on our official Discord server first.
-          </p>
+          <a 
+            href="#events" 
+            className="font-mono text-[10px] sm:text-xs font-semibold text-purple/80 hover:text-purple transition-colors flex items-center gap-1 group"
+          >
+            <span>View all upcoming events</span>
+            <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </a>
         </div>
-      </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
+          {upcomingEvents.map((event, index) => (
+            <UpcomingStickyNote 
+              key={event.id}
+              event={event}
+              index={index}
+              getTransition={getTransition}
+              shouldReduceMotion={shouldReduceMotion}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. PAST EVENTS SECTION */}
+      {/* ========================================================================= */}
+      <div className="mb-12">
+        <div className="flex items-center justify-between mt-20 mb-8 z-10 relative">
+          <div className="flex items-center gap-2 text-purple">
+            <Clock className="w-4 h-4" />
+            <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-purple">
+              PAST EVENTS
+            </h3>
+          </div>
+          <a 
+            href="#events" 
+            className="font-mono text-[10px] sm:text-xs font-semibold text-purple/80 hover:text-purple transition-colors flex items-center gap-1 group"
+          >
+            <span>View all past events</span>
+            <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pastEvents.map((event, index) => (
+            <PastEventCard 
+              key={event.id} 
+              event={event} 
+              index={index} 
+              getTransition={getTransition}
+              shouldReduceMotion={shouldReduceMotion}
+            />
+          ))}
+        </div>
+      </div>
 
     </Section>
+  );
+}
+
+// Running Event Card Sub-Component
+function RunningEventCard({ event, index, getTransition, shouldReduceMotion }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-10%' });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
+      transition={getTransition(0.7, index * 0.1)}
+      className="w-full animate-none"
+    >
+      <motion.div
+        initial="initial"
+        whileHover="hover"
+        variants={{
+          initial: {
+            y: 0,
+            borderColor: 'rgba(233, 233, 236, 0.1)',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
+          },
+          hover: {
+            y: -6,
+            borderColor: 'rgba(124, 58, 237, 0.45)',
+            boxShadow: '0 20px 35px rgba(124, 58, 237, 0.12)'
+          }
+        }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-2xl bg-zinc-950 border aspect-[1.35/1] flex flex-col justify-end p-6 cursor-pointer select-none group transition-all duration-300"
+      >
+        {/* Background Image with motion transition */}
+        <motion.img
+          src={event.image}
+          alt={event.title}
+          variants={{
+            initial: { scale: 1, filter: 'brightness(0.55) contrast(1.05)' },
+            hover: { scale: 1.08, filter: 'brightness(0.35) contrast(1.1) blur(1.5px)' }
+          }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        
+        {/* Content overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent z-[1]" />
+
+        {/* Top Badges */}
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+          <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+            {getCategoryIcon(event.category)}
+          </div>
+          <span className="bg-purple text-[9px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full text-white">
+            RUNNING
+          </span>
+        </div>
+
+        {/* Text Content with Framer Motion slide-up */}
+        <motion.div 
+          variants={{
+            initial: { y: 20 },
+            hover: { y: 0 }
+          }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="relative z-10 flex flex-col gap-2 w-full"
+        >
+          <h4 className="font-display font-semibold text-lg text-white leading-tight">
+            {event.title}
+          </h4>
+          <p className="text-[12px] text-white/70 leading-relaxed font-body line-clamp-2">
+            {event.description}
+          </p>
+
+          {/* Date/Time/Location Info */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-1 text-[9px] text-white/55 font-mono">
+            <div className="flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.date}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.time}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.location}</span>
+            </div>
+          </div>
+
+          {/* Register Button that expands on hover */}
+          <motion.div
+            variants={{
+              initial: { opacity: 0, height: 0, marginTop: 0 },
+              hover: { opacity: 1, height: 'auto', marginTop: 12 }
+            }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <a
+              href={event.registerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-1.5 bg-purple hover:bg-[#A78BFA] text-white font-body text-xs font-semibold py-2.5 rounded-lg transition-colors duration-200"
+            >
+              <span>Register Now</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </a>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// Upcoming Sticky Note Component
+function UpcomingStickyNote({ event, index, getTransition, shouldReduceMotion }) {
+  const refSticky = useRef(null);
+  const inViewSticky = useInView(refSticky, { once: true });
+
+  return (
+    <motion.div
+      ref={refSticky}
+      animate={inViewSticky
+        ? { opacity: 1, rotate: event.cardRotate, scale: 1 }
+        : { opacity: 0, rotate: event.cardRotate, scale: 1 }
+      }
+      whileHover={{ 
+        rotate: 0, 
+        scale: 1.04,
+        y: -4,
+        boxShadow: '0 20px 30px rgba(0,0,0,0.08)'
+      }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="relative group min-h-[330px] select-none pt-4 cursor-default"
+    >
+      {/* Opaque, Visible Tape Accent */}
+      <div 
+        style={{
+          backgroundColor: event.tapeColor,
+          transform: `rotate(${event.tapeRotate}deg)`
+        }}
+        className="absolute top-0 left-[calc(50%-45px)] w-[90px] h-6 border-l border-r border-dashed border-black/10 shadow-sm z-20 opacity-90"
+      />
+
+      {/* Inner Card (with clipPath for bottom-right fold) */}
+      <div 
+        style={{
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%)',
+          backgroundColor: event.color
+        }}
+        className="relative text-ink p-6 md:p-8 h-full min-h-[310px] flex flex-col justify-between rounded-[2px] shadow-[2px_12px_24px_rgba(0,0,0,0.05)] border border-black/5"
+      >
+        {/* Curled Fold Corner */}
+        <div 
+          className="absolute bottom-0 right-0 w-4 h-4 rounded-tl-[4px] shadow-[-1px_-1px_3px_rgba(0,0,0,0.08)] pointer-events-none"
+          style={{
+            background: 'linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.15) 100%)',
+            backgroundColor: event.accentColor
+          }}
+        />
+
+        {/* Sticky Header */}
+        <div className="flex justify-between items-start mb-4">
+          <div className="h-8 w-8 rounded-full border border-ink/15 flex items-center justify-center font-display font-medium text-xs select-none">
+            {event.num}
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="font-mono text-[8px] uppercase tracking-wider text-ink/40 block leading-none">
+              STATUS:
+            </span>
+            <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-ink/75 block leading-none mt-1 border-b border-ink/30 pb-0.5 font-cursive">
+              UPCOMING
+            </span>
+          </div>
+        </div>
+
+        {/* Sticky Body */}
+        <div className="my-auto flex flex-col items-start w-full">
+          {/* Custom Icon Circle */}
+          <div className="mb-3 text-ink/70 group-hover:scale-105 transition-transform duration-300">
+            {getCategoryIcon(event.categoryIcon)}
+          </div>
+          <h4 className="font-cursive text-xl sm:text-2xl font-bold text-ink mb-2 leading-tight">
+            {event.title}
+          </h4>
+          <p className="font-handwritten text-[14px] sm:text-[15.5px] text-ink/75 leading-snug">
+            {event.description}
+          </p>
+        </div>
+
+        {/* Sticky Footer / Speaker */}
+        <div className="border-t border-dashed border-ink/15 pt-3.5 mt-5 flex items-center justify-between">
+          <span className="font-mono text-[8.5px] text-ink/50 uppercase tracking-[0.05em] font-semibold truncate max-w-[80%]">
+            SPEAKER: {event.speaker}
+          </span>
+          <div className="text-purple/60 shrink-0">
+            {event.icon === 'star' && <Star size={18} className="fill-purple/10" />}
+            {event.icon === 'heart' && <Heart size={18} className="fill-purple/10" />}
+            {event.icon === 'scribble' && (
+              <svg className="w-5 h-5 text-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M 4 15 C 8 10, 16 18, 20 12" />
+              </svg>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Past Event Card Sub-Component
+function PastEventCard({ event, index, getTransition, shouldReduceMotion }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-10%' });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 25 }}
+      transition={getTransition(0.7, index * 0.1)}
+      className="w-full animate-none"
+    >
+      <motion.div
+        initial="initial"
+        whileHover="hover"
+        variants={{
+          initial: {
+            y: 0,
+            borderColor: 'rgba(233, 233, 236, 0.1)',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
+          },
+          hover: {
+            y: -6,
+            borderColor: 'rgba(124, 58, 237, 0.35)',
+            boxShadow: '0 20px 35px rgba(0, 0, 0, 0.15)'
+          }
+        }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative overflow-hidden rounded-2xl bg-zinc-950 border aspect-[1.35/1] flex flex-col justify-end p-6 cursor-pointer select-none group transition-all duration-300"
+      >
+        {/* Background Image with motion transition */}
+        <motion.img
+          src={event.image}
+          alt={event.title}
+          variants={{
+            initial: { scale: 1, filter: 'brightness(0.45) contrast(1.05) grayscale(0.2)' },
+            hover: { scale: 1.08, filter: 'brightness(0.3) contrast(1.1) grayscale(0) blur(1.5px)' }
+          }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        
+        {/* Content overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent z-[1]" />
+
+        {/* Top Badges */}
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+          <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+            {getCategoryIcon(event.category)}
+          </div>
+          <span className="bg-[#2E204E] text-[#C084FC] border border-[#C084FC]/30 text-[9px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full">
+            COMPLETED
+          </span>
+        </div>
+
+        {/* Text Content with Framer Motion slide-up */}
+        <motion.div 
+          variants={{
+            initial: { y: 20 },
+            hover: { y: 0 }
+          }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="relative z-10 flex flex-col gap-2 w-full"
+        >
+          <h4 className="font-display font-semibold text-lg text-white leading-tight">
+            {event.title}
+          </h4>
+          <p className="text-[12px] text-white/70 leading-relaxed font-body line-clamp-2">
+            {event.description}
+          </p>
+
+          {/* Date/Time/Location Info */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-1 text-[9px] text-white/55 font-mono">
+            <div className="flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.date}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.time}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-purple-300" />
+              <span>{event.location}</span>
+            </div>
+          </div>
+
+          {/* View Details Button that expands on hover */}
+          <motion.div
+            variants={{
+              initial: { opacity: 0, height: 0, marginTop: 0 },
+              hover: { opacity: 1, height: 'auto', marginTop: 12 }
+            }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <a
+              href={event.detailsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 text-white font-body text-xs font-semibold py-2.5 rounded-lg transition-colors duration-200 border border-zinc-700/50"
+            >
+              <span>View Details</span>
+              <ChevronRight className="w-3.5 h-3.5 text-purple-400" />
+            </a>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -16,7 +16,7 @@ const EXECOM_PROFILES = [
   'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
   'abin-anil', 'aadil', 'aadit', 'ananthu', 'devanarayanan', 'adhithyan', 'malavika',
   'krishna', 'devika', 'faizan', 'adhil', 'beema', 'nidhi', 'arjun-kurup',
-  'devanand', 'navaneeth', 'john', 'akshaj', 'arjun-nair'
+  'devanand', 'navaneeth', 'john', 'akshaj', 'arjun-nair', 'lekshmi'
 ];
 
 function App() {
