@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Users, Calendar, Trophy, Award, FileCode } from 'lucide-react';
 import Section from '../layout/Section';
 import notebookOrbit from '../../assets/notebook_orbit.png';
@@ -12,15 +12,27 @@ import notebookOrbit from '../../assets/notebook_orbit.png';
 export default function Circles() {
   const shouldReduceMotion = useReducedMotion();
 
+  const refHeader = useRef(null);
+  const refStep1 = useRef(null);
+  const refStep2 = useRef(null);
+  const refOrbit = useRef(null);
+  const refSticky1 = useRef(null);
+  const refSticky2 = useRef(null);
+  const inViewHeader = useInView(refHeader, { once: true, margin: '-10%' });
+  const inViewStep1 = useInView(refStep1, { once: true });
+  const inViewStep2 = useInView(refStep2, { once: true });
+  const inViewOrbit = useInView(refOrbit, { once: true, margin: '-5%' });
+  const inViewSticky1 = useInView(refSticky1, { once: true });
+  const inViewSticky2 = useInView(refSticky2, { once: true });
+
   return (
-    <Section id="circles" tone="off-white" className="relative overflow-hidden">
+    <Section id="circles" tone="off-white" className="relative">
       
       {/* 1. Header (Above grid) */}
       <div className="relative mb-16 z-10">
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
+          ref={refHeader}
+          animate={inViewHeader ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="inline-block font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-purple relative mb-6">
@@ -44,18 +56,20 @@ export default function Circles() {
         {/* Left Column: Steps */}
         <div className="lg:col-span-7 space-y-12">
           {/* Step 01 */}
-          <motion.div 
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div 
+            ref={refStep1}
             className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start"
           >
             {/* Sticky Note 01 */}
             <motion.div
+              ref={refSticky1}
+              animate={inViewSticky1
+                ? { opacity: 1, rotate: -2.5, scale: 1 }
+                : { opacity: 0, rotate: -2.5, scale: 1 }
+              }
               whileHover={{ rotate: 0, scale: 1.05 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative w-24 h-24 bg-[#E8DFFF] flex items-center justify-center rounded-[2px] shadow-[4px_12px_24px_rgba(124,58,237,0.08),_1px_2px_4px_rgba(0,0,0,0.04)] rotate-[-2.5deg] shrink-0 self-center sm:self-start select-none"
+              className="relative w-24 h-24 bg-[#E8DFFF] flex items-center justify-center rounded-[2px] shadow-[4px_12px_24px_rgba(124,58,237,0.08),_1px_2px_4px_rgba(0,0,0,0.04)] shrink-0 self-center sm:self-start select-none"
             >
               {/* Translucent tape overlay */}
               <div className="absolute -top-3 left-[calc(50%-24px)] w-12 h-6 bg-[#C1B5F3]/60 rotate-[-1.5deg] backdrop-blur-[0.5px] border-l border-r border-dashed border-purple-400/20 shadow-[0_1px_2px_rgba(0,0,0,0.03)] z-10" />
@@ -83,21 +97,23 @@ export default function Circles() {
                 </svg>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Step 02 */}
-          <motion.div 
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
+            ref={refStep2}
             className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start"
           >
             {/* Sticky Note 02 */}
             <motion.div
+              ref={refSticky2}
+              animate={inViewSticky2
+                ? { opacity: 1, rotate: 3.2, scale: 1 }
+                : { opacity: 0, rotate: 3.2, scale: 1 }
+              }
               whileHover={{ rotate: 0, scale: 1.05 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative w-24 h-24 bg-[#FEF3D2] flex items-center justify-center rounded-[2px] shadow-[4px_12px_24px_rgba(245,158,11,0.08),_1px_2px_4px_rgba(0,0,0,0.04)] rotate-[3.2deg] shrink-0 self-center sm:self-start select-none"
+              className="relative w-24 h-24 bg-[#FEF3D2] flex items-center justify-center rounded-[2px] shadow-[4px_12px_24px_rgba(245,158,11,0.08),_1px_2px_4px_rgba(0,0,0,0.04)] shrink-0 self-center sm:self-start select-none"
             >
               {/* Translucent tape overlay */}
               <div className="absolute -top-3 left-[calc(50%-24px)] w-12 h-6 bg-[#EDDE95]/60 rotate-[2.5deg] backdrop-blur-[0.5px] border-l border-r border-dashed border-amber-400/20 shadow-[0_1px_2px_rgba(0,0,0,0.03)] z-10" />
@@ -126,16 +142,15 @@ export default function Circles() {
                 </svg>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Column: High-Fidelity Orbit Diagram Image */}
         <div className="lg:col-span-5 flex justify-center items-center">
           <motion.div
-            initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-            viewport={{ once: true, margin: '-5%' }}
+            ref={refOrbit}
+            animate={inViewOrbit ? { opacity: 1, scale: 1 } : { opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
+            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
             className="relative w-full max-w-[440px] select-none cursor-default"
           >

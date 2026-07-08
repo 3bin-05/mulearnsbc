@@ -52,7 +52,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-white text-ink border-t border-hairline pt-28 pb-8 overflow-hidden select-none font-body">
+    <footer className="relative bg-white text-ink border-t border-hairline pt-28 pb-8 select-none font-body">
       
       {/* 1. Large Branding Sketch Header (Light Background) */}
       <div className="max-w-[1180px] mx-auto px-6 mb-12">
@@ -234,7 +234,7 @@ export default function Footer() {
           {/* Column 4: Paperclip card */}
           <div className="col-span-12 md:col-span-3 flex justify-center md:justify-end">
             <motion.div
-              whileHover={shouldReduceMotion ? {} : { rotate: 3, scale: 1.05, y: -4 }}
+              whileHover={{ rotate: 3, scale: 1.05, y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
               className="w-[220px] sm:w-[240px] select-none cursor-default"
             >

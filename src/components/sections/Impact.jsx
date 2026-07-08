@@ -19,7 +19,7 @@ export default function Impact() {
   };
 
   return (
-    <Section id="impact" tone="light" className="relative overflow-hidden">
+    <Section id="impact" tone="light" className="relative">
       
       {/* Section Header */}
       <div className="relative flex flex-col md:flex-row md:items-end justify-between mb-4 md:mb-6 gap-6 z-10">

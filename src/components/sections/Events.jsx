@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Section from '../layout/Section';
 import megaphoneSketch from '../../assets/megaphone_sketch.png';
 
@@ -17,8 +17,17 @@ export default function Events() {
     return { duration, delay, ease: [0.16, 1, 0.3, 1] };
   };
 
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const refCallout = useRef(null);
+  const inView1 = useInView(ref1, { once: true, margin: '-10%' });
+  const inView2 = useInView(ref2, { once: true, margin: '-10%' });
+  const inView3 = useInView(ref3, { once: true, margin: '-10%' });
+  const inViewCallout = useInView(refCallout, { once: true, margin: '-10%' });
+
   return (
-    <Section id="events" tone="off-white" className="relative overflow-hidden">
+    <Section id="events" tone="off-white" className="relative">
       
       {/* Section Header */}
       <div className="relative mb-16 md:mb-20 z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -61,11 +70,10 @@ export default function Events() {
         
         {/* Sticky Note 1: Purple */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
+          ref={ref1}
+          animate={inView1 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           transition={getTransition(0.7, 0.05)}
-          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
           style={{ rotate: -2 }}
           className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
@@ -136,11 +144,10 @@ export default function Events() {
 
         {/* Sticky Note 2: Yellow */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
+          ref={ref2}
+          animate={inView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           transition={getTransition(0.7, 0.15)}
-          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
           style={{ rotate: 1.8 }}
           className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
@@ -215,11 +222,10 @@ export default function Events() {
 
         {/* Sticky Note 3: Pink */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
+          ref={ref3}
+          animate={inView3 ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           transition={getTransition(0.7, 0.25)}
-          whileHover={shouldReduceMotion ? {} : { rotate: 0, scale: 1.03, y: -5 }}
+          whileHover={{ rotate: 0, scale: 1.03, y: -5 }}
           style={{ rotate: -1 }}
           className="relative group min-h-[310px] select-none pt-4 cursor-default"
         >
@@ -296,9 +302,8 @@ export default function Events() {
 
       {/* Ripped Paper Callout Card */}
       <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10%' }}
+        ref={refCallout}
+        animate={inViewCallout ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
         transition={getTransition(0.7, 0.3)}
         className="relative max-w-[760px] mx-auto z-10 pt-6"
       >

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Section from '../layout/Section';
 import exegrp from '../../assets/exegrp.webp';
 
@@ -11,6 +11,17 @@ import exegrp from '../../assets/exegrp.webp';
 export default function Execom() {
   const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+
+  const refTag = useRef(null);
+  const refHeading = useRef(null);
+  const refPara = useRef(null);
+  const refSlogan = useRef(null);
+  const refPolaroid = useRef(null);
+  const inViewTag = useInView(refTag, { once: true });
+  const inViewHeading = useInView(refHeading, { once: true });
+  const inViewPara = useInView(refPara, { once: true });
+  const inViewSlogan = useInView(refSlogan, { once: true });
+  const inViewPolaroid = useInView(refPolaroid, { once: true });
 
   const getTransition = (duration, delay = 0) => {
     if (shouldReduceMotion) {
@@ -24,16 +35,15 @@ export default function Execom() {
   };
 
   return (
-    <Section id="execom" tone="light" className="relative overflow-hidden select-none">
+    <Section id="execom" tone="light" className="relative select-none">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Typography, taglines and doodles */}
         <div className="lg:col-span-5 flex flex-col items-start text-left z-10">
           {/* WHO RUNS IT tag */}
           <motion.div
-            initial={{ opacity: 0, y: getInitialY(15) }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            ref={refTag}
+            animate={inViewTag ? { opacity: 1, y: 0 } : { opacity: 0, y: getInitialY(15) }}
             transition={getTransition(0.6)}
             className="flex flex-col mb-6"
           >
@@ -45,9 +55,8 @@ export default function Execom() {
 
           {/* Heading */}
           <motion.h2
-            initial={{ opacity: 0, y: getInitialY(20) }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            ref={refHeading}
+            animate={inViewHeading ? { opacity: 1, y: 0 } : { opacity: 0, y: getInitialY(20) }}
             transition={getTransition(0.7, 0.1)}
             className="font-display font-semibold text-[38px] sm:text-[46px] leading-[1.1] tracking-tight text-ink mt-2 mb-6 max-w-[15ch]"
           >
@@ -57,9 +66,8 @@ export default function Execom() {
 
           {/* Subtitle / Paragraph */}
           <motion.p
-            initial={{ opacity: 0, y: getInitialY(20) }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            ref={refPara}
+            animate={inViewPara ? { opacity: 1, y: 0 } : { opacity: 0, y: getInitialY(20) }}
             transition={getTransition(0.7, 0.2)}
             className="max-w-[42ch] text-[15px] sm:text-[16px] text-ink/75 leading-relaxed mb-8 font-body"
           >
@@ -68,9 +76,8 @@ export default function Execom() {
 
           {/* Slogan with handwriting style */}
           <motion.div
-            initial={{ opacity: 0, y: getInitialY(20) }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            ref={refSlogan}
+            animate={inViewSlogan ? { opacity: 1, y: 0 } : { opacity: 0, y: getInitialY(20) }}
             transition={getTransition(0.7, 0.35)}
             className="relative mt-4"
           >
@@ -89,9 +96,11 @@ export default function Execom() {
         <div className="lg:col-span-7 flex justify-center items-center relative py-6">
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, rotate: 3 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 1.5 }}
-            viewport={{ once: true }}
+            ref={refPolaroid}
+            animate={inViewPolaroid
+              ? { opacity: 1, scale: 1, rotate: 1.5 }
+              : { opacity: 0, scale: 0.95, rotate: 3 }
+            }
             transition={getTransition(0.8, 0.25)}
             whileHover={{ 
               rotate: 0,

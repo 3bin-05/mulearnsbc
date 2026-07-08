@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Calendar, Star, Users, Rocket } from 'lucide-react';
 import Section from '../layout/Section';
 import campusSketch from '../../assets/campus_sketch.png';
@@ -22,6 +22,15 @@ export default function About() {
     return { duration, delay, ease: [0.16, 1, 0.3, 1] };
   };
 
+  const refLeft = useRef(null);
+  const refLeftP = useRef(null);
+  const refImg = useRef(null);
+  const refStats = useRef(null);
+  const inViewLeft = useInView(refLeft, { once: true, margin: '-10%' });
+  const inViewLeftP = useInView(refLeftP, { once: true, margin: '-10%' });
+  const inViewImg = useInView(refImg, { once: true, margin: '-10%' });
+  const inViewStats = useInView(refStats, { once: true, margin: '-5%' });
+
   return (
     <Section id="about" tone="light">
       {/* Main Grid: Left Paragraphs & Right Campus Sketch */}
@@ -30,9 +39,8 @@ export default function About() {
         {/* Left Column: Heading and Description Paragraphs (col-span-5) */}
         <div className="lg:col-span-5 flex flex-col items-start">
           <motion.div
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
+            ref={refLeft}
+            animate={inViewLeft ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             transition={getTransition(0.7)}
             className="w-full"
           >
@@ -48,9 +56,8 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
+            ref={refLeftP}
+            animate={inViewLeftP ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             transition={getTransition(0.7, 0.15)}
             className="space-y-6 text-[14px] sm:text-[15px] text-ink/75 leading-relaxed font-body"
           >
@@ -77,9 +84,8 @@ export default function About() {
         <div className="lg:col-span-7 flex justify-center lg:justify-end items-center relative py-6 lg:py-0 select-none">
           <div className="relative w-full max-w-[640px] lg:max-w-none flex items-center justify-center">
             <motion.img
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: '-10%' }}
+              ref={refImg}
+              animate={inViewImg ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={getTransition(0.8, 0.1)}
               src={campusSketch}
               alt="Sree Buddha College of Engineering Campus Sketch"
@@ -92,9 +98,8 @@ export default function About() {
 
       {/* Bottom Horizontal Stats Card */}
       <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-5%' }}
+        ref={refStats}
+        animate={inViewStats ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
         transition={getTransition(0.7, 0.2)}
         className="w-full bg-white rounded-[24px] shadow-[0_20px_45px_rgba(0,0,0,0.03)] p-6 md:p-8 mt-16 md:mt-20 relative z-10"
       >

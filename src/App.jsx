@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/layout/Navbar';
 import Section from './components/layout/Section';
 import Footer from './components/layout/Footer';
@@ -10,7 +10,7 @@ import Circles from './components/sections/Circles';
 import Execom from './components/sections/Execom';
 import ExecomProfileComingSoon from './components/sections/ExecomProfileComingSoon';
 import ExecomTeamPage from './components/sections/ExecomTeamPage';
-import Preloader from './components/layout/Preloader';
+
 
 const EXECOM_PROFILES = [
   'diya', 'karthik', 'abin-george', 'vaishnav', 'ebin', 'ajin', 'maanas',
@@ -20,7 +20,7 @@ const EXECOM_PROFILES = [
 ];
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+
   const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
 
   let content;
@@ -60,7 +60,6 @@ function App() {
 
   return (
     <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       {content}
     </>
   );

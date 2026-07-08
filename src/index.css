@@ -43,19 +43,12 @@
     background-color: #0B0B0D; /* Ensure black bg matches layout */
   }
 
-  /* prefers-reduced-motion override */
+  /* prefers-reduced-motion: Handled per-component via Framer Motion's useReducedMotion() hook.
+     Only disable scroll behavior globally to avoid nausea; do NOT kill animation-duration
+     or transition-duration — doing so breaks Framer Motion v12's WAAPI animations. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto !important;
-    }
-    *, *::before, *::after {
-      animation-delay: -1ms !important;
-      animation-duration: 1ms !important;
-      animation-iteration-count: 1 !important;
-      background-attachment: initial !important;
-      scroll-behavior: auto !important;
-      transition-duration: 0s !important;
-      transition-delay: 0s !important;
     }
   }
 }
