@@ -10,6 +10,7 @@ import Circles from './components/sections/Circles';
 import Execom from './components/sections/Execom';
 import ExecomProfileComingSoon from './components/sections/ExecomProfileComingSoon';
 import ExecomTeamPage from './components/sections/ExecomTeamPage';
+import NotFound from './components/sections/NotFound';
 
 
 const EXECOM_PROFILES = [
@@ -29,7 +30,7 @@ function App() {
     content = <ExecomTeamPage />;
   } else if (EXECOM_PROFILES.includes(path)) {
     content = <ExecomProfileComingSoon username={path} />;
-  } else {
+  } else if (path === '') {
     content = (
       <div className="min-h-screen bg-white font-body text-ink selection:bg-purple selection:text-white">
         <Navbar />
@@ -53,6 +54,16 @@ function App() {
         </main>
 
         {/* Footer Section */}
+        <Footer />
+      </div>
+    );
+  } else {
+    content = (
+      <div className="min-h-screen bg-white font-body text-ink selection:bg-purple selection:text-white">
+        <Navbar />
+        <main>
+          <NotFound />
+        </main>
         <Footer />
       </div>
     );
