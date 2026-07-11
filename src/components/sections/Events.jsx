@@ -35,14 +35,16 @@ const getCategoryIcon = (category) => {
 };
 
 /**
- * Format an ISO date string (YYYY-MM-DD) or a human readable string
- * for display inside cards. Falls back to raw value if already formatted.
+ * Format an ISO date string (YYYY-MM-DD or YYYY-MM-DDTHH:mm…)
+ * for display inside cards. Only shows the date part, not the time.
  */
 function formatDateDisplay(dateStr) {
   if (!dateStr) return '—';
-  // If it looks like ISO format, convert it nicely
   if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) {
-    const d = new Date(dateStr + 'T00:00:00');
+    // Extract only the date part (before any 'T') to avoid invalid date from double T
+    const datePart = dateStr.split('T')[0]; // "2026-07-09"
+    const d = new Date(datePart + 'T00:00:00');
+    if (isNaN(d.getTime())) return dateStr; // fallback
     return d.toLocaleDateString('en-IN', {
       day: '2-digit',
       month: 'short',
@@ -57,7 +59,7 @@ function buildDateRange(event) {
   if (event.startDate && event.endDate) {
     return `${formatDateDisplay(event.startDate)} – ${formatDateDisplay(event.endDate)}`;
   }
-  if (event.startDate) return `${formatDateDisplay(event.startDate)} – ONGOING`;
+  if (event.startDate) return formatDateDisplay(event.startDate);
   if (event.date)      return event.date; // legacy field
   return '—';
 }

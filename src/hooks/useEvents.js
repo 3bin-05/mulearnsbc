@@ -65,7 +65,26 @@ export function useEvents() {
         const pastList       = [];
 
         snapshot.forEach((doc) => {
-          const data = { id: doc.id, ...doc.data() };
+          const raw = doc.data();
+
+          // Normalise startDate / endDate: Firestore Timestamps → "YYYY-MM-DD" strings
+          const toDateStr = (val) => {
+            if (!val) return val;
+            // Firestore Timestamp object (has .toDate())
+            if (typeof val?.toDate === 'function') {
+              return val.toDate().toISOString().slice(0, 10);
+            }
+            // Already a string — return as-is
+            return String(val);
+          };
+
+          const data = {
+            id: doc.id,
+            ...raw,
+            startDate: toDateStr(raw.startDate),
+            endDate:   toDateStr(raw.endDate),
+          };
+
           const bucket = classifyEvent(data);
 
           if (bucket === 'running')      runningList.push(data);

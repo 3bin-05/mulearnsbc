@@ -3,7 +3,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 
-// Member Images
+// ─── Member Images (commented out — new card section coming) ───
+/*
 import lekshmi_shan from '../../assets/Execom/lekshmi shan.webp';
 import diya from '../../assets/Execom/diya.webp';
 import karthik from '../../assets/Execom/Karthikayan pulipra Renjith.webp';
@@ -31,7 +32,10 @@ import john from '../../assets/Execom/John.webp';
 import akshaj from '../../assets/Execom/AKSHAJ.webp';
 import arjun_nair from '../../assets/Execom/Arjun Nair.webp';
 import aadit from '../../assets/Execom/aadit.webp';
+*/
 
+// ─── Member Data (commented out — new card section coming) ───
+/*
 const membersData = [
   {
     name: 'Lekshmi Shan',
@@ -250,6 +254,7 @@ const membersData = [
     level: 6
   }
 ];
+*/
 
 export default function ExecomTeamPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -270,7 +275,8 @@ export default function ExecomTeamPage() {
     return shouldReduceMotion ? 0 : yVal;
   };
 
-  // Group members by structural rows for display logic
+  // ─── renderRows (commented out — new card section coming) ───
+  /*
   const renderRows = [
     {
       id: 'level-1',
@@ -309,14 +315,15 @@ export default function ExecomTeamPage() {
       wavyType: 'bottom'
     }
   ];
+  */
 
   return (
     <div className="min-h-screen bg-white text-ink font-body flex flex-col selection:bg-purple selection:text-white pt-24 overflow-x-hidden">
       <Navbar />
-      
+
       {/* Main Container */}
       <main className="flex-1 max-w-[1180px] mx-auto px-6 w-full py-16">
-        
+
         {/* Back Link */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
@@ -324,7 +331,7 @@ export default function ExecomTeamPage() {
           transition={getTransition(0.5)}
           className="mb-12"
         >
-          <a 
+          <a
             href="/"
             onClick={(e) => {
               e.preventDefault();
@@ -356,99 +363,7 @@ export default function ExecomTeamPage() {
           </p>
         </motion.div>
 
-        {/* Leader Levels Vertical Rhythm */}
-        <div className="space-y-24">
-          {renderRows.map((row) => (
-            <div key={row.id} className="relative">
-              {/* Row title */}
-              <div className="flex items-center gap-4 mb-10 select-none">
-                <h2 className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink/40 whitespace-nowrap">
-                  {row.title}
-                </h2>
-                <div className="w-full h-[1px] bg-hairline" />
-              </div>
-
-              {/* Connecting Wavy Background Path (only visible for rows with 2+ members on desktop) */}
-              {row.members.length > 1 && (
-                <div className="absolute top-[68px] left-[10%] right-[10%] h-12 -z-10 hidden lg:block select-none pointer-events-none">
-                  <svg className="w-full h-full text-[#E2D9FF] opacity-65 animate-pulse-slow" viewBox="0 0 300 40" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round">
-                    {row.wavyType === 'top' ? (
-                      <path d="M 0 20 C 35 32, 65 8, 100 20 C 135 32, 165 8, 200 20 C 235 32, 265 8, 300 20" />
-                    ) : (
-                      <path d="M 0 20 C 35 8, 65 32, 100 20 C 135 8, 165 32, 200 20 C 235 8, 265 32, 300 20" />
-                    )}
-                  </svg>
-                </div>
-              )}
-
-              {/* Members Flex Grid */}
-              <div className="flex flex-wrap items-stretch justify-center gap-8 md:gap-10">
-                {row.members.map((member, idx) => (
-                  <motion.div
-                    key={member.name}
-                    initial={{ opacity: 0, y: getInitialY(20) }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-5%' }}
-                    transition={getTransition(0.6, idx * 0.08)}
-                    whileHover={{ 
-                      y: -6,
-                      transition: { duration: 0.25, ease: "easeOut" }
-                    }}
-                    className="group flex flex-col items-center justify-between text-center bg-white border border-hairline shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_16px_40px_rgba(124,58,237,0.07)] hover:border-purple/15 transition-all duration-300 rounded-[24px] p-6 w-full sm:w-[260px] min-h-[340px] z-10"
-                  >
-                    {/* Member photo container */}
-                    <div className="flex flex-col items-center">
-                      <div className="h-24 w-24 rounded-full border-[4px] border-white shadow-[0_8px_16px_rgba(0,0,0,0.04),_0_2px_4px_rgba(0,0,0,0.015)] overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300 select-none bg-purple-tint/10 flex items-center justify-center relative">
-                        <img 
-                          src={member.photo} 
-                          alt={member.name} 
-                          className="h-full w-full object-cover" 
-                          onError={(e) => {
-                            // Fallback SVG avatar on error
-                            e.target.style.display = 'none';
-                            e.target.parentNode.innerHTML = `<svg class="w-full h-full text-purple/20 bg-purple-tint/20 p-2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M 50 42 A 15 15 0 1 0 50 12 A 15 15 0 1 0 50 42" /><path d="M 22 80 C 22 62, 35 55, 50 55 C 65 55, 78 62, 78 80" /></svg>`;
-                          }}
-                        />
-                      </div>
-                      
-                      {/* Name */}
-                      <h3 className="font-display font-bold text-base text-ink group-hover:text-purple transition-colors duration-300 leading-snug px-1">
-                        {member.name}
-                      </h3>
-                      
-                      {/* Role Pill */}
-                      <div className="mt-2.5 bg-[#F3EEFF] text-[#7C3AED] px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase select-none inline-block">
-                        {member.role}
-                      </div>
-                    </div>
-
-                    {/* Bio & Social Link at the bottom */}
-                    <div className="mt-4 flex flex-col items-center w-full">
-                      <p className="text-xs text-ink/65 leading-relaxed font-body mb-4 px-1 max-w-[22ch]">
-                        {member.bio}
-                      </p>
-                      
-                      {/* LinkedIn Anchor */}
-                      <a 
-                        href={member.linkedin}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-ink/40 hover:bg-[#F3EEFF] hover:text-purple hover:border-purple/30 transition-all duration-300 bg-white shadow-sm"
-                        aria-label={`${member.name} LinkedIn`}
-                      >
-                        <svg className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                          <rect x="2" y="9" width="4" height="12" />
-                          <circle cx="4" cy="4" r="2" />
-                        </svg>
-                      </a>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* ── NEW CARDS SECTION GOES HERE ── */}
 
       </main>
 
