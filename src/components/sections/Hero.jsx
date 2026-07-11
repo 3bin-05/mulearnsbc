@@ -172,7 +172,7 @@ export default function Hero() {
 
         {/* Right Column: Student Sketch Illustration */}
         <div className="lg:col-span-6 flex justify-center items-center relative py-2">
-          <div className="relative w-full max-w-[500px] lg:max-w-[560px] flex items-center justify-center">
+          <div className="relative w-full max-w-[550px] lg:max-w-[610px] flex items-center justify-center">
             <motion.img
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
