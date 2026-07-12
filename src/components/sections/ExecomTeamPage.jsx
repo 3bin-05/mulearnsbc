@@ -328,6 +328,8 @@ export default function ExecomTeamPage() {
         photo: member.imageUrl,
         bio: member.bio || '',
         linkedin: member.socials?.linkedin || '',
+        github: member.socials?.github || '',
+        instagram: member.socials?.instagram || '',
         category: category
       };
     });
@@ -421,7 +423,7 @@ export default function ExecomTeamPage() {
 
         {/* Dynamic Animated Slideshow Container */}
         <HoverSlider key={activeCategory} className="w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start min-h-[480px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[480px]">
             
             {/* Left side: Members list */}
             <div className="lg:col-span-6 flex flex-col space-y-4">
@@ -457,21 +459,17 @@ export default function ExecomTeamPage() {
             {/* Right side: Member Detail Showcase card */}
             <div className="lg:col-span-6 flex flex-col items-center lg:items-start w-full relative">
               
-
-
-              <div className="bg-white rounded-[32px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-purple/10 w-full max-w-[460px] flex flex-col gap-6 relative overflow-hidden">
+              <div className="bg-[#0d0c13] rounded-[24px] border border-[#231b3c] shadow-[0_20px_50px_rgba(0,0,0,0.35)] w-full max-w-[360px] aspect-[2/3] flex flex-col relative overflow-hidden">
                 
                 {/* Wrapped Image and Background Sketch Overlay */}
-                <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#f7f4ff] border border-purple/10 shadow-sm z-10">
+                <div className="relative w-full h-[65%] overflow-hidden bg-[#0d0c13] z-10">
                   
-
-
                   {/* Top Right Badge */}
-                  <div className="absolute top-3 right-3 z-20 bg-white/95 backdrop-blur-sm border border-purple/15 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 shadow-sm">
-                    <img src={execom_sketch_mu} className="w-6 h-6 object-contain mix-blend-multiply" alt="Mu badge" />
+                  <div className="absolute top-4 right-4 z-20 bg-white/95 backdrop-blur-sm border border-purple/15 rounded-xl px-3 py-2 flex items-center gap-2 shadow-sm">
+                    <span className="text-purple font-sans text-xl font-bold leading-none select-none">μ</span>
                     <div className="flex flex-col text-left leading-none">
-                      <span className="text-[7px] font-mono font-bold tracking-widest text-[#3d3929]/50 uppercase">
-                        {currentMember.category === 'leadership' ? 'LEADERSHIP' : currentMember.category === 'interests' ? 'INTEREST LEAD' : currentMember.category === 'creative' ? 'CREATIVE TEAM' : 'OPERATIONS'}
+                      <span className="text-[7px] font-sans font-bold tracking-widest text-[#3d3929]/50 uppercase">
+                        {currentMember.category === 'leadership' ? 'LEADERSHIP' : currentMember.category === 'interests' ? 'IG LEADS' : currentMember.category === 'creative' ? 'CREATIVE TEAM' : 'OPERATIONS'}
                       </span>
                       <span className="text-[9px] font-bold tracking-wider text-purple uppercase mt-0.5">
                         {currentMember.role}
@@ -479,7 +477,7 @@ export default function ExecomTeamPage() {
                     </div>
                   </div>
 
-                  <HoverSliderImageWrap className="w-full h-full relative z-10 mix-blend-multiply">
+                  <HoverSliderImageWrap className="w-full h-full relative z-0">
                     {filteredMembers.map((member, index) => (
                       <HoverSliderImage
                         key={member.name}
@@ -487,13 +485,13 @@ export default function ExecomTeamPage() {
                         imageUrl={member.photo}
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover grayscale"
                         loading="eager"
                         decoding="async"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.parentNode.innerHTML = `
-                            <div class="w-full h-full flex flex-col items-center justify-center bg-purple-tint/30 text-purple/40">
+                            <div class="w-full h-full flex flex-col items-center justify-center bg-[#151221] text-purple/40">
                               <svg class="w-16 h-16 stroke-current" viewBox="0 0 100 100" fill="none" stroke-width="2.5" stroke-linecap="round">
                                 <path d="M 50 42 A 15 15 0 1 0 50 12 A 15 15 0 1 0 50 42" />
                                 <path d="M 22 80 C 22 62, 35 55, 50 55 C 65 55, 78 62, 78 80" />
@@ -504,60 +502,89 @@ export default function ExecomTeamPage() {
                       />
                     ))}
                   </HoverSliderImageWrap>
+
+                  {/* Gradient Overlay to blend white background photo into black container bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[6%] bg-gradient-to-t from-[#0d0c13] to-transparent z-10 pointer-events-none" />
                 </div>
 
                 {/* Animated Bio Details Container */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentMember.name}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col gap-3 min-h-[140px] z-10"
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="flex-1 flex flex-col justify-between px-6 pb-6 pt-3 z-20 text-left"
                   >
-                    <div className="flex flex-col items-start">
-                      <h3 className="font-display font-semibold text-2xl text-[#1a1811]">
+                    <div>
+                      {/* Name */}
+                      <h3 className="font-sans font-bold text-2xl sm:text-3xl text-white tracking-tight leading-none">
                         {currentMember.name}
                       </h3>
-                      {/* Purple gradient underline */}
-                      <div className="w-12 h-1 bg-gradient-to-r from-purple to-purple-dark rounded-full mt-2" />
+
+                      {/* Short Purple Accent Bar */}
+                      <div className="w-8 h-[3px] bg-purple rounded-full my-2.5" />
+
+                      {/* Role Title */}
+                      <span className="text-[11px] font-sans font-bold tracking-[0.1em] text-purple uppercase">
+                        {currentMember.role}
+                      </span>
+
+                      {/* Bio */}
+                      {currentMember.bio && (
+                        <p className="text-xs text-white/60 leading-relaxed font-body mt-2 max-w-[40ch] line-clamp-2">
+                          {currentMember.bio}
+                        </p>
+                      )}
                     </div>
-                    
-                    <p className="text-sm text-[#3d3929]/75 leading-relaxed font-body mt-2">
-                      {currentMember.bio}
-                    </p>
 
-                    {/* Clean dashed line separator */}
-                    <div className="h-px w-full border-t border-dashed border-purple/20 my-6" />
+                    <div>
+                      {/* Thin Separator Line */}
+                      <div className="h-px w-full border-t border-white/10 my-4" />
 
-                    {currentMember.linkedin && (
-                      <div className="w-full">
-                        <motion.a
-                          href={currentMember.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="relative w-full py-3.5 rounded-2xl border border-purple/25 text-purple font-mono text-xs font-bold tracking-wider flex items-center justify-center gap-2 bg-white shadow-sm overflow-hidden"
-                          whileHover="hover"
-                          initial="initial"
-                        >
-                          {/* Hover slide background overlay (animates left to right) */}
-                          <motion.div
-                            className="absolute inset-0 bg-purple/10"
-                            variants={{
-                              initial: { x: "-100%" },
-                              hover: { x: "0%" }
-                            }}
-                            transition={{ duration: 0.3, ease: "easeOut" }}
-                          />
-                          <svg className="w-4 h-4 fill-current shrink-0 z-10" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                          </svg>
-                          <span className="z-10">Connect on LinkedIn</span>
-                          <span className="ml-1 z-10">→</span>
-                        </motion.a>
+                      {/* Socials Row */}
+                      <div className="flex flex-wrap gap-3">
+                        {currentMember.linkedin && (
+                          <a
+                            href={currentMember.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 rounded-[10px] flex items-center justify-center border border-[#2a1b4e] hover:border-purple/50 bg-[#161224]/30 hover:bg-[#1c162f] transition-all cursor-pointer text-white"
+                          >
+                            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                          </a>
+                        )}
+
+                        {currentMember.github && (
+                          <a
+                            href={currentMember.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 rounded-[10px] flex items-center justify-center border border-[#2a1b4e] hover:border-purple/50 bg-[#161224]/30 hover:bg-[#1c162f] transition-all cursor-pointer text-white"
+                          >
+                            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                          </a>
+                        )}
+
+                        {currentMember.instagram && (
+                          <a
+                            href={currentMember.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 rounded-[10px] flex items-center justify-center border border-[#2a1b4e] hover:border-purple/50 bg-[#161224]/30 hover:bg-[#1c162f] transition-all cursor-pointer text-white"
+                          >
+                            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                          </a>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </motion.div>
                 </AnimatePresence>
 
