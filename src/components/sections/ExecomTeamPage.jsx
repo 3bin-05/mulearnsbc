@@ -9,6 +9,7 @@ import {
   TextStaggerHover
 } from '@/components/ui/animated-slideshow';
 import { Zap, Shield } from 'lucide-react';
+import { useExecom } from '../../hooks/useExecom';
 
 // Member Images
 import lekshmi_shan from '../../assets/Execom/lekshmi shan.webp';
@@ -276,10 +277,66 @@ export default function ExecomTeamPage() {
     window.scrollTo(0, 0);
   }, []);
 
+  const { members: dbMembers, loading: dbLoading, error: dbError } = useExecom();
+
+  // Helper to map DB member to UI member structure
+  const mappedMembers = useMemo(() => {
+    if (dbLoading || !dbMembers || dbMembers.length === 0) {
+      // Fallback to static data during loading or if database is empty/errors
+      return membersData;
+    }
+    return dbMembers.map(member => {
+      // Map positions to category if not already specified
+      let category = member.category;
+      if (!category) {
+        const pos = (member.position || '').toLowerCase().trim();
+        if (
+          pos === 'lead' ||
+          pos === 'co lead' ||
+          pos === 'enabler lead' ||
+          pos === 'hr' ||
+          pos === 'mentor' ||
+          pos === 'tech associate' ||
+          pos === 'operations lead' ||
+          pos === 'creative lead'
+        ) {
+          category = 'leadership';
+        } else if (pos === 'ig lead') {
+          category = 'interests';
+        } else if (
+          pos === 'creative team' ||
+          pos === 'marketing lead' ||
+          pos === 'marketing team'
+        ) {
+          category = 'creative';
+        } else if (
+          pos === 'operations team' ||
+          pos === 'media lead' ||
+          pos === 'media team' ||
+          pos === 'muv lead' ||
+          pos === 'muv team'
+        ) {
+          category = 'operations';
+        } else {
+          category = 'leadership';
+        }
+      }
+      return {
+        id: member.id,
+        name: member.name,
+        role: member.roleTitle || member.position,
+        photo: member.imageUrl,
+        bio: member.bio || '',
+        linkedin: member.socials?.linkedin || '',
+        category: category
+      };
+    });
+  }, [dbMembers, dbLoading]);
+
   // Filter members based on selected category
   const filteredMembers = useMemo(() => {
-    return membersData.filter(member => member.category === activeCategory);
-  }, [activeCategory]);
+    return mappedMembers.filter(member => member.category === activeCategory);
+  }, [mappedMembers, activeCategory]);
 
   // Reset active index when category changes
   useEffect(() => {
