@@ -81,8 +81,9 @@ export function useEvents() {
           const data = {
             id: doc.id,
             ...raw,
-            startDate: toDateStr(raw.startDate),
-            endDate:   toDateStr(raw.endDate),
+            startDate:            toDateStr(raw.startDate),
+            endDate:              toDateStr(raw.endDate),
+            registrationCloseDate: toDateStr(raw.registrationCloseDate),
           };
 
           const bucket = classifyEvent(data);

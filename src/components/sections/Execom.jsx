@@ -61,7 +61,7 @@ export default function Execom() {
             className="font-display font-semibold text-[38px] sm:text-[46px] leading-[1.1] tracking-tight text-ink mt-2 mb-6 max-w-[15ch]"
           >
             Executive Committee, <br />
-            <span className="text-purple font-semibold">driving</span> everything.
+            <span className="font-cursive text-purple text-[46px] sm:text-[56px] leading-none inline-block rotate-[-2deg] ml-1">  driving  </span> everything.
           </motion.h2>
 
           {/* Subtitle / Paragraph */}

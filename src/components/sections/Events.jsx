@@ -54,6 +54,19 @@ function formatDateDisplay(dateStr) {
   return dateStr; // already a human string
 }
 
+/**
+ * Returns true when registration has closed (registrationCloseDate is in the past).
+ * If no registrationCloseDate is set, registration is considered open.
+ */
+function isRegistrationClosed(event) {
+  const raw = event.registrationCloseDate;
+  if (!raw) return false;
+  const normalized = raw.length === 16 ? raw + ':00' : raw;
+  const closeDate = new Date(normalized);
+  if (isNaN(closeDate.getTime())) return false;
+  return closeDate < new Date();
+}
+
 /** Build a date range label like "08 MAY – 22 MAY 2025" */
 function buildDateRange(event) {
   if (event.startDate && event.endDate) {
@@ -350,15 +363,25 @@ function RunningEventCard({ event, index, getTransition, shouldReduceMotion }) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <a
-              href={event.registrationLink || event.registerUrl || event.registrationUrl || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1.5 bg-purple hover:bg-[#A78BFA] text-white font-body text-xs font-semibold py-2.5 rounded-lg transition-colors duration-200"
-            >
-              <span>Register Now</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </a>
+            {isRegistrationClosed(event) ? (
+              /* Faded disabled state when registration deadline has passed */
+              <span
+                className="w-full inline-flex items-center justify-center gap-1.5 bg-purple text-white font-body text-xs font-semibold py-2.5 rounded-lg opacity-40 grayscale cursor-not-allowed select-none pointer-events-none transition-all duration-500"
+                aria-disabled="true"
+              >
+                <span>Registration Closed</span>
+              </span>
+            ) : (
+              <a
+                href={event.registrationLink || event.registerUrl || event.registrationUrl || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-1.5 bg-purple hover:bg-[#A78BFA] text-white font-body text-xs font-semibold py-2.5 rounded-lg transition-colors duration-200"
+              >
+                <span>Register Now</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </a>
+            )}
           </motion.div>
         </motion.div>
       </motion.div>
