@@ -16,21 +16,27 @@ function classifyEvent(data) {
 
   const parseDate = (str) => {
     if (!str) return null;
-    // Append :00Z if the string is missing seconds/timezone so Date parses correctly
+    // Append :00 if the string is missing seconds/timezone so Date parses correctly
     const normalized = str.length === 16 ? str + ':00' : str; // "2026-07-09T19:00" → "2026-07-09T19:00:00"
     const d = new Date(normalized);
     return isNaN(d.getTime()) ? null : d;
   };
 
-  const start = parseDate(data.startDate);
-  const end   = parseDate(data.endDate);
+  const regOpen = parseDate(data.registrationOpenDate);
+  const start   = parseDate(data.startDate);
+  const end     = parseDate(data.endDate);
 
-  if (!start && !end) return 'coming_soon';
+  // The running window starts at registrationOpenDate (or falls back to startDate)
+  const runStart = regOpen || start;
+  // The running window ends at endDate (or falls back to startDate)
+  const runEnd   = end || start;
 
-  if (end && end < now)   return 'past';
-  if (start && start > now) return 'coming_soon';
+  if (!runStart && !runEnd) return 'coming_soon';
 
-  // start <= now AND (no end OR end >= now)
+  if (runEnd && runEnd < now) return 'past';
+  if (runStart && runStart > now) return 'coming_soon';
+
+  // runStart <= now AND (no runEnd OR runEnd >= now)
   return 'running';
 }
 
@@ -72,7 +78,10 @@ export function useEvents() {
             if (!val) return val;
             // Firestore Timestamp object (has .toDate())
             if (typeof val?.toDate === 'function') {
-              return val.toDate().toISOString().slice(0, 10);
+              const d = val.toDate();
+              const pad = (n) => String(n).padStart(2, '0');
+              // Format as local YYYY-MM-DDTHH:mm
+              return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
             }
             // Already a string — return as-is
             return String(val);
@@ -83,6 +92,7 @@ export function useEvents() {
             ...raw,
             startDate:            toDateStr(raw.startDate),
             endDate:              toDateStr(raw.endDate),
+            registrationOpenDate: toDateStr(raw.registrationOpenDate),
             registrationCloseDate: toDateStr(raw.registrationCloseDate),
           };
 
